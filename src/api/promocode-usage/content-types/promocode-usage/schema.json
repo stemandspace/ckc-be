@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "promocode_usages",
+  "info": {
+    "singularName": "promocode-usage",
+    "pluralName": "promocode-usages",
+    "displayName": "promocode_usage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "promocode": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "quiz_configs",
+  "info": {
+    "singularName": "quiz-config",
+    "pluralName": "quiz-configs",
+    "displayName": "Quiz Config",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "background": {
+      "type": "text"
+    },
+    "quizzes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::quiz.quiz"
+    }
+  }
+}

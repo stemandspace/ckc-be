@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_activity_module_activiy_modules",
+  "info": {
+    "displayName": "Activiy Module",
+    "icon": "calendar",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "text"
+    },
+    "explorationTime": {
+      "type": "biginteger"
+    },
+    "minExplorationTime": {
+      "type": "biginteger"
+    },
+    "prepration_materials": {
+      "displayName": "Prepration Materials",
+      "type": "component",
+      "repeatable": true,
+      "component": "prepration-materials.prepration-materials"
+    },
+    "desc": {
+      "type": "richtext"
+    },
+    "mediaUrl": {
+      "type": "text"
+    }
+  }
+}

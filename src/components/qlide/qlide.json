@@ -1,0 +1,61 @@
+{
+  "collectionName": "components_qlide_qlides",
+  "info": {
+    "displayName": "Qlide",
+    "icon": "expand",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "question": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "audio": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "select",
+        "boolean",
+        "order",
+        "multiselect",
+        "textinput"
+      ]
+    },
+    "duration": {
+      "type": "integer"
+    },
+    "options": {
+      "displayName": "Qtions",
+      "type": "component",
+      "repeatable": true,
+      "component": "qtions.qtions"
+    },
+    "answer": {
+      "type": "string"
+    },
+    "placeholder": {
+      "type": "string"
+    }
+  }
+}

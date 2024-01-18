@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "discovery_jar_answers",
+  "info": {
+    "singularName": "discovery-jar-answer",
+    "pluralName": "discovery-jar-answers",
+    "displayName": "Discovery jar Answer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "thumbnail": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "mentor": {
+      "type": "string"
+    },
+    "mediaUrl": {
+      "type": "text"
+    },
+    "tags": {
+      "type": "json"
+    },
+    "time_stamps": {
+      "displayName": "Time Stamp",
+      "type": "component",
+      "repeatable": true,
+      "component": "time-stamp.time-stamp"
+    },
+    "discovery_jar_config": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::disconvery-jar-config.disconvery-jar-config",
+      "inversedBy": "discovery_jar_answers"
+    },
+    "title": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "text"
+    },
+    "duration": {
+      "type": "string"
+    },
+    "discovery_jar_questions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::discovery-jar-question.discovery-jar-question",
+      "mappedBy": "discovery_jar_answer"
+    }
+  }
+}

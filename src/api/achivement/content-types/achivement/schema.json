@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "achivements",
+  "info": {
+    "singularName": "achivement",
+    "pluralName": "achivements",
+    "displayName": "Achivement",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "reward_id": {
+      "type": "biginteger"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "achivements"
+    },
+    "coins": {
+      "type": "biginteger"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "video",
+        "comic",
+        "lean",
+        "chllange",
+        "quiz",
+        "badge",
+        "avatar",
+        "banner"
+      ]
+    },
+    "quiz_id": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "courses",
+  "info": {
+    "singularName": "course",
+    "pluralName": "courses",
+    "displayName": "Course",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "duration": {
+      "type": "biginteger"
+    },
+    "isPremium": {
+      "type": "boolean",
+      "default": true
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "trailer": {
+      "type": "text"
+    },
+    "content": {
+      "type": "text"
+    },
+    "modules": {
+      "displayName": "Module",
+      "type": "component",
+      "repeatable": true,
+      "component": "module.module"
+    },
+    "activity_modules": {
+      "displayName": "Activiy Module",
+      "type": "component",
+      "repeatable": false,
+      "component": "activity-module.activiy-module"
+    },
+    "grade": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "richtext"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "mentor": {
+      "type": "string"
+    },
+    "quiz": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::quiz.quiz"
+    }
+  }
+}

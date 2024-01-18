@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_module_slide_module_slides",
+  "info": {
+    "displayName": "Module Slide",
+    "icon": "stack"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "text"
+    },
+    "mediaUrl": {
+      "type": "text"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ppt",
+        "image",
+        "video"
+      ]
+    }
+  }
+}

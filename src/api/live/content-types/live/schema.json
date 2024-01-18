@@ -1,0 +1,77 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lives",
+  "info": {
+    "singularName": "live",
+    "pluralName": "lives",
+    "displayName": "Live",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "thumbnail": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "mediaUrl": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "string"
+    },
+    "premium": {
+      "type": "boolean"
+    },
+    "grade": {
+      "type": "string"
+    },
+    "price": {
+      "type": "biginteger"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "mentor": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "biginteger"
+    },
+    "desc": {
+      "type": "richtext"
+    },
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "live",
+        "upcoming",
+        "recorded"
+      ]
+    },
+    "rewards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reward.reward",
+      "mappedBy": "live"
+    },
+    "from": {
+      "type": "datetime"
+    },
+    "to": {
+      "type": "datetime"
+    }
+  }
+}

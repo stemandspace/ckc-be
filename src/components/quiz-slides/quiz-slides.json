@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_quiz_slides_quiz_slides",
+  "info": {
+    "displayName": "Quiz Slides",
+    "icon": "cube",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "action": {
+      "displayName": "Quiz Slide Question",
+      "type": "component",
+      "repeatable": false,
+      "component": "quiz-slide-question.quiz-slide-question"
+    },
+    "duration": {
+      "type": "biginteger"
+    },
+    "question": {
+      "displayName": "question",
+      "type": "component",
+      "repeatable": false,
+      "component": "question.question"
+    },
+    "answer": {
+      "type": "json"
+    }
+  }
+}

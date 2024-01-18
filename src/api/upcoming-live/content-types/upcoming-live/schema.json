@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "upcoming_lives",
+  "info": {
+    "singularName": "upcoming-live",
+    "pluralName": "upcoming-lives",
+    "displayName": "Upcoming Live"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "thumbnail": {
+      "type": "text"
+    },
+    "premium": {
+      "type": "boolean"
+    },
+    "grade": {
+      "type": "string"
+    },
+    "price": {
+      "type": "biginteger"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "mentor": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "biginteger"
+    },
+    "desc": {
+      "type": "richtext"
+    },
+    "end_timestamp": {
+      "type": "biginteger"
+    },
+    "start_timestamp": {
+      "type": "biginteger"
+    }
+  }
+}

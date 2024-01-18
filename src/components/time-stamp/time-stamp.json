@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_time_stamp_time_stamps",
+  "info": {
+    "displayName": "Time Stamp"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "start_timestamp": {
+      "type": "biginteger"
+    },
+    "end_stamp": {
+      "type": "biginteger"
+    }
+  }
+}

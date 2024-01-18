@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "real_purchases",
+  "info": {
+    "singularName": "real-purchase",
+    "pluralName": "real-purchases",
+    "displayName": "Real Purchase"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_id": {
+      "type": "string"
+    },
+    "purchase_id": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "decimal"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["paid", "pending", "unpaid", "failed"]
+    },
+
+    "label": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["credits", "diamonds", "premium"]
+    }
+  }
+}

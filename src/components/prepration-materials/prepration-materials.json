@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_prepration_materials_prepration_materials",
+  "info": {
+    "displayName": "Prepration Materials",
+    "icon": "archive",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "text"
+    },
+    "qty": {
+      "type": "string"
+    },
+    "product_link": {
+      "type": "text"
+    },
+    "print": {
+      "type": "text"
+    },
+    "desc": {
+      "type": "richtext"
+    }
+  }
+}

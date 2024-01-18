@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "watcheds",
+  "info": {
+    "singularName": "watched",
+    "pluralName": "watcheds",
+    "displayName": "Watched",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "course_id": {
+      "type": "string"
+    },
+    "content_id": {
+      "type": "string"
+    },
+    "watched_date": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "course",
+        "module",
+        "video",
+        "comic",
+        "live"
+      ]
+    },
+    "watch_progress": {
+      "type": "biginteger"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false
+    },
+    "user_id": {
+      "type": "biginteger"
+    }
+  }
+}

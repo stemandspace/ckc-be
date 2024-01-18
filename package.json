@@ -1,0 +1,40 @@
+{
+  "name": "ckc-strapi",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application",
+  "license": "MIT",
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "scripts": {
+    "build": "strapi build",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@bn-digital/strapi-plugin-field-uuid": "^1.2.12",
+    "@sklinet/strapi-plugin-video-field": "^1.0.5",
+    "@strapi/plugin-i18n": "4.15.0",
+    "@strapi/plugin-users-permissions": "4.15.0",
+    "@strapi/provider-email-amazon-ses": "^4.16.2",
+    "@strapi/provider-upload-aws-s3": "^4.16.2",
+    "@strapi/strapi": "4.15.0",
+    "better-sqlite3": "8.6.0",
+    "date-fns": "^3.0.6",
+    "pg": "^8.11.3",
+    "strapi-plugin-fuzzy-search": "^2.2.0",
+    "strapi-plugin-import-export-entries": "^1.23.0",
+    "strapi-plugin-rest-cache": "^4.2.8",
+    "strapi-plugin-transformer": "^3.1.2",
+    "uuid": "^9.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "2a4d1d11-d822-4bee-90dd-647689a31b2b"
+  }
+}

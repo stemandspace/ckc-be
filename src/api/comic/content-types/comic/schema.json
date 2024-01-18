@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comics",
+  "info": {
+    "singularName": "comic",
+    "pluralName": "comics",
+    "displayName": "Comic",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "published": {
+      "type": "string"
+    },
+    "price": {
+      "type": "biginteger"
+    },
+    "mentor": {
+      "type": "string"
+    },
+    "page_count": {
+      "type": "biginteger"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "content": {
+      "type": "text"
+    },
+    "desc": {
+      "type": "richtext"
+    },
+    "rewards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reward.reward",
+      "mappedBy": "comic"
+    },
+    "quiz": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::quiz.quiz"
+    },
+    "grade": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "string"
+    }
+  }
+}

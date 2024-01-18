@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rewards",
+  "info": {
+    "singularName": "reward",
+    "pluralName": "rewards",
+    "displayName": "Reward",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "reward_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "coins",
+        "bedge",
+        "avatar",
+        "certificate"
+      ]
+    },
+    "value": {
+      "type": "string"
+    },
+    "content_id": {
+      "type": "string"
+    },
+    "video": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::video.video",
+      "inversedBy": "rewards"
+    },
+    "live": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::live.live",
+      "inversedBy": "rewards"
+    },
+    "comic": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::comic.comic",
+      "inversedBy": "rewards"
+    },
+    "challenge": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::challenge.challenge",
+      "inversedBy": "rewards"
+    },
+    "plan": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::plan.plan",
+      "inversedBy": "rewards"
+    },
+    "quiz": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::quiz.quiz",
+      "mappedBy": "reward"
+    }
+  }
+}

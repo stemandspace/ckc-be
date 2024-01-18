@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nacs",
+  "info": {
+    "singularName": "nac",
+    "pluralName": "nacs",
+    "displayName": "Nac",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "thumbnail": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "title": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "richtext"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "premium": {
+      "type": "boolean"
+    },
+    "duration": {
+      "type": "biginteger"
+    },
+    "grade": {
+      "type": "string"
+    },
+    "mentor": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "mediaUrl": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "string"
+    },
+    "quiz": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::quiz.quiz"
+    }
+  }
+}

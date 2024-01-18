@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "disconvery_jar_configs",
+  "info": {
+    "singularName": "disconvery-jar-config",
+    "pluralName": "disconvery-jar-configs",
+    "displayName": "Discovery Jar Config",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "background_url": {
+      "type": "string"
+    },
+    "theme_name": {
+      "type": "string"
+    },
+    "discovery_jar_answers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::discovery-jar-answer.discovery-jar-answer",
+      "mappedBy": "discovery_jar_config"
+    },
+    "discovery_jar_questions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::discovery-jar-question.discovery-jar-question",
+      "mappedBy": "discovery_jar_config"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "theme_color": {
+      "type": "string",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+    },
+    "background": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "from": {
+      "type": "date"
+    },
+    "to": {
+      "type": "date"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "referrals",
+  "info": {
+    "singularName": "referral",
+    "pluralName": "referrals",
+    "displayName": "Referral"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "referring_user_id": {
+      "type": "string"
+    },
+    "referred_user_id": {
+      "type": "string"
+    },
+    "referral_code_used": {
+      "type": "string"
+    },
+    "reward_points": {
+      "type": "biginteger"
+    }
+  }
+}
