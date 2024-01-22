@@ -1001,22 +1001,18 @@ export interface ApiComicComic extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
+    title: Attribute.String & Attribute.Required;
     published: Attribute.String;
-    price: Attribute.BigInteger;
+    price: Attribute.BigInteger & Attribute.Required;
     mentor: Attribute.String;
-    page_count: Attribute.BigInteger;
+    page_count: Attribute.BigInteger & Attribute.Required;
     thumbnail: Attribute.Media & Attribute.Required;
-    content: Attribute.Text;
+    content: Attribute.Text & Attribute.Required;
     desc: Attribute.RichText;
-    rewards: Attribute.Relation<
-      'api::comic.comic',
-      'oneToMany',
-      'api::reward.reward'
-    >;
     quiz: Attribute.Relation<'api::comic.comic', 'oneToOne', 'api::quiz.quiz'>;
-    grade: Attribute.String;
+    grade: Attribute.String & Attribute.Required;
     tags: Attribute.String;
+    premium: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1784,11 +1780,6 @@ export interface ApiRewardReward extends Schema.CollectionType {
       'api::reward.reward',
       'manyToOne',
       'api::live.live'
-    >;
-    comic: Attribute.Relation<
-      'api::reward.reward',
-      'manyToOne',
-      'api::comic.comic'
     >;
     challenge: Attribute.Relation<
       'api::reward.reward',

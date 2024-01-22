@@ -48,12 +48,6 @@
       "target": "api::live.live",
       "inversedBy": "rewards"
     },
-    "comic": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::comic.comic",
-      "inversedBy": "rewards"
-    },
     "challenge": {
       "type": "relation",
       "relation": "manyToOne",

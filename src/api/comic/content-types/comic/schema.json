@@ -13,19 +13,22 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "published": {
       "type": "string"
     },
     "price": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "required": true
     },
     "mentor": {
       "type": "string"
     },
     "page_count": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "required": true
     },
     "thumbnail": {
       "type": "media",
@@ -36,16 +39,11 @@
       ]
     },
     "content": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "desc": {
       "type": "richtext"
-    },
-    "rewards": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::reward.reward",
-      "mappedBy": "comic"
     },
     "quiz": {
       "type": "relation",
@@ -53,10 +51,15 @@
       "target": "api::quiz.quiz"
     },
     "grade": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "tags": {
-      "type": "string"
+      "type": "string",
+      "required": false
+    },
+    "premium": {
+      "type": "boolean"
     }
   }
 }
