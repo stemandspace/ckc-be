@@ -8,13 +8,12 @@
   "options": {},
   "attributes": {
     "name": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "explorationTime": {
-      "type": "biginteger"
-    },
-    "minExplorationTime": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "required": true
     },
     "prepration_materials": {
       "displayName": "Prepration Materials",
@@ -26,7 +25,8 @@
       "type": "richtext"
     },
     "mediaUrl": {
-      "type": "text"
+      "type": "text",
+      "required": true
     }
   }
 }

@@ -7,19 +7,19 @@
   "options": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "explorationTime": {
-      "type": "biginteger"
-    },
-    "minExplorationTime": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "required": true
     },
     "desc": {
       "type": "richtext"
     },
     "mediaUrl": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "quiz": {
       "type": "relation",

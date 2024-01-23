@@ -1043,16 +1043,19 @@ export interface ApiCourseCourse extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    price: Attribute.Decimal;
-    duration: Attribute.BigInteger;
-    isPremium: Attribute.Boolean & Attribute.DefaultTo<true>;
+    title: Attribute.String & Attribute.Required;
+    price: Attribute.Decimal &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
+    premium: Attribute.Boolean & Attribute.DefaultTo<false>;
     thumbnail: Attribute.Media & Attribute.Required;
     trailer: Attribute.Text;
-    content: Attribute.Text;
+    content: Attribute.Text & Attribute.Required;
     modules: Attribute.Component<'module.module', true>;
     activity_modules: Attribute.Component<'activity-module.activiy-module'>;
-    grade: Attribute.String;
+    grade: Attribute.String & Attribute.Required;
     desc: Attribute.RichText;
     slug: Attribute.UID;
     mentor: Attribute.String;

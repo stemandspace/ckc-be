@@ -8,10 +8,12 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "qty": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "product_link": {
       "type": "text"

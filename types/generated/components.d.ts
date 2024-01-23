@@ -8,15 +8,14 @@ export interface ActivityModuleActiviyModule extends Schema.Component {
     description: '';
   };
   attributes: {
-    name: Attribute.Text;
-    explorationTime: Attribute.BigInteger;
-    minExplorationTime: Attribute.BigInteger;
+    name: Attribute.Text & Attribute.Required;
+    explorationTime: Attribute.BigInteger & Attribute.Required;
     prepration_materials: Attribute.Component<
       'prepration-materials.prepration-materials',
       true
     >;
     desc: Attribute.RichText;
-    mediaUrl: Attribute.Text;
+    mediaUrl: Attribute.Text & Attribute.Required;
   };
 }
 
@@ -40,11 +39,10 @@ export interface ModuleModule extends Schema.Component {
     description: '';
   };
   attributes: {
-    name: Attribute.String;
-    explorationTime: Attribute.BigInteger;
-    minExplorationTime: Attribute.BigInteger;
+    name: Attribute.String & Attribute.Required;
+    explorationTime: Attribute.BigInteger & Attribute.Required;
     desc: Attribute.RichText;
-    mediaUrl: Attribute.Text;
+    mediaUrl: Attribute.Text & Attribute.Required;
     quiz: Attribute.Relation<'module.module', 'oneToOne', 'api::quiz.quiz'>;
   };
 }
@@ -58,8 +56,8 @@ export interface PreprationMaterialsPreprationMaterials
     description: '';
   };
   attributes: {
-    title: Attribute.Text;
-    qty: Attribute.String;
+    title: Attribute.Text & Attribute.Required;
+    qty: Attribute.String & Attribute.Required;
     product_link: Attribute.Text;
     print: Attribute.Text;
     desc: Attribute.RichText;

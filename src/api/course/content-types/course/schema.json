@@ -13,29 +13,32 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "price": {
-      "type": "decimal"
+      "type": "decimal",
+      "required": true,
+      "min": 0
     },
-    "duration": {
-      "type": "biginteger"
-    },
-    "isPremium": {
+    "premium": {
       "type": "boolean",
-      "default": true
+      "default": false
     },
     "thumbnail": {
       "type": "media",
       "multiple": true,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "trailer": {
       "type": "text"
     },
     "content": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "modules": {
       "displayName": "Module",
@@ -50,7 +53,8 @@
       "component": "activity-module.activiy-module"
     },
     "grade": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "desc": {
       "type": "richtext"
