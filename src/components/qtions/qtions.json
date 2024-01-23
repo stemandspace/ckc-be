@@ -1,15 +1,16 @@
 {
   "collectionName": "components_qtions_qtions",
   "info": {
-    "displayName": "Qtions"
+    "displayName": "Qtions",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "name": {
-      "type": "string"
-    },
-    "value": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "regex": "^(?!\\s)(?!.*\\s{2,}).*(?<!\\s)$",
+      "minLength": 1
     }
   }
 }

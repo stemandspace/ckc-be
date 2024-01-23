@@ -74,15 +74,17 @@ export interface QlideQlide extends Schema.Component {
     description: '';
   };
   attributes: {
-    question: Attribute.Text;
+    question: Attribute.Text & Attribute.Required;
     image: Attribute.Media;
     audio: Attribute.Media;
     type: Attribute.Enumeration<
       ['select', 'boolean', 'order', 'multiselect', 'textinput']
-    >;
+    > &
+      Attribute.Required &
+      Attribute.DefaultTo<'select'>;
     duration: Attribute.Integer;
     options: Attribute.Component<'qtions.qtions', true>;
-    answer: Attribute.String;
+    answer: Attribute.String & Attribute.Required;
     placeholder: Attribute.String;
   };
 }
@@ -91,10 +93,14 @@ export interface QtionsQtions extends Schema.Component {
   collectionName: 'components_qtions_qtions';
   info: {
     displayName: 'Qtions';
+    description: '';
   };
   attributes: {
-    name: Attribute.String;
-    value: Attribute.String;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
   };
 }
 

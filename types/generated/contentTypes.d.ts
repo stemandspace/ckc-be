@@ -1589,10 +1589,10 @@ export interface ApiQuizQuiz extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
+    title: Attribute.String & Attribute.Required;
     desc: Attribute.RichText;
-    qlides: Attribute.Component<'qlide.qlide', true>;
-    visible: Attribute.Integer;
+    qlides: Attribute.Component<'qlide.qlide', true> & Attribute.Required;
+    visible: Attribute.Integer & Attribute.Required;
     reward: Attribute.Relation<
       'api::quiz.quiz',
       'oneToOne',

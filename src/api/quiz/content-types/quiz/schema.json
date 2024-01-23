@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "desc": {
       "type": "richtext"
@@ -21,10 +22,12 @@
     "qlides": {
       "type": "component",
       "repeatable": true,
-      "component": "qlide.qlide"
+      "component": "qlide.qlide",
+      "required": true
     },
     "visible": {
-      "type": "integer"
+      "type": "integer",
+      "required": true
     },
     "reward": {
       "type": "relation",
