@@ -35,12 +35,10 @@ module.exports = createCoreController(
               const contentPath = queryPaths[watchedItem.type];
               if (!contentPath) return null;
 
-              const contentDetails = await strapi
-                .query(contentPath)
-                .findOne({
-                  where: { id: watchedItem.content_id },
-                  populate: ["thumbnail"],
-                });
+              const contentDetails = await strapi.query(contentPath).findOne({
+                where: { id: watchedItem.content_id },
+                populate: ["thumbnail"],
+              });
 
               if (contentDetails) {
                 return contentDetails;
@@ -70,7 +68,7 @@ module.exports = createCoreController(
 
     buyPremium: async (ctx, next) => {
       try {
-        const { plan, title, userId, days, type, credits } =
+        const { plan, title, userId, days, type, credits, amount } =
           ctx.request.body.data;
         const tsxid = uuidv4();
         const endStampTimestamp = Math.floor(
@@ -93,6 +91,21 @@ module.exports = createCoreController(
               publishedAt: new Date(),
             },
           });
+
+        const newPurchase = await strapi
+          .query("api::real-purchase.real-purchase")
+          .create({
+            data: {
+              user_id: userId.toString(),
+              purchase_id: Math.random().toString(36).substr(2, 9),
+              amount,
+              status: "paid",
+              label: title,
+              publishedAt: new Date(),
+              type,
+            },
+          });
+
         const user = await strapi
           .query("plugin::users-permissions.user")
           .findOne({
