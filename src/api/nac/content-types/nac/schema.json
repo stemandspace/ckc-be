@@ -16,7 +16,9 @@
       "type": "media",
       "multiple": true,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "title": {
       "type": "string"
@@ -39,11 +41,7 @@
     "mentor": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
-    },
-    "mediaUrl": {
+    "content": {
       "type": "string"
     },
     "tags": {
@@ -53,6 +51,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::quiz.quiz"
+    },
+    "page_count": {
+      "type": "biginteger"
+    },
+    "label": {
+      "type": "string"
     }
   }
 }

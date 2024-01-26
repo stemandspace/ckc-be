@@ -72,6 +72,9 @@
     },
     "to": {
       "type": "datetime"
+    },
+    "label": {
+      "type": "string"
     }
   }
 }

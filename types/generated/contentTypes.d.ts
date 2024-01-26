@@ -1013,6 +1013,7 @@ export interface ApiComicComic extends Schema.CollectionType {
     grade: Attribute.String & Attribute.Required;
     tags: Attribute.String;
     premium: Attribute.Boolean;
+    label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1064,6 +1065,7 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'oneToOne',
       'api::quiz.quiz'
     >;
+    label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1299,6 +1301,7 @@ export interface ApiLiveLive extends Schema.CollectionType {
     >;
     from: Attribute.DateTime;
     to: Attribute.DateTime;
+    label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1329,10 +1332,11 @@ export interface ApiNacNac extends Schema.CollectionType {
     duration: Attribute.BigInteger;
     grade: Attribute.String;
     mentor: Attribute.String;
-    slug: Attribute.UID<'api::nac.nac', 'title'>;
-    mediaUrl: Attribute.String;
+    content: Attribute.String;
     tags: Attribute.String;
     quiz: Attribute.Relation<'api::nac.nac', 'oneToOne', 'api::quiz.quiz'>;
+    page_count: Attribute.BigInteger;
+    label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1963,6 +1967,7 @@ export interface ApiVideoVideo extends Schema.CollectionType {
     >;
     thumbnail: Attribute.Media & Attribute.Required;
     quiz: Attribute.Relation<'api::video.video', 'oneToOne', 'api::quiz.quiz'>;
+    label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
