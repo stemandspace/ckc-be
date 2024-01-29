@@ -27,7 +27,6 @@ module.exports = createCoreController(
           .findMany({
             where: { user: userId },
           });
-        console.log(purchased);
         if (purchased.length > 0) {
           // Fetch additional details for each recent watched item
           const enrichedRecentWatched = await Promise.all(
@@ -41,6 +40,7 @@ module.exports = createCoreController(
               });
 
               if (contentDetails) {
+                contentDetails.type = watchedItem.type;
                 return contentDetails;
               }
               return null;
