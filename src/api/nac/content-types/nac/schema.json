@@ -55,8 +55,13 @@
     "page_count": {
       "type": "biginteger"
     },
-    "label": {
-      "type": "string"
+    "new": {
+      "type": "boolean",
+      "default": false
+    },
+    "trending": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

@@ -36,10 +36,6 @@
     "trailer": {
       "type": "text"
     },
-    "content": {
-      "type": "text",
-      "required": true
-    },
     "modules": {
       "displayName": "Module",
       "type": "component",
@@ -70,8 +66,13 @@
       "relation": "oneToOne",
       "target": "api::quiz.quiz"
     },
-    "label": {
-      "type": "string"
+    "trending": {
+      "type": "boolean",
+      "default": false
+    },
+    "new": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

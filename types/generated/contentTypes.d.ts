@@ -1013,7 +1013,8 @@ export interface ApiComicComic extends Schema.CollectionType {
     grade: Attribute.String & Attribute.Required;
     tags: Attribute.String;
     premium: Attribute.Boolean;
-    label: Attribute.String;
+    new: Attribute.Boolean & Attribute.DefaultTo<false>;
+    trending: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1053,7 +1054,6 @@ export interface ApiCourseCourse extends Schema.CollectionType {
     premium: Attribute.Boolean & Attribute.DefaultTo<false>;
     thumbnail: Attribute.Media & Attribute.Required;
     trailer: Attribute.Text;
-    content: Attribute.Text & Attribute.Required;
     modules: Attribute.Component<'module.module', true>;
     activity_modules: Attribute.Component<'activity-module.activiy-module'>;
     grade: Attribute.String & Attribute.Required;
@@ -1065,7 +1065,8 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'oneToOne',
       'api::quiz.quiz'
     >;
-    label: Attribute.String;
+    trending: Attribute.Boolean & Attribute.DefaultTo<false>;
+    new: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1301,7 +1302,8 @@ export interface ApiLiveLive extends Schema.CollectionType {
     >;
     from: Attribute.DateTime;
     to: Attribute.DateTime;
-    label: Attribute.String;
+    new: Attribute.Boolean & Attribute.DefaultTo<false>;
+    trending: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1336,7 +1338,8 @@ export interface ApiNacNac extends Schema.CollectionType {
     tags: Attribute.String;
     quiz: Attribute.Relation<'api::nac.nac', 'oneToOne', 'api::quiz.quiz'>;
     page_count: Attribute.BigInteger;
-    label: Attribute.String;
+    new: Attribute.Boolean & Attribute.DefaultTo<false>;
+    trending: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1538,45 +1541,6 @@ export interface ApiPurchasePurchase extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::purchase.purchase',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiQlistQlist extends Schema.CollectionType {
-  collectionName: 'qlists';
-  info: {
-    singularName: 'qlist';
-    pluralName: 'qlists';
-    displayName: 'Qlist';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    desc: Attribute.RichText;
-    qlides: Attribute.Component<'qlide.qlide', true>;
-    visible: Attribute.Integer;
-    reward: Attribute.Relation<
-      'api::qlist.qlist',
-      'oneToOne',
-      'api::reward.reward'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::qlist.qlist',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::qlist.qlist',
       'oneToOne',
       'admin::user'
     > &
@@ -1967,7 +1931,8 @@ export interface ApiVideoVideo extends Schema.CollectionType {
     >;
     thumbnail: Attribute.Media & Attribute.Required;
     quiz: Attribute.Relation<'api::video.video', 'oneToOne', 'api::quiz.quiz'>;
-    label: Attribute.String;
+    new: Attribute.Boolean & Attribute.DefaultTo<false>;
+    trending: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2059,7 +2024,6 @@ declare module '@strapi/types' {
       'api::promocode.promocode': ApiPromocodePromocode;
       'api::promocode-usage.promocode-usage': ApiPromocodeUsagePromocodeUsage;
       'api::purchase.purchase': ApiPurchasePurchase;
-      'api::qlist.qlist': ApiQlistQlist;
       'api::quiz.quiz': ApiQuizQuiz;
       'api::quiz-config.quiz-config': ApiQuizConfigQuizConfig;
       'api::real-purchase.real-purchase': ApiRealPurchaseRealPurchase;

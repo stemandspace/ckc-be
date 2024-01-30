@@ -61,8 +61,13 @@
     "premium": {
       "type": "boolean"
     },
-    "label": {
-      "type": "string"
+    "new": {
+      "type": "boolean",
+      "default": false
+    },
+    "trending": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
