@@ -114,6 +114,7 @@ module.exports = {
         .findMany({
           select: ["reward_id"],
           where: {
+            user: id,
             $or: types.map((type) => ({
               type: type,
             })),
