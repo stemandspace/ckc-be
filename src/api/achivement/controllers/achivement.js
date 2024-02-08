@@ -1,29 +1,49 @@
 "use strict";
 
+const { Utils } = require("@strapi/strapi");
+
 /**
  * achivement controller
  */
 
 const { createCoreController } = require("@strapi/strapi").factories;
+
 module.exports = createCoreController("api::achivement.achivement", {
   async create(ctx) {
     const data = ctx.request.body;
-    console.log(data);
     const response = await super.create(ctx);
     await updateUserData(data.data);
     return response;
-    // Fetch the existing watched entry
   },
 
+  // here i want to filter by created at with type of week | month | all
   async leaderboard(ctx) {
+    const type = ctx.URL.searchParams.get("type") ?? "a"; // w | m | a
+    var weekDates = getStartAndEndDateOfWeek();
+    var monthDates = getStartAndEndDateOfMonth();
+    const whereQuery =
+      type == "a"
+        ? undefined
+        : {
+            created_at:
+              type == "w"
+                ? {
+                    $gte: weekDates.startDate,
+                    $lt: weekDates.endDate,
+                  }
+                : {
+                    $gte: monthDates.startDate,
+                    $lt: monthDates.endDate,
+                  },
+          };
     try {
       const achievements = await strapi.db
         .query("api::achivement.achivement")
         .findMany({
-          select: ["coins"],
+          where: whereQuery,
           populate: {
             user: {
-              select: ["id", "firstname", "lastname", "avatar"],
+              select: ["id", "firstname", "lastname", "avatar", "username"],
             },
           },
         });
@@ -31,20 +51,28 @@ module.exports = createCoreController("api::achivement.achivement", {
       // Calculate total coins for each user
       const userCoinsMap = new Map();
       achievements.forEach((achievement) => {
+        console.log(achievement);
         const userId = achievement.user.id;
-        const coins = parseInt(achievement.coins);
+        const coins = parseInt(achievement.transectionAmount);
 
         if (!userCoinsMap.has(userId)) {
           userCoinsMap.set(userId, {
             id: userId,
-            firstname: achievement.user.firstname,
-            lastname: achievement.user.lastname,
-            avatar: achievement.user.avatar,
             totalCoins: 0,
+            avatar: achievement.user.avatar,
+            lastname: achievement.user.lastname,
+            username: achievement.user.username,
+            firstname: achievement.user.firstname,
           });
         }
 
-        userCoinsMap.get(userId).totalCoins += coins;
+        if (achievement.transectionType == "cr") {
+          userCoinsMap.get(userId).totalCoins -= coins;
+        }
+
+        if (achievement.transectionType == "dr") {
+          userCoinsMap.get(userId).totalCoins += coins;
+        }
       });
 
       // Convert the Map to an array and sort it by totalCoins
@@ -117,4 +145,33 @@ async function updateUserData(achievementData) {
     console.error("User not found");
     throw new Error("User not found");
   }
+}
+
+//  Utils
+function getStartAndEndDateOfWeek() {
+  // Get today's date
+  var today = new Date();
+
+  // Calculate the start date of the week (Sunday)
+  var startDate = new Date(today.setDate(today.getDate() - today.getDay() + 1));
+
+  // Calculate the end date of the week (Saturday)
+  var endDate = new Date(today.setDate(today.getDate() - today.getDay() + 7));
+
+  // Return start and end dates
+  return { startDate, endDate };
+}
+
+function getStartAndEndDateOfMonth() {
+  // Get today's date
+  var today = new Date();
+
+  // Calculate the start date of the month
+  var startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+
+  // Calculate the end date of the month
+  var endDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+  // Return start and end dates
+  return { startDate, endDate };
 }
