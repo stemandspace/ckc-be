@@ -63,8 +63,17 @@ module.exports = {
       ctx.throw(500, error);
     }
   },
+
   VirtualPurchase: async (ctx) => {
-    const { userId, coins, content_id, label, type } = ctx.request.body.data;
+    const {
+      label,
+      userId,
+      contentId,
+      contentType,
+      transectionType,
+      transectionAmount,
+    } = ctx.request.body.data;
+
     try {
       const user = await strapi
         .query("plugin::users-permissions.user")
@@ -76,28 +85,35 @@ module.exports = {
       if (!user) {
         return ctx.notFound("User not found");
       }
-      if (user.coins <= 0) {
-        return ctx.throw(400, "User does not have enough coins");
-      }
-      const updatedCoins = user.coins - coins;
 
+      if (user.coins <= 0) {
+        return ctx.throw(400, "user does not have enough coins");
+      }
+
+      const updatedCoins =
+        transectionType == "cr"
+          ? user.coins - transectionAmount
+          : user.coins + transectionAmount;
       user.coins = updatedCoins;
 
-      const updatedUser = await strapi
+      const updatedUserWithCoins = await strapi
         .query("plugin::users-permissions.user")
         .update({
           where: { id: userId },
           data: { coins: updatedCoins },
         });
+
       const newPurchase = await strapi
         .query("api::achivement.achivement")
         .create({
           data: {
-            reward_id: content_id,
-            coins,
+            label,
+            contentId,
+            contentType,
             user: userId,
+            transectionType,
+            transectionAmount,
             publishedAt: new Date(),
-            type,
           },
         });
       return ctx.send(newPurchase, 200);
@@ -105,6 +121,7 @@ module.exports = {
       ctx.throw(500, error);
     }
   },
+
   getVirtualPurchase: async (ctx) => {
     const types = ["avatar", "badge", "banner"];
     try {

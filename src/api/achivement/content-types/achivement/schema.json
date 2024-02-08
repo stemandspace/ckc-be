@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "reward_id": {
+    "contentId": {
       "type": "biginteger"
     },
     "user": {
@@ -21,23 +21,25 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "achivements"
     },
-    "coins": {
+    "transectionAmount": {
       "type": "biginteger"
     },
-    "type": {
+    "transectionType": {
       "type": "enumeration",
       "enum": [
-        "video",
-        "comic",
-        "lean",
-        "chllange",
-        "quiz",
-        "badge",
-        "avatar",
-        "banner"
+        "cr",
+        "dr"
       ]
     },
-    "quiz_id": {
+    "contentType": {
+      "type": "enumeration",
+      "enum": [
+        "quiz",
+        "banner",
+        "avatar"
+      ]
+    },
+    "label": {
       "type": "string"
     }
   }

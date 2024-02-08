@@ -732,26 +732,16 @@ export interface ApiAchivementAchivement extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    reward_id: Attribute.BigInteger;
+    contentId: Attribute.BigInteger;
     user: Attribute.Relation<
       'api::achivement.achivement',
       'manyToOne',
       'plugin::users-permissions.user'
     >;
-    coins: Attribute.BigInteger;
-    type: Attribute.Enumeration<
-      [
-        'video',
-        'comic',
-        'lean',
-        'chllange',
-        'quiz',
-        'badge',
-        'avatar',
-        'banner'
-      ]
-    >;
-    quiz_id: Attribute.String;
+    transectionAmount: Attribute.BigInteger;
+    transectionType: Attribute.Enumeration<['cr', 'dr']>;
+    contentType: Attribute.Enumeration<['quiz', 'banner', 'avatar']>;
+    label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
