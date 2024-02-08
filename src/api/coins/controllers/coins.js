@@ -1,3 +1,5 @@
+const { parse } = require("date-fns");
+
 // api/controllers/UserAPI.js
 module.exports = {
   updateCoinsAndUnlockVideo: async (ctx) => {
@@ -92,8 +94,8 @@ module.exports = {
 
       const updatedCoins =
         transectionType == "cr"
-          ? user.coins - transectionAmount
-          : user.coins + transectionAmount;
+          ? parseInt(user.coins) - parseInt(transectionAmount)
+          : parseInt(user.coins) + parseInt(transectionAmount);
       user.coins = updatedCoins;
 
       const updatedUserWithCoins = await strapi
