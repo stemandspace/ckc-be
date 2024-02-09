@@ -59,8 +59,8 @@ export interface PreprationMaterialsPreprationMaterials
     title: Attribute.Text & Attribute.Required;
     qty: Attribute.String & Attribute.Required;
     product_link: Attribute.Text;
-    print: Attribute.Text;
     desc: Attribute.RichText;
+    attachment: Attribute.Media;
   };
 }
 

@@ -18,11 +18,18 @@
     "product_link": {
       "type": "text"
     },
-    "print": {
-      "type": "text"
-    },
     "desc": {
       "type": "richtext"
+    },
+    "attachment": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
