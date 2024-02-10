@@ -952,15 +952,15 @@ export interface ApiChallengeRequestChallengeRequest
     draftAndPublish: true;
   };
   attributes: {
-    mediaUrl: Attribute.Text;
     status: Attribute.Enumeration<['pending', 'approved', 'rejected']>;
-    challenge_id: Attribute.BigInteger;
+    challengeId: Attribute.BigInteger;
     user: Attribute.Relation<
       'api::challenge-request.challenge-request',
       'oneToOne',
       'plugin::users-permissions.user'
     >;
     winner: Attribute.Boolean & Attribute.DefaultTo<false>;
+    media: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

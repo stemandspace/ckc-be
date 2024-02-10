@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "mediaUrl": {
-      "type": "text"
-    },
     "status": {
       "type": "enumeration",
       "enum": [
@@ -23,7 +20,7 @@
         "rejected"
       ]
     },
-    "challenge_id": {
+    "challengeId": {
       "type": "biginteger"
     },
     "user": {
@@ -34,6 +31,16 @@
     "winner": {
       "type": "boolean",
       "default": false
+    },
+    "media": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
