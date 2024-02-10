@@ -24,12 +24,6 @@
       "target": "api::discovery-jar-answer.discovery-jar-answer",
       "mappedBy": "discovery_jar_config"
     },
-    "discovery_jar_questions": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::discovery-jar-question.discovery-jar-question",
-      "mappedBy": "discovery_jar_config"
-    },
     "slug": {
       "type": "uid"
     },
@@ -52,6 +46,12 @@
     },
     "to": {
       "type": "date"
+    },
+    "discovery_jar_questions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::discovery-jar-question.discovery-jar-question",
+      "mappedBy": "theme"
     }
   }
 }

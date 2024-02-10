@@ -57,7 +57,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::discovery-jar-question.discovery-jar-question",
-      "mappedBy": "discovery_jar_answer"
+      "mappedBy": "answer"
     }
   }
 }

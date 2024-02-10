@@ -15,16 +15,13 @@
     "question": {
       "type": "text"
     },
-    "mediaUrl": {
-      "type": "text"
-    },
-    "discovery_jar_config": {
+    "theme": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::disconvery-jar-config.disconvery-jar-config",
       "inversedBy": "discovery_jar_questions"
     },
-    "discovery_jar_answer": {
+    "answer": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::discovery-jar-answer.discovery-jar-answer",
@@ -35,15 +32,15 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
     },
-    "upload": {
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
-        "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }

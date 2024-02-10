@@ -1095,16 +1095,16 @@ export interface ApiDisconveryJarConfigDisconveryJarConfig
       'oneToMany',
       'api::discovery-jar-answer.discovery-jar-answer'
     >;
-    discovery_jar_questions: Attribute.Relation<
-      'api::disconvery-jar-config.disconvery-jar-config',
-      'oneToMany',
-      'api::discovery-jar-question.discovery-jar-question'
-    >;
     slug: Attribute.UID;
     theme_color: Attribute.String;
     background: Attribute.Media;
     from: Attribute.Date;
     to: Attribute.Date;
+    discovery_jar_questions: Attribute.Relation<
+      'api::disconvery-jar-config.disconvery-jar-config',
+      'oneToMany',
+      'api::discovery-jar-question.discovery-jar-question'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1187,13 +1187,12 @@ export interface ApiDiscoveryJarQuestionDiscoveryJarQuestion
   };
   attributes: {
     question: Attribute.Text;
-    mediaUrl: Attribute.Text;
-    discovery_jar_config: Attribute.Relation<
+    theme: Attribute.Relation<
       'api::discovery-jar-question.discovery-jar-question',
       'manyToOne',
       'api::disconvery-jar-config.disconvery-jar-config'
     >;
-    discovery_jar_answer: Attribute.Relation<
+    answer: Attribute.Relation<
       'api::discovery-jar-question.discovery-jar-question',
       'manyToOne',
       'api::discovery-jar-answer.discovery-jar-answer'
@@ -1203,7 +1202,7 @@ export interface ApiDiscoveryJarQuestionDiscoveryJarQuestion
       'oneToOne',
       'plugin::users-permissions.user'
     >;
-    upload: Attribute.Media;
+    media: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
