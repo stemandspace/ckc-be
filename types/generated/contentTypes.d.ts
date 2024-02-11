@@ -760,6 +760,45 @@ export interface ApiAchivementAchivement extends Schema.CollectionType {
   };
 }
 
+export interface ApiActivityRequestActivityRequest
+  extends Schema.CollectionType {
+  collectionName: 'activity_requests';
+  info: {
+    singularName: 'activity-request';
+    pluralName: 'activity-requests';
+    displayName: 'Activity Request';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    courseId: Attribute.BigInteger;
+    winner: Attribute.Boolean;
+    status: Attribute.Enumeration<['approved', 'pending', 'rejected']>;
+    media: Attribute.Media;
+    user: Attribute.Relation<
+      'api::activity-request.activity-request',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::activity-request.activity-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::activity-request.activity-request',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiBadgeBadge extends Schema.CollectionType {
   collectionName: 'badges';
   info: {
@@ -2027,6 +2066,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::achivement.achivement': ApiAchivementAchivement;
+      'api::activity-request.activity-request': ApiActivityRequestActivityRequest;
       'api::badge.badge': ApiBadgeBadge;
       'api::banner.banner': ApiBannerBanner;
       'api::carousel.carousel': ApiCarouselCarousel;

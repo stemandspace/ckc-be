@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "activity_requests",
+  "info": {
+    "singularName": "activity-request",
+    "pluralName": "activity-requests",
+    "displayName": "Activity Request"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "courseId": {
+      "type": "biginteger"
+    },
+    "winner": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "approved",
+        "pending",
+        "rejected"
+      ]
+    },
+    "media": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}
