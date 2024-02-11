@@ -1221,6 +1221,39 @@ export interface ApiDiscoveryJarQuestionDiscoveryJarQuestion
   };
 }
 
+export interface ApiHardProductHardProduct extends Schema.CollectionType {
+  collectionName: 'hard_products';
+  info: {
+    singularName: 'hard-product';
+    pluralName: 'hard-products';
+    displayName: 'Hard Product';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    desc: Attribute.RichText;
+    price: Attribute.Decimal;
+    images: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hard-product.hard-product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hard-product.hard-product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHowItWorkHowItWork extends Schema.CollectionType {
   collectionName: 'how_it_works';
   info: {
@@ -2005,6 +2038,7 @@ declare module '@strapi/types' {
       'api::disconvery-jar-config.disconvery-jar-config': ApiDisconveryJarConfigDisconveryJarConfig;
       'api::discovery-jar-answer.discovery-jar-answer': ApiDiscoveryJarAnswerDiscoveryJarAnswer;
       'api::discovery-jar-question.discovery-jar-question': ApiDiscoveryJarQuestionDiscoveryJarQuestion;
+      'api::hard-product.hard-product': ApiHardProductHardProduct;
       'api::how-it-work.how-it-work': ApiHowItWorkHowItWork;
       'api::live.live': ApiLiveLive;
       'api::nac.nac': ApiNacNac;
