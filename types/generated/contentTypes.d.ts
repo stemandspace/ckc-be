@@ -1176,10 +1176,8 @@ export interface ApiDiscoveryJarAnswerDiscoveryJarAnswer
   };
   attributes: {
     thumbnail: Attribute.Media & Attribute.Required;
-    user_id: Attribute.String;
     mentor: Attribute.String;
     mediaUrl: Attribute.Text;
-    tags: Attribute.JSON;
     time_stamps: Attribute.Component<'time-stamp.time-stamp', true>;
     discovery_jar_config: Attribute.Relation<
       'api::discovery-jar-answer.discovery-jar-answer',
@@ -1188,12 +1186,12 @@ export interface ApiDiscoveryJarAnswerDiscoveryJarAnswer
     >;
     title: Attribute.String;
     desc: Attribute.Text;
-    duration: Attribute.String;
     discovery_jar_questions: Attribute.Relation<
       'api::discovery-jar-answer.discovery-jar-answer',
       'oneToMany',
       'api::discovery-jar-question.discovery-jar-question'
     >;
+    tags: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

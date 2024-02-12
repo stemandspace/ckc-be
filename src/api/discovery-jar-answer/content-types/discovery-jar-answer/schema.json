@@ -20,17 +20,11 @@
         "images"
       ]
     },
-    "user_id": {
-      "type": "string"
-    },
     "mentor": {
       "type": "string"
     },
     "mediaUrl": {
       "type": "text"
-    },
-    "tags": {
-      "type": "json"
     },
     "time_stamps": {
       "displayName": "Time Stamp",
@@ -50,14 +44,14 @@
     "desc": {
       "type": "text"
     },
-    "duration": {
-      "type": "string"
-    },
     "discovery_jar_questions": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::discovery-jar-question.discovery-jar-question",
       "mappedBy": "answer"
+    },
+    "tags": {
+      "type": "string"
     }
   }
 }
