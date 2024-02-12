@@ -166,6 +166,9 @@
     },
     "city": {
       "type": "string"
+    },
+    "lastlogin": {
+      "type": "datetime"
     }
   }
 }

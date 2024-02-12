@@ -703,6 +703,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     country: Attribute.String;
     state: Attribute.String;
     city: Attribute.String;
+    lastlogin: Attribute.DateTime;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
