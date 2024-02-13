@@ -88,8 +88,10 @@ module.exports = {
         return ctx.notFound("User not found");
       }
 
-      if (user.coins <= 0) {
-        return ctx.throw(400, "user does not have enough coins");
+      if (transectionType === "cr") {
+        if (user.coins <= 0) {
+          return ctx.throw(400, "user does not have enough coins");
+        }
       }
 
       const updatedCoins =
