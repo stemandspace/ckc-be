@@ -25,7 +25,7 @@
       "type": "enumeration",
       "enum": [
         "coins",
-        "bedge",
+        "badge",
         "avatar",
         "certificate"
       ]
