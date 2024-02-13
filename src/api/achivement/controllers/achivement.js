@@ -12,7 +12,6 @@ module.exports = createCoreController("api::achivement.achivement", {
   async create(ctx) {
     const data = ctx.request.body;
     const response = await super.create(ctx);
-    await updateUserData(data.data);
     return response;
   },
 
