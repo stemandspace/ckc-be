@@ -1232,6 +1232,9 @@ export interface ApiDiscoveryJarAnswerDiscoveryJarAnswer
       'api::discovery-jar-question.discovery-jar-question'
     >;
     tags: Attribute.String;
+    price: Attribute.BigInteger;
+    new: Attribute.Boolean;
+    trending: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

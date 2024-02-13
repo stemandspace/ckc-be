@@ -52,6 +52,15 @@
     },
     "tags": {
       "type": "string"
+    },
+    "price": {
+      "type": "biginteger"
+    },
+    "new": {
+      "type": "boolean"
+    },
+    "trending": {
+      "type": "boolean"
     }
   }
 }
