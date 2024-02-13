@@ -1131,6 +1131,11 @@ export interface ApiCourseCourse extends Schema.CollectionType {
     >;
     trending: Attribute.Boolean & Attribute.DefaultTo<false>;
     new: Attribute.Boolean & Attribute.DefaultTo<false>;
+    rewards: Attribute.Relation<
+      'api::course.course',
+      'oneToMany',
+      'api::reward.reward'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1870,6 +1875,11 @@ export interface ApiRewardReward extends Schema.CollectionType {
       'api::reward.reward',
       'oneToOne',
       'api::certificate.certificate'
+    >;
+    course: Attribute.Relation<
+      'api::reward.reward',
+      'manyToOne',
+      'api::course.course'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

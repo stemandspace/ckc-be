@@ -75,6 +75,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::certificate.certificate"
+    },
+    "course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course.course",
+      "inversedBy": "rewards"
     }
   }
 }

@@ -73,6 +73,12 @@
     "new": {
       "type": "boolean",
       "default": false
+    },
+    "rewards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reward.reward",
+      "mappedBy": "course"
     }
   }
 }
