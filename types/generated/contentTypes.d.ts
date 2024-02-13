@@ -1861,6 +1861,16 @@ export interface ApiRewardReward extends Schema.CollectionType {
       'oneToOne',
       'api::quiz.quiz'
     >;
+    badge: Attribute.Relation<
+      'api::reward.reward',
+      'oneToOne',
+      'api::badge.badge'
+    >;
+    certificate: Attribute.Relation<
+      'api::reward.reward',
+      'oneToOne',
+      'api::certificate.certificate'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

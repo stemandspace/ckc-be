@@ -65,6 +65,16 @@
       "relation": "oneToOne",
       "target": "api::quiz.quiz",
       "mappedBy": "reward"
+    },
+    "badge": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::badge.badge"
+    },
+    "certificate": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::certificate.certificate"
     }
   }
 }

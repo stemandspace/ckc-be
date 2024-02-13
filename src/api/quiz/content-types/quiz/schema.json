@@ -32,7 +32,8 @@
     "reward": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::reward.reward"
+      "target": "api::reward.reward",
+      "inversedBy": "quiz"
     }
   }
 }
