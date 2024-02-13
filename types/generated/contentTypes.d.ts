@@ -741,7 +741,9 @@ export interface ApiAchivementAchivement extends Schema.CollectionType {
     >;
     transectionAmount: Attribute.BigInteger;
     transectionType: Attribute.Enumeration<['cr', 'dr']>;
-    contentType: Attribute.Enumeration<['quiz', 'banner', 'avatar']>;
+    contentType: Attribute.Enumeration<
+      ['quiz', 'banner', 'avatar', 'certificate', 'badge']
+    >;
     label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

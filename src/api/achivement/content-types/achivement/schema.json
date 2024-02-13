@@ -36,7 +36,9 @@
       "enum": [
         "quiz",
         "banner",
-        "avatar"
+        "avatar",
+        "certificate",
+        "badge"
       ]
     },
     "label": {
