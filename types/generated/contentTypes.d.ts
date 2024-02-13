@@ -806,15 +806,15 @@ export interface ApiBadgeBadge extends Schema.CollectionType {
     singularName: 'badge';
     pluralName: 'badges';
     displayName: 'Badge';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     title: Attribute.String;
-    mediaUrl: Attribute.Text;
-    isPremium: Attribute.Boolean;
     desc: Attribute.Text;
+    media: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

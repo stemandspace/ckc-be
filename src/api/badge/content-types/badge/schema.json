@@ -4,7 +4,8 @@
   "info": {
     "singularName": "badge",
     "pluralName": "badges",
-    "displayName": "Badge"
+    "displayName": "Badge",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,14 +15,15 @@
     "title": {
       "type": "string"
     },
-    "mediaUrl": {
-      "type": "text"
-    },
-    "isPremium": {
-      "type": "boolean"
-    },
     "desc": {
       "type": "text"
+    },
+    "media": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
