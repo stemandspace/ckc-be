@@ -899,6 +899,38 @@ export interface ApiCarouselCarousel extends Schema.CollectionType {
   };
 }
 
+export interface ApiCertificateCertificate extends Schema.CollectionType {
+  collectionName: 'certificates';
+  info: {
+    singularName: 'certificate';
+    pluralName: 'certificates';
+    displayName: 'Certificate';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    desc: Attribute.String;
+    media: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::certificate.certificate',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::certificate.certificate',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiChallangeWinnerChallangeWinner
   extends Schema.CollectionType {
   collectionName: 'challange_winners';
@@ -2069,6 +2101,7 @@ declare module '@strapi/types' {
       'api::badge.badge': ApiBadgeBadge;
       'api::banner.banner': ApiBannerBanner;
       'api::carousel.carousel': ApiCarouselCarousel;
+      'api::certificate.certificate': ApiCertificateCertificate;
       'api::challange-winner.challange-winner': ApiChallangeWinnerChallangeWinner;
       'api::challenge.challenge': ApiChallengeChallenge;
       'api::challenge-request.challenge-request': ApiChallengeRequestChallengeRequest;
