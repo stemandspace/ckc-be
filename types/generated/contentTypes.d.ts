@@ -1949,6 +1949,16 @@ export interface ApiRewardReward extends Schema.CollectionType {
       'manyToOne',
       'api::course.course'
     >;
+    avatar: Attribute.Relation<
+      'api::reward.reward',
+      'oneToOne',
+      'api::avatar.avatar'
+    >;
+    bannar: Attribute.Relation<
+      'api::reward.reward',
+      'oneToOne',
+      'api::bannar.bannar'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

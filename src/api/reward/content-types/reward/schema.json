@@ -81,6 +81,16 @@
       "relation": "manyToOne",
       "target": "api::course.course",
       "inversedBy": "rewards"
+    },
+    "avatar": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::avatar.avatar"
+    },
+    "bannar": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::bannar.bannar"
     }
   }
 }
