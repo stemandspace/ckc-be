@@ -1906,7 +1906,9 @@ export interface ApiRewardReward extends Schema.CollectionType {
     reward_id: Attribute.String;
     title: Attribute.String;
     description: Attribute.Text;
-    type: Attribute.Enumeration<['coins', 'badge', 'avatar', 'certificate']>;
+    type: Attribute.Enumeration<
+      ['coins', 'badge', 'avatar', 'certificate', 'bannar']
+    >;
     value: Attribute.String;
     content_id: Attribute.String;
     video: Attribute.Relation<
