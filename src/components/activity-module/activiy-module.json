@@ -27,6 +27,11 @@
     "mediaUrl": {
       "type": "text",
       "required": true
+    },
+    "rewards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reward.reward"
     }
   }
 }

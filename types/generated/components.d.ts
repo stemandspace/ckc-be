@@ -16,6 +16,11 @@ export interface ActivityModuleActiviyModule extends Schema.Component {
     >;
     desc: Attribute.RichText;
     mediaUrl: Attribute.Text & Attribute.Required;
+    rewards: Attribute.Relation<
+      'activity-module.activiy-module',
+      'oneToMany',
+      'api::reward.reward'
+    >;
   };
 }
 
