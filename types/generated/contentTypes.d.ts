@@ -742,7 +742,7 @@ export interface ApiAchivementAchivement extends Schema.CollectionType {
     transectionAmount: Attribute.BigInteger;
     transectionType: Attribute.Enumeration<['cr', 'dr']>;
     contentType: Attribute.Enumeration<
-      ['quiz', 'banner', 'avatar', 'certificate', 'badge', 'coins']
+      ['quiz', 'banner', 'avatar', 'certificate', 'badge', 'coins', 'bannar']
     >;
     label: Attribute.String;
     rewardId: Attribute.BigInteger;
