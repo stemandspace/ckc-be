@@ -868,6 +868,38 @@ export interface ApiBadgeBadge extends Schema.CollectionType {
   };
 }
 
+export interface ApiBannarBannar extends Schema.CollectionType {
+  collectionName: 'bannars';
+  info: {
+    singularName: 'bannar';
+    pluralName: 'bannars';
+    displayName: 'Bannar';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    media: Attribute.Media;
+    desc: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::bannar.bannar',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::bannar.bannar',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiBannerBanner extends Schema.CollectionType {
   collectionName: 'banners';
   info: {
@@ -2158,6 +2190,7 @@ declare module '@strapi/types' {
       'api::activity-request.activity-request': ApiActivityRequestActivityRequest;
       'api::avatar.avatar': ApiAvatarAvatar;
       'api::badge.badge': ApiBadgeBadge;
+      'api::bannar.bannar': ApiBannarBannar;
       'api::banner.banner': ApiBannerBanner;
       'api::carousel.carousel': ApiCarouselCarousel;
       'api::certificate.certificate': ApiCertificateCertificate;
