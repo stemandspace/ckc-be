@@ -803,6 +803,38 @@ export interface ApiActivityRequestActivityRequest
   };
 }
 
+export interface ApiAvatarAvatar extends Schema.CollectionType {
+  collectionName: 'avatars';
+  info: {
+    singularName: 'avatar';
+    pluralName: 'avatars';
+    displayName: 'avatar';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    media: Attribute.Media;
+    desc: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::avatar.avatar',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::avatar.avatar',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiBadgeBadge extends Schema.CollectionType {
   collectionName: 'badges';
   info: {
@@ -2124,6 +2156,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::achivement.achivement': ApiAchivementAchivement;
       'api::activity-request.activity-request': ApiActivityRequestActivityRequest;
+      'api::avatar.avatar': ApiAvatarAvatar;
       'api::badge.badge': ApiBadgeBadge;
       'api::banner.banner': ApiBannerBanner;
       'api::carousel.carousel': ApiCarouselCarousel;
