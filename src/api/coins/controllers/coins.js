@@ -68,6 +68,7 @@ module.exports = {
 
   VirtualPurchase: async (ctx) => {
     const {
+      rewardId,
       label,
       userId,
       contentId,
@@ -111,6 +112,7 @@ module.exports = {
         .query("api::achivement.achivement")
         .create({
           data: {
+            rewardId,
             label,
             contentId,
             contentType,

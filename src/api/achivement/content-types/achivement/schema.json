@@ -38,7 +38,8 @@
         "banner",
         "avatar",
         "certificate",
-        "badge"
+        "badge",
+        "coins"
       ]
     },
     "label": {
