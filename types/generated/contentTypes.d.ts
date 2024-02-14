@@ -745,6 +745,7 @@ export interface ApiAchivementAchivement extends Schema.CollectionType {
       ['quiz', 'banner', 'avatar', 'certificate', 'badge']
     >;
     label: Attribute.String;
+    rewardId: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

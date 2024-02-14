@@ -43,6 +43,9 @@
     },
     "label": {
       "type": "string"
+    },
+    "rewardId": {
+      "type": "biginteger"
     }
   }
 }
