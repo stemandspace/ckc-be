@@ -4,7 +4,8 @@
   "info": {
     "singularName": "certificate",
     "pluralName": "certificates",
-    "displayName": "Certificate"
+    "displayName": "Certificate",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,18 +13,20 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "desc": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "media": {
-      "allowedTypes": [
-        "images",
-        "files"
-      ],
       "type": "media",
-      "multiple": false
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
     }
   }
 }

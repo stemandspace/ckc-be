@@ -972,14 +972,15 @@ export interface ApiCertificateCertificate extends Schema.CollectionType {
     singularName: 'certificate';
     pluralName: 'certificates';
     displayName: 'Certificate';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    desc: Attribute.String;
-    media: Attribute.Media;
+    title: Attribute.String & Attribute.Required;
+    desc: Attribute.String & Attribute.Required;
+    media: Attribute.Media & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1300,6 +1301,7 @@ export interface ApiDiscoveryJarAnswerDiscoveryJarAnswer
     price: Attribute.BigInteger;
     new: Attribute.Boolean;
     trending: Attribute.Boolean;
+    grade: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
