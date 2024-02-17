@@ -1875,6 +1875,7 @@ export interface ApiReferralReferral extends Schema.CollectionType {
     singularName: 'referral';
     pluralName: 'referrals';
     displayName: 'Referral';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1882,8 +1883,6 @@ export interface ApiReferralReferral extends Schema.CollectionType {
   attributes: {
     referring_user_id: Attribute.String;
     referred_user_id: Attribute.String;
-    referral_code_used: Attribute.String;
-    reward_points: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

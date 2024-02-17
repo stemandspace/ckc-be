@@ -4,7 +4,8 @@
   "info": {
     "singularName": "referral",
     "pluralName": "referrals",
-    "displayName": "Referral"
+    "displayName": "Referral",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,12 +17,6 @@
     },
     "referred_user_id": {
       "type": "string"
-    },
-    "referral_code_used": {
-      "type": "string"
-    },
-    "reward_points": {
-      "type": "biginteger"
     }
   }
 }
