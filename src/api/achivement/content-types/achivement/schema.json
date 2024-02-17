@@ -40,7 +40,8 @@
         "certificate",
         "badge",
         "coins",
-        "bannar"
+        "bannar",
+        "referral"
       ]
     },
     "label": {
