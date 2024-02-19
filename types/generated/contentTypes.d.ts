@@ -1706,7 +1706,7 @@ export interface ApiPurchasePurchase extends Schema.CollectionType {
     >;
     label: Attribute.String;
     type: Attribute.Enumeration<
-      ['course', 'video', 'comic', 'live', 'jar', 'challange']
+      ['course', 'video', 'comic', 'live', 'jar', 'challange', 'nac']
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
