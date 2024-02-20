@@ -13,6 +13,7 @@ const queryPaths = {
   course: "api::course.course",
   live: "api::live.live",
   module: "api::course.course",
+  nac: "api::nac.nac",
 };
 
 module.exports = createCoreController(
