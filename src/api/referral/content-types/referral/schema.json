@@ -17,20 +17,6 @@
     },
     "referred_user_id": {
       "type": "string"
-    },
-    "credits": {
-      "type": "biginteger"
-    },
-    "type": {
-      "type": "enumeration",
-      "enum": [
-        "free",
-        "basic",
-        "premium"
-      ]
-    },
-    "rewarded": {
-      "type": "boolean"
     }
   }
 }

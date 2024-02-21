@@ -1883,9 +1883,6 @@ export interface ApiReferralReferral extends Schema.CollectionType {
   attributes: {
     referring_user_id: Attribute.String;
     referred_user_id: Attribute.String;
-    credits: Attribute.BigInteger;
-    type: Attribute.Enumeration<['free', 'basic', 'premium']>;
-    rewarded: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1897,6 +1894,38 @@ export interface ApiReferralReferral extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::referral.referral',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReferralRewardReferralReward extends Schema.CollectionType {
+  collectionName: 'referral_rewards';
+  info: {
+    singularName: 'referral-reward';
+    pluralName: 'referral-rewards';
+    displayName: 'referral reward';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    credits: Attribute.BigInteger;
+    type: Attribute.Enumeration<['free', 'basic', 'premium', 'twentyreferral']>;
+    refId: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::referral-reward.referral-reward',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::referral-reward.referral-reward',
       'oneToOne',
       'admin::user'
     > &
@@ -2241,6 +2270,7 @@ declare module '@strapi/types' {
       'api::real-purchase.real-purchase': ApiRealPurchaseRealPurchase;
       'api::recorded-live.recorded-live': ApiRecordedLiveRecordedLive;
       'api::referral.referral': ApiReferralReferral;
+      'api::referral-reward.referral-reward': ApiReferralRewardReferralReward;
       'api::reward.reward': ApiRewardReward;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::top-up.top-up': ApiTopUpTopUp;

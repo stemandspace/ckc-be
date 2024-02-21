@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "referral_rewards",
+  "info": {
+    "singularName": "referral-reward",
+    "pluralName": "referral-rewards",
+    "displayName": "referral reward"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "credits": {
+      "type": "biginteger"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "free",
+        "basic",
+        "premium",
+        "twentyreferral"
+      ]
+    },
+    "refId": {
+      "type": "string"
+    }
+  }
+}
