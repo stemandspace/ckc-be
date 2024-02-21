@@ -1883,6 +1883,9 @@ export interface ApiReferralReferral extends Schema.CollectionType {
   attributes: {
     referring_user_id: Attribute.String;
     referred_user_id: Attribute.String;
+    credits: Attribute.BigInteger;
+    type: Attribute.Enumeration<['free', 'basic', 'premium']>;
+    rewarded: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
