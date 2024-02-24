@@ -153,13 +153,13 @@ module.exports = ({ env }) => ({
     config: {
       provider: "amazon-ses",
       providerOptions: {
-        key: env("AWS_ACCESS_KEY_ID"),
-        secret: env("AWS_ACCESS_SECRET"),
+        key: env("AWS_SES_ACCESS_KEY_ID"),
+        secret: env("AWS_SES_ACCESS_SECRET"),
         amazon: "https://email.us-east-1.amazonaws.com",
       },
       settings: {
-        defaultFrom: "gautam@stemandspace.com",
-        defaultReplyTo: "gautam@stemandspace.com",
+        defaultFrom: "hello@cosmickidsclub.in",
+        defaultReplyTo: "hello@cosmickidsclub.in",
       },
     },
   },

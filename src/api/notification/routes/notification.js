@@ -1,9 +1,21 @@
-'use strict';
+"use strict";
 
 /**
  * notification router
  */
 
-const { createCoreRouter } = require('@strapi/strapi').factories;
+// module.exports = createCoreRouter('api::notification.notification');
 
-module.exports = createCoreRouter('api::notification.notification');
+module.exports = {
+  routes: [
+    {
+      method: "POST",
+      path: "/notification",
+      handler: "notification.createNotifcation",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+  ],
+};
