@@ -1500,6 +1500,44 @@ export interface ApiNacNac extends Schema.CollectionType {
   };
 }
 
+export interface ApiNotificationNotification extends Schema.CollectionType {
+  collectionName: 'notifications';
+  info: {
+    singularName: 'notification';
+    pluralName: 'notifications';
+    displayName: 'notification';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    user: Attribute.Relation<
+      'api::notification.notification',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    title: Attribute.String;
+    message: Attribute.Text;
+    status: Attribute.Enumeration<['read', 'unread']>;
+    type: Attribute.Enumeration<['system', 'email']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::notification.notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::notification.notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPlanPlan extends Schema.CollectionType {
   collectionName: 'plans';
   info: {
@@ -2156,6 +2194,7 @@ declare module '@strapi/types' {
       'api::how-it-work.how-it-work': ApiHowItWorkHowItWork;
       'api::live.live': ApiLiveLive;
       'api::nac.nac': ApiNacNac;
+      'api::notification.notification': ApiNotificationNotification;
       'api::plan.plan': ApiPlanPlan;
       'api::product.product': ApiProductProduct;
       'api::promocode.promocode': ApiPromocodePromocode;
