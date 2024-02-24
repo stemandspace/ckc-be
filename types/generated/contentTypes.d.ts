@@ -704,6 +704,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     state: Attribute.String;
     city: Attribute.String;
     lastlogin: Attribute.DateTime;
+    notification_token: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
