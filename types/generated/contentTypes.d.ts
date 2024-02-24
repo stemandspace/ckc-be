@@ -1008,39 +1008,6 @@ export interface ApiCertificateCertificate extends Schema.CollectionType {
   };
 }
 
-export interface ApiChallangeWinnerChallangeWinner
-  extends Schema.CollectionType {
-  collectionName: 'challange_winners';
-  info: {
-    singularName: 'challange-winner';
-    pluralName: 'challange-winners';
-    displayName: 'Challange Winner';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    user_id: Attribute.String;
-    challenge_id: Attribute.String;
-    reward_id: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::challange-winner.challange-winner',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::challange-winner.challange-winner',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiChallengeChallenge extends Schema.CollectionType {
   collectionName: 'challenges';
   info: {
@@ -1070,6 +1037,11 @@ export interface ApiChallengeChallenge extends Schema.CollectionType {
     from: Attribute.Date;
     to: Attribute.Date;
     result: Attribute.Date;
+    winner_reward: Attribute.Relation<
+      'api::challenge.challenge',
+      'oneToOne',
+      'api::reward.reward'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1829,46 +1801,6 @@ export interface ApiRealPurchaseRealPurchase extends Schema.CollectionType {
   };
 }
 
-export interface ApiRecordedLiveRecordedLive extends Schema.CollectionType {
-  collectionName: 'recorded_lives';
-  info: {
-    singularName: 'recorded-live';
-    pluralName: 'recorded-lives';
-    displayName: 'Recorded Live';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    thumbnail: Attribute.Text;
-    premium: Attribute.Boolean;
-    grade: Attribute.String;
-    price: Attribute.BigInteger;
-    slug: Attribute.UID;
-    mentor: Attribute.String;
-    content: Attribute.String;
-    duration: Attribute.BigInteger;
-    desc: Attribute.RichText;
-    end_timestamp: Attribute.BigInteger;
-    start_timestamp: Attribute.BigInteger;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::recorded-live.recorded-live',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::recorded-live.recorded-live',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiReferralReferral extends Schema.CollectionType {
   collectionName: 'referrals';
   info: {
@@ -2096,46 +2028,6 @@ export interface ApiTopUpTopUp extends Schema.CollectionType {
   };
 }
 
-export interface ApiUpcomingLiveUpcomingLive extends Schema.CollectionType {
-  collectionName: 'upcoming_lives';
-  info: {
-    singularName: 'upcoming-live';
-    pluralName: 'upcoming-lives';
-    displayName: 'Upcoming Live';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    thumbnail: Attribute.Text;
-    premium: Attribute.Boolean;
-    grade: Attribute.String;
-    price: Attribute.BigInteger;
-    slug: Attribute.UID;
-    mentor: Attribute.String;
-    content: Attribute.String;
-    duration: Attribute.BigInteger;
-    desc: Attribute.RichText;
-    end_timestamp: Attribute.BigInteger;
-    start_timestamp: Attribute.BigInteger;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::upcoming-live.upcoming-live',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::upcoming-live.upcoming-live',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiVideoVideo extends Schema.CollectionType {
   collectionName: 'videos';
   info: {
@@ -2248,7 +2140,6 @@ declare module '@strapi/types' {
       'api::banner.banner': ApiBannerBanner;
       'api::carousel.carousel': ApiCarouselCarousel;
       'api::certificate.certificate': ApiCertificateCertificate;
-      'api::challange-winner.challange-winner': ApiChallangeWinnerChallangeWinner;
       'api::challenge.challenge': ApiChallengeChallenge;
       'api::challenge-request.challenge-request': ApiChallengeRequestChallengeRequest;
       'api::comic.comic': ApiComicComic;
@@ -2268,13 +2159,11 @@ declare module '@strapi/types' {
       'api::quiz.quiz': ApiQuizQuiz;
       'api::quiz-config.quiz-config': ApiQuizConfigQuizConfig;
       'api::real-purchase.real-purchase': ApiRealPurchaseRealPurchase;
-      'api::recorded-live.recorded-live': ApiRecordedLiveRecordedLive;
       'api::referral.referral': ApiReferralReferral;
       'api::referral-reward.referral-reward': ApiReferralRewardReferralReward;
       'api::reward.reward': ApiRewardReward;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::top-up.top-up': ApiTopUpTopUp;
-      'api::upcoming-live.upcoming-live': ApiUpcomingLiveUpcomingLive;
       'api::video.video': ApiVideoVideo;
       'api::watched.watched': ApiWatchedWatched;
     }
