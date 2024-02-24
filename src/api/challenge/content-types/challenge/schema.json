@@ -79,8 +79,9 @@
     },
     "winner_reward": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::reward.reward"
+      "relation": "oneToMany",
+      "target": "api::reward.reward",
+      "mappedBy": "challange_winner_reward"
     }
   }
 }

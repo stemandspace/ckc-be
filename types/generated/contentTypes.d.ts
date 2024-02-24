@@ -1039,7 +1039,7 @@ export interface ApiChallengeChallenge extends Schema.CollectionType {
     result: Attribute.Date;
     winner_reward: Attribute.Relation<
       'api::challenge.challenge',
-      'oneToOne',
+      'oneToMany',
       'api::reward.reward'
     >;
     createdAt: Attribute.DateTime;
@@ -1934,6 +1934,11 @@ export interface ApiRewardReward extends Schema.CollectionType {
       'api::reward.reward',
       'oneToOne',
       'api::bannar.bannar'
+    >;
+    challange_winner_reward: Attribute.Relation<
+      'api::reward.reward',
+      'manyToOne',
+      'api::challenge.challenge'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

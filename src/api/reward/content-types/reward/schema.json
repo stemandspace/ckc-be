@@ -92,6 +92,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::bannar.bannar"
+    },
+    "challange_winner_reward": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::challenge.challenge",
+      "inversedBy": "winner_reward"
     }
   }
 }
