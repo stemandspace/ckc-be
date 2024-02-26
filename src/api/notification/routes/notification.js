@@ -17,5 +17,14 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: "GET",
+      path: "/notification",
+      handler: "notification.getNotifications",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };
