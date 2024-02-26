@@ -1,9 +1,19 @@
 "use strict";
+const { createCoreController } = require("@strapi/strapi").factories;
 
-module.exports = {
-  createNotifcation: async (ctx) => {
+module.exports = createCoreController("api::notification.notification", {
+  async create(ctx) {
+    const response = await super.create(ctx);
+    return response;
+  },
+
+  async createNotifcation(ctx) {
     try {
+      // @ts-ignore
+      console.log(ctx.request.body.data);
+      // @ts-ignore
       const { user, title, message, type, status } = ctx.request.body.data;
+
       // notification type email
       if (type === "email") {
         const USER = await strapi
@@ -35,21 +45,4 @@ module.exports = {
       ctx.throw(500, error);
     }
   },
-  getNotifications: async (ctx) => {
-    try {
-      const { user } = ctx.request.query;
-      const notifications = await strapi
-        .query("api::notification.notification")
-        .findMany({
-          where: {
-            user: {
-              id: user,
-            },
-          },
-        });
-      return ctx.send(notifications, 200);
-    } catch (error) {
-      ctx.throw(500, error);
-    }
-  },
-};
+});
