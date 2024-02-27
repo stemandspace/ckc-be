@@ -10,7 +10,6 @@ const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::achivement.achivement", {
   async create(ctx) {
-    const data = ctx.request.body;
     const response = await super.create(ctx);
     return response;
   },
@@ -49,8 +48,8 @@ module.exports = createCoreController("api::achivement.achivement", {
 
       // Calculate total coins for each user
       const userCoinsMap = new Map();
+
       achievements.forEach((achievement) => {
-        console.log(achievement);
         const userId = achievement.user.id;
         const coins = parseInt(achievement.transectionAmount);
 
@@ -62,13 +61,13 @@ module.exports = createCoreController("api::achivement.achivement", {
             lastname: achievement.user.lastname,
             username: achievement.user.username,
             firstname: achievement.user.firstname,
+            badges: [],
           });
         }
 
-        if (achievement.transectionType == "cr") {
-          userCoinsMap.get(userId).totalCoins -= coins;
+        if (achievement.contentType === "badge") {
+          userCoinsMap.get(userId).badges.push(achievement.contentId);
         }
-
         if (achievement.transectionType == "dr") {
           userCoinsMap.get(userId).totalCoins += coins;
         }
@@ -78,7 +77,6 @@ module.exports = createCoreController("api::achivement.achivement", {
       const sortedLeaderboard = Array.from(userCoinsMap.values()).sort(
         (a, b) => b.totalCoins - a.totalCoins
       );
-
       return ctx.send(sortedLeaderboard, 200);
     } catch (error) {
       console.error("Error fetching leaderboard:", error);
