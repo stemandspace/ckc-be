@@ -33,9 +33,7 @@ module.exports = ({ env }) => ({
           modelName: "course",
           transliterate: true,
           fuzzysortOptions: {
-            characterLimit: 300,
-            threshold: -600,
-            limit: 10,
+            characterLimit: 500,
             keys: [
               {
                 name: "title",
@@ -56,11 +54,11 @@ module.exports = ({ env }) => ({
             keys: [
               {
                 name: "title",
-                weight: 200,
+                weight: 100,
               },
               {
                 name: "grade",
-                weight: 200,
+                weight: 100,
               },
             ],
           },
@@ -73,11 +71,11 @@ module.exports = ({ env }) => ({
             keys: [
               {
                 name: "title",
-                weight: 200,
+                weight: 100,
               },
               {
                 name: "grade",
-                weight: 200,
+                weight: 100,
               },
             ],
           },
@@ -90,11 +88,11 @@ module.exports = ({ env }) => ({
             keys: [
               {
                 name: "title",
-                weight: 200,
+                weight: 100,
               },
               {
                 name: "grade",
-                weight: 200,
+                weight: 100,
               },
             ],
           },
@@ -107,11 +105,11 @@ module.exports = ({ env }) => ({
             keys: [
               {
                 name: "title",
-                weight: 200,
+                weight: 100,
               },
               {
                 name: "grade",
-                weight: 200,
+                weight: 100,
               },
             ],
           },
