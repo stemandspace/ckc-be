@@ -1589,7 +1589,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         maxLength: 15;
       }>;
-    slug: Attribute.UID<'api::product.product', 'title'>;
     coins: Attribute.Decimal &
       Attribute.Required &
       Attribute.SetMinMax<{
@@ -1598,10 +1597,19 @@ export interface ApiProductProduct extends Schema.CollectionType {
     type: Attribute.Enumeration<['avatar', 'banner']> &
       Attribute.Required &
       Attribute.DefaultTo<'avatar'>;
-    images: Attribute.Media & Attribute.Required;
     premium: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
+    avatar: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::avatar.avatar'
+    >;
+    bannar: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::bannar.bannar'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

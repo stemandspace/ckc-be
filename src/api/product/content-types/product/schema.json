@@ -17,10 +17,6 @@
       "required": true,
       "maxLength": 15
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
-    },
     "coins": {
       "type": "decimal",
       "required": true,
@@ -35,18 +31,20 @@
       "default": "avatar",
       "required": true
     },
-    "images": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "premium": {
       "type": "boolean",
       "default": false,
       "required": true
+    },
+    "avatar": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::avatar.avatar"
+    },
+    "bannar": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::bannar.bannar"
     }
   }
 }
