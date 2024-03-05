@@ -45,4 +45,20 @@ module.exports = createCoreController("api::notification.notification", {
       ctx.throw(500, error);
     }
   },
+
+  async sendMail(ctx) {
+    try {
+      const { title, html, email } = ctx.request.body.data;
+
+      await strapi.plugins["email"].services.email.send({
+        to: email,
+        subject: title,
+        html: html,
+      });
+
+      return ctx.send({ ok: true }, 200);
+    } catch (error) {
+      ctx.throw(500, error);
+    }
+  },
 });
