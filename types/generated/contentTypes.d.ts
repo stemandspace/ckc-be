@@ -1912,6 +1912,46 @@ export interface ApiReferralRewardReferralReward extends Schema.CollectionType {
   };
 }
 
+export interface ApiReminderReminder extends Schema.CollectionType {
+  collectionName: 'reminders';
+  info: {
+    singularName: 'reminder';
+    pluralName: 'reminders';
+    displayName: 'reminder';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    message: Attribute.Text;
+    schedule: Attribute.DateTime;
+    user: Attribute.Relation<
+      'api::reminder.reminder',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    notified: Attribute.Boolean & Attribute.DefaultTo<false>;
+    type: Attribute.Enumeration<['live', 'credit', 'plan', 'event']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::reminder.reminder',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::reminder.reminder',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiRewardReward extends Schema.CollectionType {
   collectionName: 'rewards';
   info: {
@@ -2214,6 +2254,7 @@ declare module '@strapi/types' {
       'api::real-purchase.real-purchase': ApiRealPurchaseRealPurchase;
       'api::referral.referral': ApiReferralReferral;
       'api::referral-reward.referral-reward': ApiReferralRewardReferralReward;
+      'api::reminder.reminder': ApiReminderReminder;
       'api::reward.reward': ApiRewardReward;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::top-up.top-up': ApiTopUpTopUp;

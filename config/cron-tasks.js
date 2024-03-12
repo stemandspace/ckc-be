@@ -50,23 +50,6 @@ function isCurrentDateTimeMatching(date) {
   const targetHour = targetDate.getHours();
   const targetMinutes = targetDate.getMinutes();
 
-  console.log(
-    {
-      currentYear,
-      currentMonth,
-      currentDay,
-      currentHour,
-      currentMinutes,
-    },
-    {
-      targetYear,
-      targetMonth,
-      targetDay,
-      targetHour,
-      targetMinutes,
-    }
-  );
-
   // Compare the dates, hours, and minutes
   return (
     currentYear === targetYear &&

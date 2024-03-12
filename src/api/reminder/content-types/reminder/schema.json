@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reminders",
+  "info": {
+    "singularName": "reminder",
+    "pluralName": "reminders",
+    "displayName": "reminder",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "message": {
+      "type": "text"
+    },
+    "schedule": {
+      "type": "datetime"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "notified": {
+      "type": "boolean",
+      "default": false
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "live",
+        "credit",
+        "plan",
+        "event"
+      ]
+    }
+  }
+}
