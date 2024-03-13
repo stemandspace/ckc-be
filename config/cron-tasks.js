@@ -13,17 +13,17 @@ module.exports = {
         },
       });
 
-      Array.isArray(targetList) &&
-        targetList
-          .filter((item) => isCurrentDateTimeMatching(item.from))
-          .forEach(async (live) => {
-            await strapi.query("api::live.live").update({
-              where: { id: live.id },
-              data: {
-                type: "live",
-              },
-            });
-          });
+      // Array.isArray(targetList) &&
+      //   targetList
+      //     .filter((item) => isCurrentDateTimeMatching(item.from))
+      //     .forEach(async (live) => {
+      //       await strapi.query("api::live.live").update({
+      //         where: { id: live.id },
+      //         data: {
+      //           type: "live",
+      //         },
+      //       });
+      //     });
     },
     options: {
       rule: "*/15 * * * *",
