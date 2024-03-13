@@ -38,6 +38,9 @@
         "plan",
         "event"
       ]
+    },
+    "contentId": {
+      "type": "biginteger"
     }
   }
 }

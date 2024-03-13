@@ -1934,6 +1934,7 @@ export interface ApiReminderReminder extends Schema.CollectionType {
     >;
     notified: Attribute.Boolean & Attribute.DefaultTo<false>;
     type: Attribute.Enumeration<['live', 'credit', 'plan', 'event']>;
+    contentId: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
