@@ -24,6 +24,12 @@ module.exports = ({ env }) => ({
       },
     },
   },
+  io: {
+    enabled: true,
+    config: {
+      contentTypes: ["api::notification.notification"],
+    },
+  },
   "fuzzy-search": {
     enabled: true,
     config: {
