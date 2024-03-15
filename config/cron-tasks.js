@@ -64,7 +64,7 @@ module.exports = {
               .query("api::notification.notification")
               .create({
                 data: {
-                  type: "system",
+                  type: "email",
                   status: "unread",
                   user: reminder.user,
                   title: reminder.title,
