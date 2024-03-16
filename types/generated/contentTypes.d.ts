@@ -1184,6 +1184,7 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'oneToMany',
       'api::reward.reward'
     >;
+    tags: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

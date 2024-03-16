@@ -79,6 +79,9 @@
       "relation": "oneToMany",
       "target": "api::reward.reward",
       "mappedBy": "course"
+    },
+    "tags": {
+      "type": "string"
     }
   }
 }
