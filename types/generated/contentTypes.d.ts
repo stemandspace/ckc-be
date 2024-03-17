@@ -1145,6 +1145,45 @@ export interface ApiComicComic extends Schema.CollectionType {
   };
 }
 
+export interface ApiComicBookComicBook extends Schema.CollectionType {
+  collectionName: 'comic_books';
+  info: {
+    singularName: 'comic-book';
+    pluralName: 'comic-books';
+    displayName: 'comic-book';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    address: Attribute.String;
+    city: Attribute.String;
+    state: Attribute.String;
+    zip: Attribute.String;
+    mobile: Attribute.String;
+    email: Attribute.String;
+    landmark: Attribute.String;
+    paymentId: Attribute.String;
+    formId: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::comic-book.comic-book',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::comic-book.comic-book',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCourseCourse extends Schema.CollectionType {
   collectionName: 'courses';
   info: {
@@ -2237,6 +2276,7 @@ declare module '@strapi/types' {
       'api::challenge.challenge': ApiChallengeChallenge;
       'api::challenge-request.challenge-request': ApiChallengeRequestChallengeRequest;
       'api::comic.comic': ApiComicComic;
+      'api::comic-book.comic-book': ApiComicBookComicBook;
       'api::course.course': ApiCourseCourse;
       'api::disconvery-jar-config.disconvery-jar-config': ApiDisconveryJarConfigDisconveryJarConfig;
       'api::discovery-jar-answer.discovery-jar-answer': ApiDiscoveryJarAnswerDiscoveryJarAnswer;

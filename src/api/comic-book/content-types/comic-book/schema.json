@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comic_books",
+  "info": {
+    "singularName": "comic-book",
+    "pluralName": "comic-books",
+    "displayName": "comic-book"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "mobile": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "landmark": {
+      "type": "string"
+    },
+    "paymentId": {
+      "type": "string"
+    },
+    "formId": {
+      "type": "string"
+    }
+  }
+}
