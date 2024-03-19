@@ -1151,6 +1151,7 @@ export interface ApiComicBookComicBook extends Schema.CollectionType {
     singularName: 'comic-book';
     pluralName: 'comic-books';
     displayName: 'comic-book';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1165,7 +1166,7 @@ export interface ApiComicBookComicBook extends Schema.CollectionType {
     email: Attribute.String;
     landmark: Attribute.String;
     paymentId: Attribute.String;
-    formId: Attribute.String;
+    submissionId: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1806,6 +1807,7 @@ export interface ApiQuizQuiz extends Schema.CollectionType {
       'oneToOne',
       'api::reward.reward'
     >;
+    label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
