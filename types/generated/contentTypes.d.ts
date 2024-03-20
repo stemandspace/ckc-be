@@ -1040,7 +1040,7 @@ export interface ApiChallengeChallenge extends Schema.CollectionType {
     >;
     rewards: Attribute.Relation<
       'api::challenge.challenge',
-      'manyToOne',
+      'manyToMany',
       'api::reward.reward'
     >;
     createdAt: Attribute.DateTime;
@@ -1222,7 +1222,7 @@ export interface ApiCourseCourse extends Schema.CollectionType {
     tags: Attribute.String;
     rewards: Attribute.Relation<
       'api::course.course',
-      'manyToOne',
+      'manyToMany',
       'api::reward.reward'
     >;
     createdAt: Attribute.DateTime;
@@ -2007,7 +2007,7 @@ export interface ApiRewardReward extends Schema.CollectionType {
     content_id: Attribute.String;
     challenge: Attribute.Relation<
       'api::reward.reward',
-      'oneToMany',
+      'manyToMany',
       'api::challenge.challenge'
     >;
     quiz: Attribute.Relation<
@@ -2027,7 +2027,7 @@ export interface ApiRewardReward extends Schema.CollectionType {
     >;
     course: Attribute.Relation<
       'api::reward.reward',
-      'oneToMany',
+      'manyToMany',
       'api::course.course'
     >;
     avatar: Attribute.Relation<

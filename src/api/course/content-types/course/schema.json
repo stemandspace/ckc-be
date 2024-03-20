@@ -79,7 +79,7 @@
     },
     "rewards": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::reward.reward",
       "inversedBy": "course"
     }

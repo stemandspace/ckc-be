@@ -39,7 +39,7 @@
     },
     "challenge": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::challenge.challenge",
       "mappedBy": "rewards"
     },
@@ -61,7 +61,7 @@
     },
     "course": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::course.course",
       "mappedBy": "rewards"
     },
