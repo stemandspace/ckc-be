@@ -1802,12 +1802,12 @@ export interface ApiQuizQuiz extends Schema.CollectionType {
     desc: Attribute.RichText;
     qlides: Attribute.Component<'qlide.qlide', true> & Attribute.Required;
     visible: Attribute.Integer & Attribute.Required;
+    label: Attribute.String;
     reward: Attribute.Relation<
       'api::quiz.quiz',
-      'oneToOne',
+      'manyToOne',
       'api::reward.reward'
     >;
-    label: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2037,7 +2037,7 @@ export interface ApiRewardReward extends Schema.CollectionType {
     >;
     quiz: Attribute.Relation<
       'api::reward.reward',
-      'oneToOne',
+      'oneToMany',
       'api::quiz.quiz'
     >;
     badge: Attribute.Relation<

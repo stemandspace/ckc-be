@@ -29,14 +29,14 @@
       "type": "integer",
       "required": true
     },
-    "reward": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::reward.reward",
-      "inversedBy": "quiz"
-    },
     "label": {
       "type": "string"
+    },
+    "reward": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::reward.reward",
+      "inversedBy": "quiz"
     }
   }
 }
