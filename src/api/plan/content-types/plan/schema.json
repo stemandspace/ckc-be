@@ -34,12 +34,6 @@
       "allowedTypes": [
         "images"
       ]
-    },
-    "rewards": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::reward.reward",
-      "mappedBy": "plan"
     }
   }
 }

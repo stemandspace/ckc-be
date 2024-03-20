@@ -50,12 +50,6 @@
     "tags": {
       "type": "string"
     },
-    "rewards": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::reward.reward",
-      "mappedBy": "video"
-    },
     "thumbnail": {
       "type": "media",
       "multiple": true,

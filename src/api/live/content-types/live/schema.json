@@ -61,12 +61,6 @@
         "recorded"
       ]
     },
-    "rewards": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::reward.reward",
-      "mappedBy": "live"
-    },
     "from": {
       "type": "datetime"
     },

@@ -74,14 +74,14 @@
       "type": "boolean",
       "default": false
     },
-    "rewards": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::reward.reward",
-      "mappedBy": "course"
-    },
     "tags": {
       "type": "string"
+    },
+    "rewards": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::reward.reward",
+      "inversedBy": "course"
     }
   }
 }

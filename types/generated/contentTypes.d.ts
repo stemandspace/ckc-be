@@ -1029,11 +1029,6 @@ export interface ApiChallengeChallenge extends Schema.CollectionType {
     desc: Attribute.RichText;
     thumbnail: Attribute.Media & Attribute.Required;
     difficult: Attribute.Enumeration<['easy ', 'medium', 'hard']>;
-    rewards: Attribute.Relation<
-      'api::challenge.challenge',
-      'oneToMany',
-      'api::reward.reward'
-    >;
     help_media: Attribute.Media;
     from: Attribute.Date;
     to: Attribute.Date;
@@ -1041,6 +1036,11 @@ export interface ApiChallengeChallenge extends Schema.CollectionType {
     winner_reward: Attribute.Relation<
       'api::challenge.challenge',
       'oneToMany',
+      'api::reward.reward'
+    >;
+    rewards: Attribute.Relation<
+      'api::challenge.challenge',
+      'manyToOne',
       'api::reward.reward'
     >;
     createdAt: Attribute.DateTime;
@@ -1219,12 +1219,12 @@ export interface ApiCourseCourse extends Schema.CollectionType {
     >;
     trending: Attribute.Boolean & Attribute.DefaultTo<false>;
     new: Attribute.Boolean & Attribute.DefaultTo<false>;
+    tags: Attribute.String;
     rewards: Attribute.Relation<
       'api::course.course',
-      'oneToMany',
+      'manyToOne',
       'api::reward.reward'
     >;
-    tags: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1487,11 +1487,6 @@ export interface ApiLiveLive extends Schema.CollectionType {
     desc: Attribute.RichText;
     title: Attribute.String;
     type: Attribute.Enumeration<['live', 'upcoming', 'recorded']>;
-    rewards: Attribute.Relation<
-      'api::live.live',
-      'oneToMany',
-      'api::reward.reward'
-    >;
     from: Attribute.DateTime;
     to: Attribute.DateTime;
     new: Attribute.Boolean & Attribute.DefaultTo<false>;
@@ -1598,11 +1593,6 @@ export interface ApiPlanPlan extends Schema.CollectionType {
     duration_days: Attribute.BigInteger;
     price: Attribute.Decimal;
     thumbnail: Attribute.Media & Attribute.Required;
-    rewards: Attribute.Relation<
-      'api::plan.plan',
-      'oneToMany',
-      'api::reward.reward'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2015,25 +2005,10 @@ export interface ApiRewardReward extends Schema.CollectionType {
     >;
     value: Attribute.String;
     content_id: Attribute.String;
-    video: Attribute.Relation<
-      'api::reward.reward',
-      'manyToOne',
-      'api::video.video'
-    >;
-    live: Attribute.Relation<
-      'api::reward.reward',
-      'manyToOne',
-      'api::live.live'
-    >;
     challenge: Attribute.Relation<
       'api::reward.reward',
-      'manyToOne',
+      'oneToMany',
       'api::challenge.challenge'
-    >;
-    plan: Attribute.Relation<
-      'api::reward.reward',
-      'manyToOne',
-      'api::plan.plan'
     >;
     quiz: Attribute.Relation<
       'api::reward.reward',
@@ -2052,7 +2027,7 @@ export interface ApiRewardReward extends Schema.CollectionType {
     >;
     course: Attribute.Relation<
       'api::reward.reward',
-      'manyToOne',
+      'oneToMany',
       'api::course.course'
     >;
     avatar: Attribute.Relation<
@@ -2187,11 +2162,6 @@ export interface ApiVideoVideo extends Schema.CollectionType {
     slug: Attribute.UID<'api::video.video', 'title'> & Attribute.Required;
     mediaUrl: Attribute.String & Attribute.Required;
     tags: Attribute.String;
-    rewards: Attribute.Relation<
-      'api::video.video',
-      'oneToMany',
-      'api::reward.reward'
-    >;
     thumbnail: Attribute.Media & Attribute.Required;
     quiz: Attribute.Relation<'api::video.video', 'oneToOne', 'api::quiz.quiz'>;
     new: Attribute.Boolean & Attribute.DefaultTo<false>;

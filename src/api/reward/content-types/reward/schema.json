@@ -37,29 +37,11 @@
     "content_id": {
       "type": "string"
     },
-    "video": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::video.video",
-      "inversedBy": "rewards"
-    },
-    "live": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::live.live",
-      "inversedBy": "rewards"
-    },
     "challenge": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToMany",
       "target": "api::challenge.challenge",
-      "inversedBy": "rewards"
-    },
-    "plan": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::plan.plan",
-      "inversedBy": "rewards"
+      "mappedBy": "rewards"
     },
     "quiz": {
       "type": "relation",
@@ -79,9 +61,9 @@
     },
     "course": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToMany",
       "target": "api::course.course",
-      "inversedBy": "rewards"
+      "mappedBy": "rewards"
     },
     "avatar": {
       "type": "relation",

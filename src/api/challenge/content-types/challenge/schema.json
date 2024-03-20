@@ -51,12 +51,6 @@
         "hard"
       ]
     },
-    "rewards": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::reward.reward",
-      "mappedBy": "challenge"
-    },
     "help_media": {
       "type": "media",
       "multiple": true,
@@ -82,6 +76,12 @@
       "relation": "oneToMany",
       "target": "api::reward.reward",
       "mappedBy": "challange_winner_reward"
+    },
+    "rewards": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::reward.reward",
+      "inversedBy": "challenge"
     }
   }
 }
