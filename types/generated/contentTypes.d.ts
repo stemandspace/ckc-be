@@ -679,7 +679,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       Attribute.SetMinMax<{
         min: '0';
       }> &
-      Attribute.DefaultTo<'15'>;
+      Attribute.DefaultTo<'0'>;
     mobile: Attribute.BigInteger;
     level: Attribute.BigInteger;
     purchases: Attribute.Relation<
