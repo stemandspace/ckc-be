@@ -119,7 +119,7 @@
     },
     "credits": {
       "type": "biginteger",
-      "default": "0",
+      "default": "15",
       "min": "0"
     },
     "mobile": {
