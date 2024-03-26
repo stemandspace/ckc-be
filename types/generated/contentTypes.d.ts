@@ -1537,6 +1537,45 @@ export interface ApiNacNac extends Schema.CollectionType {
   };
 }
 
+export interface ApiNacResultNacResult extends Schema.CollectionType {
+  collectionName: 'nac_results';
+  info: {
+    singularName: 'nac-result';
+    pluralName: 'nac-results';
+    displayName: 'nac-result';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    registration_code: Attribute.String;
+    school_name: Attribute.String;
+    grade: Attribute.String;
+    correct_answer: Attribute.String;
+    incorrect_answers: Attribute.String;
+    skipped_answers: Attribute.String;
+    score: Attribute.String;
+    percentile: Attribute.String;
+    rank: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::nac-result.nac-result',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::nac-result.nac-result',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiNotificationNotification extends Schema.CollectionType {
   collectionName: 'notifications';
   info: {
@@ -2257,6 +2296,7 @@ declare module '@strapi/types' {
       'api::how-it-work.how-it-work': ApiHowItWorkHowItWork;
       'api::live.live': ApiLiveLive;
       'api::nac.nac': ApiNacNac;
+      'api::nac-result.nac-result': ApiNacResultNacResult;
       'api::notification.notification': ApiNotificationNotification;
       'api::plan.plan': ApiPlanPlan;
       'api::product.product': ApiProductProduct;

@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nac_results",
+  "info": {
+    "singularName": "nac-result",
+    "pluralName": "nac-results",
+    "displayName": "nac-result"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "registration_code": {
+      "type": "string"
+    },
+    "school_name": {
+      "type": "string"
+    },
+    "grade": {
+      "type": "string"
+    },
+    "correct_answer": {
+      "type": "string"
+    },
+    "incorrect_answers": {
+      "type": "string"
+    },
+    "skipped_answers": {
+      "type": "string"
+    },
+    "score": {
+      "type": "string"
+    },
+    "percentile": {
+      "type": "string"
+    },
+    "rank": {
+      "type": "string"
+    }
+  }
+}
