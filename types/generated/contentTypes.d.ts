@@ -1543,6 +1543,7 @@ export interface ApiNacResultNacResult extends Schema.CollectionType {
     singularName: 'nac-result';
     pluralName: 'nac-results';
     displayName: 'nac-result';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1558,6 +1559,7 @@ export interface ApiNacResultNacResult extends Schema.CollectionType {
     score: Attribute.String;
     percentile: Attribute.String;
     rank: Attribute.String;
+    email: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
