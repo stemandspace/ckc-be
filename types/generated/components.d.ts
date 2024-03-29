@@ -49,6 +49,8 @@ export interface ModuleModule extends Schema.Component {
     desc: Attribute.RichText;
     mediaUrl: Attribute.Text & Attribute.Required;
     quiz: Attribute.Relation<'module.module', 'oneToOne', 'api::quiz.quiz'>;
+    type: Attribute.Enumeration<['module', 'activity']>;
+    materials: Attribute.Component<'prepration-materials.prepration-materials'>;
   };
 }
 
@@ -61,7 +63,7 @@ export interface PreprationMaterialsPreprationMaterials
     description: '';
   };
   attributes: {
-    title: Attribute.Text & Attribute.Required;
+    title: Attribute.String & Attribute.Required;
     qty: Attribute.String & Attribute.Required;
     product_link: Attribute.Text;
     desc: Attribute.RichText;

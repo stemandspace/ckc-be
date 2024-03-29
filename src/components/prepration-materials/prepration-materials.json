@@ -8,7 +8,7 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "text",
+      "type": "string",
       "required": true
     },
     "qty": {
@@ -22,14 +22,15 @@
       "type": "richtext"
     },
     "attachment": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }

@@ -1207,7 +1207,6 @@ export interface ApiCourseCourse extends Schema.CollectionType {
     thumbnail: Attribute.Media & Attribute.Required;
     trailer: Attribute.Text;
     modules: Attribute.Component<'module.module', true>;
-    activity_modules: Attribute.Component<'activity-module.activiy-module'>;
     grade: Attribute.String & Attribute.Required;
     desc: Attribute.RichText;
     slug: Attribute.UID;
