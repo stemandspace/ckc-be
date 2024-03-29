@@ -25,18 +25,6 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::quiz.quiz"
-    },
-    "type": {
-      "type": "enumeration",
-      "enum": [
-        "module",
-        "activity"
-      ]
-    },
-    "materials": {
-      "type": "component",
-      "repeatable": false,
-      "component": "prepration-materials.prepration-materials"
     }
   }
 }

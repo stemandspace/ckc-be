@@ -42,6 +42,12 @@
       "repeatable": true,
       "component": "module.module"
     },
+    "activity_modules": {
+      "displayName": "Activiy Module",
+      "type": "component",
+      "repeatable": false,
+      "component": "activity-module.activiy-module"
+    },
     "grade": {
       "type": "string",
       "required": true
