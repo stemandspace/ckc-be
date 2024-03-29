@@ -35,7 +35,7 @@
     },
     "materials": {
       "type": "component",
-      "repeatable": false,
+      "repeatable": true,
       "component": "prepration-materials.prepration-materials"
     }
   }

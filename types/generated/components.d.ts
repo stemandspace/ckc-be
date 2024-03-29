@@ -50,7 +50,10 @@ export interface ModuleModule extends Schema.Component {
     mediaUrl: Attribute.Text & Attribute.Required;
     quiz: Attribute.Relation<'module.module', 'oneToOne', 'api::quiz.quiz'>;
     type: Attribute.Enumeration<['module', 'activity']>;
-    materials: Attribute.Component<'prepration-materials.prepration-materials'>;
+    materials: Attribute.Component<
+      'prepration-materials.prepration-materials',
+      true
+    >;
   };
 }
 
