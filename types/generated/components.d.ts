@@ -21,6 +21,7 @@ export interface ActivityModuleActiviyModule extends Schema.Component {
       'oneToMany',
       'api::reward.reward'
     >;
+    index: Attribute.BigInteger;
   };
 }
 

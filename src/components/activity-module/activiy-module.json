@@ -32,6 +32,9 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::reward.reward"
+    },
+    "index": {
+      "type": "biginteger"
     }
   }
 }
