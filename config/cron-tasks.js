@@ -1,8 +1,6 @@
 module.exports = {
   myJob: {
     task: async ({ strapi }) => {
-      console.log("Cron job is running..");
-
       // THIS JOB IS FOR LIVE
       try {
         const targetList = await strapi.query("api::live.live").findMany({

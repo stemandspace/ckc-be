@@ -9,7 +9,7 @@ export interface ActivityModuleActiviyModule extends Schema.Component {
   };
   attributes: {
     name: Attribute.Text & Attribute.Required;
-    explorationTime: Attribute.BigInteger & Attribute.Required;
+    explorationTime: Attribute.BigInteger;
     prepration_materials: Attribute.Component<
       'prepration-materials.prepration-materials',
       true

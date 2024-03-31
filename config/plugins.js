@@ -1,5 +1,4 @@
 module.exports = ({ env }) => ({
-  // ..
   transformer: {
     enabled: true,
     config: {
@@ -11,10 +10,8 @@ module.exports = ({ env }) => ({
         wrapBodyWithDataKey: true,
       },
       hooks: {
-        preResponseTransform: (ctx) =>
-          console.log("hello from the preResponseTransform hook!"),
-        postResponseTransform: (ctx) =>
-          console.log("hello from the postResponseTransform hook!"),
+        preResponseTransform: (ctx) => {},
+        postResponseTransform: (ctx) => {},
       },
 
       plugins: {
@@ -170,5 +167,4 @@ module.exports = ({ env }) => ({
   "video-field": {
     enabled: true,
   },
-  // ..
 });
