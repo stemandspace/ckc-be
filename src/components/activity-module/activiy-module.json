@@ -13,7 +13,7 @@
     },
     "explorationTime": {
       "type": "biginteger",
-      "required": true
+      "required": false
     },
     "prepration_materials": {
       "displayName": "Prepration Materials",
