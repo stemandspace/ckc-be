@@ -46,7 +46,7 @@ export interface ModuleModule extends Schema.Component {
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
-    explorationTime: Attribute.BigInteger & Attribute.Required;
+    explorationTime: Attribute.BigInteger;
     desc: Attribute.RichText;
     mediaUrl: Attribute.Text & Attribute.Required;
     quiz: Attribute.Relation<'module.module', 'oneToOne', 'api::quiz.quiz'>;

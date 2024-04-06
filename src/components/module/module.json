@@ -12,7 +12,7 @@
     },
     "explorationTime": {
       "type": "biginteger",
-      "required": true
+      "required": false
     },
     "desc": {
       "type": "richtext"
