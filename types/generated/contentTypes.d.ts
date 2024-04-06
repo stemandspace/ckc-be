@@ -1314,7 +1314,6 @@ export interface ApiDiscoveryJarAnswerDiscoveryJarAnswer
       'api::disconvery-jar-config.disconvery-jar-config'
     >;
     title: Attribute.String;
-    desc: Attribute.Text;
     discovery_jar_questions: Attribute.Relation<
       'api::discovery-jar-answer.discovery-jar-answer',
       'oneToMany',
@@ -1325,6 +1324,7 @@ export interface ApiDiscoveryJarAnswerDiscoveryJarAnswer
     new: Attribute.Boolean;
     trending: Attribute.Boolean;
     grade: Attribute.String;
+    desc: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
