@@ -13,6 +13,7 @@ module.exports = {
 
         for (const live of targetList) {
           if (isCurrentDateTimeMatching(live.from)) {
+            console.log("Processing live event:", live.id);
             await strapi.query("api::live.live").update({
               where: { id: live.id },
               data: {
