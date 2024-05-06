@@ -1578,6 +1578,38 @@ export interface ApiNacResultNacResult extends Schema.CollectionType {
   };
 }
 
+export interface ApiNewsletterSubscriberNewsletterSubscriber
+  extends Schema.CollectionType {
+  collectionName: 'newsletter_subscribers';
+  info: {
+    singularName: 'newsletter-subscriber';
+    pluralName: 'newsletter-subscribers';
+    displayName: 'Newsletter Subscriber';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    fullName: Attribute.String;
+    email: Attribute.Email;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::newsletter-subscriber.newsletter-subscriber',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::newsletter-subscriber.newsletter-subscriber',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiNotificationNotification extends Schema.CollectionType {
   collectionName: 'notifications';
   info: {
@@ -2299,6 +2331,7 @@ declare module '@strapi/types' {
       'api::live.live': ApiLiveLive;
       'api::nac.nac': ApiNacNac;
       'api::nac-result.nac-result': ApiNacResultNacResult;
+      'api::newsletter-subscriber.newsletter-subscriber': ApiNewsletterSubscriberNewsletterSubscriber;
       'api::notification.notification': ApiNotificationNotification;
       'api::plan.plan': ApiPlanPlan;
       'api::product.product': ApiProductProduct;
