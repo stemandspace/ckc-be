@@ -1585,13 +1585,14 @@ export interface ApiNewsletterSubscriberNewsletterSubscriber
     singularName: 'newsletter-subscriber';
     pluralName: 'newsletter-subscribers';
     displayName: 'Newsletter Subscriber';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     fullName: Attribute.String;
-    email: Attribute.Email;
+    email: Attribute.Email & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

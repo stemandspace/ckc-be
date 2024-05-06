@@ -4,7 +4,8 @@
   "info": {
     "singularName": "newsletter-subscriber",
     "pluralName": "newsletter-subscribers",
-    "displayName": "Newsletter Subscriber"
+    "displayName": "Newsletter Subscriber",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +16,8 @@
       "type": "string"
     },
     "email": {
-      "type": "email"
+      "type": "email",
+      "unique": true
     }
   }
 }
