@@ -16,12 +16,7 @@ module.exports = [
           ],
           "connect-src": ["'self'", "https:"],
           "img-src": ["'self'", "data:", "blob:", "*.amazonaws.com", "*"],
-          "media-src": [
-            "'self'",
-            "data:",
-            "blob:",
-            "*.amazonaws.com", // Allow loading media from your S3 bucket
-          ],
+          "media-src": ["'self'", "data:", "blob:", "*.amazonaws.com"],
           upgradeInsecureRequests: null,
         },
       },
