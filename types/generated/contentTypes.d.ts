@@ -1872,6 +1872,7 @@ export interface ApiQuizQuiz extends Schema.CollectionType {
       'manyToOne',
       'api::reward.reward'
     >;
+    unlocked: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

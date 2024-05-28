@@ -37,6 +37,11 @@
       "relation": "manyToOne",
       "target": "api::reward.reward",
       "inversedBy": "quiz"
+    },
+    "unlocked": {
+      "type": "boolean",
+      "default": false,
+      "required": false
     }
   }
 }
