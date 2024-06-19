@@ -1,7 +1,4 @@
 "use strict";
-
-const { Utils } = require("@strapi/strapi");
-
 /**
  * achivement controller
  */
@@ -50,32 +47,36 @@ module.exports = createCoreController("api::achivement.achivement", {
       const userCoinsMap = new Map();
 
       achievements.forEach((achievement) => {
-        const userId = achievement.user.id;
-        const coins = parseInt(achievement.transectionAmount);
+        if (achievement?.user == null) {
+          return;
+        } else {
+          const userId = achievement?.user?.id;
+          const coins = parseInt(achievement?.transectionAmount);
 
-        if (!userCoinsMap.has(userId)) {
-          userCoinsMap.set(userId, {
-            id: userId,
-            totalCoins: 0,
-            avatar: achievement.user.avatar,
-            lastname: achievement.user.lastname,
-            username: achievement.user.username,
-            firstname: achievement.user.firstname,
-            badges: [],
-          });
-        }
+          if (!userCoinsMap.has(userId)) {
+            userCoinsMap.set(userId, {
+              id: userId,
+              totalCoins: 0,
+              avatar: achievement?.user?.avatar,
+              lastname: achievement?.user?.lastname,
+              username: achievement?.user?.username,
+              firstname: achievement?.user?.firstname,
+              badges: [],
+            });
+          }
 
-        if (achievement.contentType === "badge") {
-          userCoinsMap.get(userId).badges.push(achievement.contentId);
-        }
-        if (achievement.transectionType == "dr") {
-          userCoinsMap.get(userId).totalCoins += coins;
+          if (achievement.contentType === "badge") {
+            userCoinsMap.get(userId).badges.push(achievement.contentId);
+          }
+          if (achievement.transectionType == "dr") {
+            userCoinsMap.get(userId).totalCoins += coins;
+          }
         }
       });
 
       // Convert the Map to an array and sort it by totalCoins
       const sortedLeaderboard = Array.from(userCoinsMap.values()).sort(
-        (a, b) => b.totalCoins - a.totalCoins
+        (a, b) => b?.totalCoins - a?.totalCoins
       );
       return ctx.send(sortedLeaderboard, 200);
     } catch (error) {
