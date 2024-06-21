@@ -1,4 +1,5 @@
 "use strict";
+
 /**
  * achivement controller
  */
@@ -62,12 +63,18 @@ module.exports = createCoreController("api::achivement.achivement", {
               username: achievement?.user?.username,
               firstname: achievement?.user?.firstname,
               badges: [],
+              certificates: [],
             });
           }
 
           if (achievement.contentType === "badge") {
-            userCoinsMap.get(userId).badges.push(achievement.contentId);
+            userCoinsMap.get(userId)?.badges.push(achievement?.contentId);
           }
+
+          if (achievement.contentType === "certificate") {
+            userCoinsMap.get(userId)?.certificates.push(achievement?.contentId);
+          }
+
           if (achievement.transectionType == "dr") {
             userCoinsMap.get(userId).totalCoins += coins;
           }
