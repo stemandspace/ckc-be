@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_certification_certification_configs",
+  "info": {
+    "displayName": "certification-config"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "pdf": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "config": {
+      "type": "json"
+    }
+  }
+}

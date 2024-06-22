@@ -1009,6 +1009,81 @@ export interface ApiCertificateCertificate extends Schema.CollectionType {
   };
 }
 
+export interface ApiCertificationCertification extends Schema.SingleType {
+  collectionName: 'certifications';
+  info: {
+    singularName: 'certification';
+    pluralName: 'certifications';
+    displayName: 'Certification';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    banner: Attribute.Media;
+    title: Attribute.String;
+    desc: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::certification.certification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::certification.certification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCertificationEventCertificationEvent
+  extends Schema.CollectionType {
+  collectionName: 'certification_events';
+  info: {
+    singularName: 'certification-event';
+    pluralName: 'certification-events';
+    displayName: 'Certification Program';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    desc: Attribute.Text;
+    school: Attribute.String;
+    direct: Attribute.String;
+    year: Attribute.String;
+    month: Attribute.String;
+    grades: Attribute.String;
+    banner: Attribute.Media;
+    certificate: Attribute.Component<'certification.certification-config'>;
+    resultdata: Attribute.JSON;
+    startDate: Attribute.Date;
+    endDate: Attribute.Date;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::certification-event.certification-event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::certification-event.certification-event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiChallengeChallenge extends Schema.CollectionType {
   collectionName: 'challenges';
   info: {
@@ -2319,6 +2394,8 @@ declare module '@strapi/types' {
       'api::banner.banner': ApiBannerBanner;
       'api::carousel.carousel': ApiCarouselCarousel;
       'api::certificate.certificate': ApiCertificateCertificate;
+      'api::certification.certification': ApiCertificationCertification;
+      'api::certification-event.certification-event': ApiCertificationEventCertificationEvent;
       'api::challenge.challenge': ApiChallengeChallenge;
       'api::challenge-request.challenge-request': ApiChallengeRequestChallengeRequest;
       'api::comic.comic': ApiComicComic;

@@ -25,6 +25,31 @@ export interface ActivityModuleActiviyModule extends Schema.Component {
   };
 }
 
+export interface CertificationCertificationConfig extends Schema.Component {
+  collectionName: 'components_certification_certification_configs';
+  info: {
+    displayName: 'certification-config';
+  };
+  attributes: {
+    title: Attribute.String;
+    pdf: Attribute.Media;
+    config: Attribute.JSON;
+  };
+}
+
+export interface CertificationCertificationEvents extends Schema.Component {
+  collectionName: 'components_certification_certification_events';
+  info: {
+    displayName: 'Certification Events';
+  };
+  attributes: {
+    title: Attribute.String;
+    desc: Attribute.Text;
+    thumbnail: Attribute.Media;
+    link: Attribute.String;
+  };
+}
+
 export interface ModuleSlideModuleSlide extends Schema.Component {
   collectionName: 'components_module_slide_module_slides';
   info: {
@@ -188,6 +213,8 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'activity-module.activiy-module': ActivityModuleActiviyModule;
+      'certification.certification-config': CertificationCertificationConfig;
+      'certification.certification-events': CertificationCertificationEvents;
       'module-slide.module-slide': ModuleSlideModuleSlide;
       'module.module': ModuleModule;
       'prepration-materials.prepration-materials': PreprationMaterialsPreprationMaterials;

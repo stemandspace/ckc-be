@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "certification_events",
+  "info": {
+    "singularName": "certification-event",
+    "pluralName": "certification-events",
+    "displayName": "Certification Program",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "text"
+    },
+    "school": {
+      "type": "string"
+    },
+    "direct": {
+      "type": "string"
+    },
+    "year": {
+      "type": "string"
+    },
+    "month": {
+      "type": "string"
+    },
+    "grades": {
+      "type": "string"
+    },
+    "banner": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "certificate": {
+      "displayName": "certification-config",
+      "type": "component",
+      "repeatable": false,
+      "component": "certification.certification-config"
+    },
+    "resultdata": {
+      "type": "json"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    }
+  }
+}
