@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "certification_event_modules",
+  "info": {
+    "singularName": "certification-event-module",
+    "pluralName": "certification-event-modules",
+    "displayName": "Certification Event Module"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "text"
+    },
+    "desc": {
+      "type": "text"
+    },
+    "thumbnail": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

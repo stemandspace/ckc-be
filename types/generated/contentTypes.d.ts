@@ -1084,6 +1084,40 @@ export interface ApiCertificationEventCertificationEvent
   };
 }
 
+export interface ApiCertificationEventModuleCertificationEventModule
+  extends Schema.CollectionType {
+  collectionName: 'certification_event_modules';
+  info: {
+    singularName: 'certification-event-module';
+    pluralName: 'certification-event-modules';
+    displayName: 'Certification Event Module';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.Text;
+    desc: Attribute.Text;
+    thumbnail: Attribute.Media;
+    url: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::certification-event-module.certification-event-module',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::certification-event-module.certification-event-module',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiChallengeChallenge extends Schema.CollectionType {
   collectionName: 'challenges';
   info: {
@@ -2396,6 +2430,7 @@ declare module '@strapi/types' {
       'api::certificate.certificate': ApiCertificateCertificate;
       'api::certification.certification': ApiCertificationCertification;
       'api::certification-event.certification-event': ApiCertificationEventCertificationEvent;
+      'api::certification-event-module.certification-event-module': ApiCertificationEventModuleCertificationEventModule;
       'api::challenge.challenge': ApiChallengeChallenge;
       'api::challenge-request.challenge-request': ApiChallengeRequestChallengeRequest;
       'api::comic.comic': ApiComicComic;
