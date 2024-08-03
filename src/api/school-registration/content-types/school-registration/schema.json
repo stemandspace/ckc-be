@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "school_registrations",
+  "info": {
+    "singularName": "school-registration",
+    "pluralName": "school-registrations",
+    "displayName": "school-registration"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "school_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "contact_no": {
+      "type": "string"
+    },
+    "school_address": {
+      "type": "string"
+    },
+    "principle_name": {
+      "type": "string"
+    }
+  }
+}

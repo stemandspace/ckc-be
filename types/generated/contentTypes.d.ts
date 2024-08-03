@@ -2286,6 +2286,41 @@ export interface ApiRewardReward extends Schema.CollectionType {
   };
 }
 
+export interface ApiSchoolRegistrationSchoolRegistration
+  extends Schema.CollectionType {
+  collectionName: 'school_registrations';
+  info: {
+    singularName: 'school-registration';
+    pluralName: 'school-registrations';
+    displayName: 'school-registration';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    school_name: Attribute.String;
+    email: Attribute.String;
+    contact_no: Attribute.String;
+    school_address: Attribute.String;
+    principle_name: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::school-registration.school-registration',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::school-registration.school-registration',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSubscriptionSubscription extends Schema.CollectionType {
   collectionName: 'subscriptions';
   info: {
@@ -2499,6 +2534,7 @@ declare module '@strapi/types' {
       'api::referral-reward.referral-reward': ApiReferralRewardReferralReward;
       'api::reminder.reminder': ApiReminderReminder;
       'api::reward.reward': ApiRewardReward;
+      'api::school-registration.school-registration': ApiSchoolRegistrationSchoolRegistration;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::top-up.top-up': ApiTopUpTopUp;
       'api::video.video': ApiVideoVideo;
