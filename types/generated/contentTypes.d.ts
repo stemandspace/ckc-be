@@ -1646,6 +1646,46 @@ export interface ApiNacNac extends Schema.CollectionType {
   };
 }
 
+export interface ApiNacRegistrationNacRegistration
+  extends Schema.CollectionType {
+  collectionName: 'nac_registrations';
+  info: {
+    singularName: 'nac-registration';
+    pluralName: 'nac-registrations';
+    displayName: 'nac-registration';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    student_name: Attribute.String;
+    email: Attribute.String;
+    phone: Attribute.String;
+    dob: Attribute.String;
+    school_name: Attribute.String;
+    grade: Attribute.String;
+    section: Attribute.String;
+    city: Attribute.String;
+    device: Attribute.String;
+    payment_info: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::nac-registration.nac-registration',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::nac-registration.nac-registration',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiNacResultNacResult extends Schema.CollectionType {
   collectionName: 'nac_results';
   info: {
@@ -2443,6 +2483,7 @@ declare module '@strapi/types' {
       'api::how-it-work.how-it-work': ApiHowItWorkHowItWork;
       'api::live.live': ApiLiveLive;
       'api::nac.nac': ApiNacNac;
+      'api::nac-registration.nac-registration': ApiNacRegistrationNacRegistration;
       'api::nac-result.nac-result': ApiNacResultNacResult;
       'api::newsletter-subscriber.newsletter-subscriber': ApiNewsletterSubscriberNewsletterSubscriber;
       'api::notification.notification': ApiNotificationNotification;

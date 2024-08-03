@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nac_registrations",
+  "info": {
+    "singularName": "nac-registration",
+    "pluralName": "nac-registrations",
+    "displayName": "nac-registration"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "student_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "dob": {
+      "type": "string"
+    },
+    "school_name": {
+      "type": "string"
+    },
+    "grade": {
+      "type": "string"
+    },
+    "section": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "device": {
+      "type": "string"
+    },
+    "payment_info": {
+      "type": "json"
+    }
+  }
+}
