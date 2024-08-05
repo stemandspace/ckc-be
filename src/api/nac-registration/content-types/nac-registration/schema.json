@@ -4,7 +4,8 @@
   "info": {
     "singularName": "nac-registration",
     "pluralName": "nac-registrations",
-    "displayName": "nac-registration"
+    "displayName": "nac-registration",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +16,8 @@
       "type": "string"
     },
     "email": {
-      "type": "string"
+      "type": "string",
+      "unique": true
     },
     "phone": {
       "type": "string"

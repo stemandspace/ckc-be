@@ -1653,13 +1653,14 @@ export interface ApiNacRegistrationNacRegistration
     singularName: 'nac-registration';
     pluralName: 'nac-registrations';
     displayName: 'nac-registration';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     student_name: Attribute.String;
-    email: Attribute.String;
+    email: Attribute.String & Attribute.Unique;
     phone: Attribute.String;
     dob: Attribute.String;
     school_name: Attribute.String;
@@ -2293,16 +2294,18 @@ export interface ApiSchoolRegistrationSchoolRegistration
     singularName: 'school-registration';
     pluralName: 'school-registrations';
     displayName: 'school-registration';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     school_name: Attribute.String;
-    email: Attribute.String;
+    email: Attribute.String & Attribute.Unique;
     contact_no: Attribute.String;
     school_address: Attribute.String;
     principle_name: Attribute.String;
+    payment_info: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

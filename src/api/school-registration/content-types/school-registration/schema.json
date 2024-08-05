@@ -4,7 +4,8 @@
   "info": {
     "singularName": "school-registration",
     "pluralName": "school-registrations",
-    "displayName": "school-registration"
+    "displayName": "school-registration",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +16,8 @@
       "type": "string"
     },
     "email": {
-      "type": "string"
+      "type": "string",
+      "unique": true
     },
     "contact_no": {
       "type": "string"
@@ -25,6 +27,9 @@
     },
     "principle_name": {
       "type": "string"
+    },
+    "payment_info": {
+      "type": "json"
     }
   }
 }
