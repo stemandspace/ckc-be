@@ -30,6 +30,9 @@
     },
     "payment_info": {
       "type": "json"
+    },
+    "school_branch": {
+      "type": "string"
     }
   }
 }
