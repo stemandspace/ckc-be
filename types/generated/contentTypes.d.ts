@@ -2306,6 +2306,8 @@ export interface ApiSchoolRegistrationSchoolRegistration
     school_address: Attribute.String;
     principle_name: Attribute.String;
     payment_info: Attribute.JSON;
+    school_branch: Attribute.String;
+    password: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

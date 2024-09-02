@@ -33,6 +33,9 @@
     },
     "school_branch": {
       "type": "string"
+    },
+    "password": {
+      "type": "string"
     }
   }
 }
