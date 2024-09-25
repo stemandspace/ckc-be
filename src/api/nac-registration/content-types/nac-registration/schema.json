@@ -42,6 +42,9 @@
     },
     "payment_info": {
       "type": "json"
+    },
+    "user_info": {
+      "type": "json"
     }
   }
 }
