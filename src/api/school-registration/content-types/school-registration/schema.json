@@ -36,6 +36,9 @@
     },
     "password": {
       "type": "string"
+    },
+    "link": {
+      "type": "string"
     }
   }
 }
