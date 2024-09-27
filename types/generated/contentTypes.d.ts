@@ -1500,6 +1500,77 @@ export interface ApiDiscoveryJarQuestionDiscoveryJarQuestion
   };
 }
 
+export interface ApiErrorLogErrorLog extends Schema.CollectionType {
+  collectionName: 'error_logs';
+  info: {
+    singularName: 'error-log';
+    pluralName: 'error-logs';
+    displayName: 'Error Log';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    message: Attribute.Text;
+    stack: Attribute.String;
+    identifer: Attribute.String;
+    additional_info: Attribute.JSON;
+    error_type: Attribute.Relation<
+      'api::error-log.error-log',
+      'oneToOne',
+      'api::error-type.error-type'
+    >;
+    request_url: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::error-log.error-log',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::error-log.error-log',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiErrorTypeErrorType extends Schema.CollectionType {
+  collectionName: 'error_types';
+  info: {
+    singularName: 'error-type';
+    pluralName: 'error-types';
+    displayName: 'Error Type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    code_name: Attribute.String;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::error-type.error-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::error-type.error-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHardProductHardProduct extends Schema.CollectionType {
   collectionName: 'hard_products';
   info: {
@@ -2523,6 +2594,8 @@ declare module '@strapi/types' {
       'api::disconvery-jar-config.disconvery-jar-config': ApiDisconveryJarConfigDisconveryJarConfig;
       'api::discovery-jar-answer.discovery-jar-answer': ApiDiscoveryJarAnswerDiscoveryJarAnswer;
       'api::discovery-jar-question.discovery-jar-question': ApiDiscoveryJarQuestionDiscoveryJarQuestion;
+      'api::error-log.error-log': ApiErrorLogErrorLog;
+      'api::error-type.error-type': ApiErrorTypeErrorType;
       'api::hard-product.hard-product': ApiHardProductHardProduct;
       'api::how-it-work.how-it-work': ApiHowItWorkHowItWork;
       'api::live.live': ApiLiveLive;

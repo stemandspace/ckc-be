@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "error_logs",
+  "info": {
+    "singularName": "error-log",
+    "pluralName": "error-logs",
+    "displayName": "Error Log"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "message": {
+      "type": "text"
+    },
+    "stack": {
+      "type": "string"
+    },
+    "identifer": {
+      "type": "string"
+    },
+    "additional_info": {
+      "type": "json"
+    },
+    "error_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::error-type.error-type"
+    },
+    "request_url": {
+      "type": "string"
+    }
+  }
+}
