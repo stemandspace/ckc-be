@@ -2311,6 +2311,7 @@ export interface ApiSchoolRegistrationSchoolRegistration
     school_branch: Attribute.String;
     password: Attribute.String;
     link: Attribute.String;
+    notified: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

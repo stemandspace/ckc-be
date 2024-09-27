@@ -39,6 +39,9 @@
     },
     "link": {
       "type": "string"
+    },
+    "notified": {
+      "type": "boolean"
     }
   }
 }
