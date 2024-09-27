@@ -45,6 +45,9 @@
     },
     "user_info": {
       "type": "json"
+    },
+    "notified": {
+      "type": "boolean"
     }
   }
 }

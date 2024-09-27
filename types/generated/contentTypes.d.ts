@@ -1670,6 +1670,7 @@ export interface ApiNacRegistrationNacRegistration
     device: Attribute.String;
     payment_info: Attribute.JSON;
     user_info: Attribute.JSON;
+    notified: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
