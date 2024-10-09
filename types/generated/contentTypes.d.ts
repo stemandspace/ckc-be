@@ -705,6 +705,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     city: Attribute.String;
     lastlogin: Attribute.DateTime;
     notification_token: Attribute.String;
+    whatsapp_notification: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

@@ -172,6 +172,9 @@
     },
     "notification_token": {
       "type": "string"
+    },
+    "whatsapp_notification": {
+      "type": "boolean"
     }
   }
 }
