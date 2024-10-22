@@ -2477,6 +2477,28 @@ export interface ApiTopUpTopUp extends Schema.CollectionType {
   };
 }
 
+export interface ApiV1V1 extends Schema.CollectionType {
+  collectionName: 'v1s';
+  info: {
+    singularName: 'v1';
+    pluralName: 'v1s';
+    displayName: 'v1';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    version: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::v1.v1', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::v1.v1', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiVideoVideo extends Schema.CollectionType {
   collectionName: 'videos';
   info: {
@@ -2620,6 +2642,7 @@ declare module '@strapi/types' {
       'api::school-registration.school-registration': ApiSchoolRegistrationSchoolRegistration;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::top-up.top-up': ApiTopUpTopUp;
+      'api::v1.v1': ApiV1V1;
       'api::video.video': ApiVideoVideo;
       'api::watched.watched': ApiWatchedWatched;
     }
