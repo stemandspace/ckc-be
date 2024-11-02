@@ -54,8 +54,7 @@ const controller = ({ strapi }) => ({
       return ctx.send({ ok: true }, 200);
     } catch (err) {
       console.error(err);
-      // we need to keep this because
-      return ctx.send({ ok: false }, 200);
+      ctx.internalServerError("An error occurred during registration.");
     }
   },
 
@@ -66,7 +65,7 @@ const controller = ({ strapi }) => ({
         event,
         payload: {
           payment: {
-            entity: { id, email, description },
+            entity: { id, email, description, contact },
           },
         },
       } = ctx.request.body.data;
@@ -98,8 +97,16 @@ const controller = ({ strapi }) => ({
         // Send notification email
         const emailSent = await sendEmail(email, notificationPayload);
 
+        // Send Whatsapp message
+        const whatsappSent = await sendWhatsappMessage(
+          contact,
+          "NAC",
+          "registration",
+          []
+        );
+        console.log(whatsappSent);
         // Update notification status
-        await updateNotificationStatus(strapi, email, emailSent);
+        await updateNotificationStatus(strapi, email, emailSent, whatsappSent);
 
         console.log("NACW", {
           formData: { id, description, email },
@@ -111,7 +118,8 @@ const controller = ({ strapi }) => ({
       return ctx.send({ ok: false }, 400);
     } catch (err) {
       console.error(err);
-      ctx.internalServerError("An error occurred during registration.");
+      // we need to keep this because
+      return ctx.send({ ok: false }, 200);
     }
   },
 });
@@ -179,6 +187,7 @@ const publishRegistration = async (strapi, email, razorpayData) => {
  * @param {Object} payload - The email payload
  * @returns {Promise<Object|null>} The response from the email service
  */
+
 const sendEmail = async (email, payload) => {
   const APIKEY = "KGSTXRC-65MM4R4-N9HZ2EY-CWF3ME9";
   const requestUrl = `https://api.mailmodo.com/api/v1/triggerCampaign/51795575-e45a-5a13-8e36-f63c7b62099d`;
@@ -201,16 +210,55 @@ const sendEmail = async (email, payload) => {
   }
 };
 
+const sendWhatsappMessage = async (
+  phone,
+  userName,
+  campaignName,
+  templateParams
+) => {
+  try {
+    const payload = {
+      media: {},
+      buttons: [],
+      location: {},
+      source: "NAC",
+      carouselCards: [],
+      userName: userName,
+      destination: phone.replace("+", ""),
+      paramsFallbackValue: {},
+      campaignName: campaignName,
+      templateParams: templateParams,
+      apiKey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MWI3NTJhZmFiZjRmMDRjNzlhYThjNCIsIm5hbWUiOiJTVEVNIFJFU0VBUkNIICYgSU5OT1ZBVElPTiBMTFAgNzQyNyIsImFwcE5hbWUiOiJBaVNlbnN5IiwiY2xpZW50SWQiOiI2NzFiNzUyOWZhYmY0ZjA0Yzc5YWE4NzkiLCJhY3RpdmVQbGFuIjoiQkFTSUNfTU9OVEhMWSIsImlhdCI6MTcyOTg1MjcxNH0.vmZ66yvxmKEy4NYTooK6SLWXbH-qga6fdk1kAclwrws",
+    };
+
+    console.log("WPAYLOAD", payload);
+
+    const response = await axios.post(
+      "https://backend.aisensy.com/campaign/t1/api/v2",
+      payload
+    );
+    return response.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 /**
  * Updates the notification status for the user
  * @param {Strapi} strapi - The Strapi instance
  * @param {string} email - The user's email
  * @param {boolean} emailSent - Whether the email was sent successfully
  */
-const updateNotificationStatus = async (strapi, email, emailSent) => {
+const updateNotificationStatus = async (
+  strapi,
+  email,
+  emailSent,
+  whatsappSent
+) => {
   await strapi.query("api::nac-registration.nac-registration").update({
     where: { email },
-    data: { notified: !!emailSent },
+    data: { notified: !!emailSent, wnotified: !!whatsappSent },
   });
 };
 
