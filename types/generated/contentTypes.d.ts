@@ -1743,6 +1743,7 @@ export interface ApiNacRegistrationNacRegistration
     payment_info: Attribute.JSON;
     user_info: Attribute.JSON;
     notified: Attribute.Boolean;
+    wnotified: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

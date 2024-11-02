@@ -54,7 +54,8 @@ const controller = ({ strapi }) => ({
       return ctx.send({ ok: true }, 200);
     } catch (err) {
       console.error(err);
-      ctx.internalServerError("An error occurred during registration.");
+      // we need to keep this because
+      return ctx.send({ ok: false }, 200);
     }
   },
 

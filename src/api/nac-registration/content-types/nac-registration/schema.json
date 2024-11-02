@@ -48,6 +48,9 @@
     },
     "notified": {
       "type": "boolean"
+    },
+    "wnotified": {
+      "type": "boolean"
     }
   }
 }
