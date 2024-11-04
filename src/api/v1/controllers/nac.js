@@ -232,8 +232,6 @@ const sendWhatsappMessage = async (
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MWI3NTJhZmFiZjRmMDRjNzlhYThjNCIsIm5hbWUiOiJTVEVNIFJFU0VBUkNIICYgSU5OT1ZBVElPTiBMTFAgNzQyNyIsImFwcE5hbWUiOiJBaVNlbnN5IiwiY2xpZW50SWQiOiI2NzFiNzUyOWZhYmY0ZjA0Yzc5YWE4NzkiLCJhY3RpdmVQbGFuIjoiQkFTSUNfTU9OVEhMWSIsImlhdCI6MTcyOTg1MjcxNH0.vmZ66yvxmKEy4NYTooK6SLWXbH-qga6fdk1kAclwrws",
     };
 
-    console.log("WPAYLOAD", payload);
-
     const response = await axios.post(
       "https://backend.aisensy.com/campaign/t1/api/v2",
       payload
