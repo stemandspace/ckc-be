@@ -69,6 +69,7 @@ const controller = ({ strapi }) => ({
           },
         },
       } = ctx.request.body.data;
+
       if (event === "payment.captured" && description === "NAC") {
         const generatedPassword = generateRandomPassword();
 
@@ -115,11 +116,11 @@ const controller = ({ strapi }) => ({
         });
         return ctx.send({ ok: true }, 200);
       }
-      return ctx.send({ ok: false }, 400);
+      return ctx.send({ ok: true }, 200);
     } catch (err) {
       console.error(err);
       // we need to keep this because
-      return ctx.send({ ok: false }, 200);
+      return ctx.send({ ok: true }, 200);
     }
   },
 });
