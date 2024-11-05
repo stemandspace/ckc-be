@@ -114,7 +114,7 @@ const controller = ({ strapi }) => ({
           razorpayData: { id },
           notification: emailSent,
         });
-        console.log("PAYMENT ORIGIN IS NOT VERIFIED");
+        console.log("PAYMENT ORIGIN IS VERIFIED");
         return ctx.send({ ok: true }, 200);
       }
       console.log("PAYMENT ORIGIN IS NOT VERIFIED");
