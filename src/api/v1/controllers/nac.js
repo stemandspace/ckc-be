@@ -70,6 +70,15 @@ const controller = ({ strapi }) => ({
         },
       } = ctx.request.body.data;
 
+      // JUST FOR TESTING;
+      console.log("WEBHOOK TRIGGER", {
+        id,
+        email,
+        event,
+        contact,
+        description,
+      });
+
       if (event === "payment.captured" && description === "NAC") {
         const generatedPassword = generateRandomPassword();
 
