@@ -271,10 +271,14 @@ const updateNotificationStatus = async (
   emailSent,
   whatsappSent
 ) => {
-  await strapi.query("api::nac-registration.nac-registration").update({
-    where: { email },
-    data: { notified: !!emailSent, wnotified: !!whatsappSent },
-  });
+  const response = await strapi
+    .query("api::nac-registration.nac-registration")
+    .update({
+      where: { email },
+      data: { notified: !!emailSent, wnotified: !!whatsappSent },
+    });
+
+  console.log("NOTIFICATION UPDATED RESPONSE", response);
 };
 
 module.exports = controller;
