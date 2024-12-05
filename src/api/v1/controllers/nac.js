@@ -185,13 +185,17 @@ const createUser = async (strapi, email, password) => {
  * @param {any} razorpayData - The razorpay data
  */
 const publishRegistration = async (strapi, email, razorpayData) => {
-  await strapi.query("api::nac-registration.nac-registration").update({
-    where: { email },
-    data: {
-      publishedAt: new Date(),
-      payment_info: JSON.stringify(razorpayData),
-    },
-  });
+  const response = await strapi
+    .query("api::nac-registration.nac-registration")
+    .update({
+      where: { email },
+      data: {
+        publishedAt: new Date(),
+        payment_info: JSON.stringify(razorpayData),
+      },
+    });
+
+  console.log("PUBLISHED RESPONSE", response);
 };
 
 /**
