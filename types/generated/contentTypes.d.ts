@@ -2442,6 +2442,41 @@ export interface ApiSubscriptionSubscription extends Schema.CollectionType {
   };
 }
 
+export interface ApiTipVideoTipVideo extends Schema.CollectionType {
+  collectionName: 'tip_videos';
+  info: {
+    singularName: 'tip-video';
+    pluralName: 'tip-videos';
+    displayName: 'Tip Video';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    slug: Attribute.UID<'api::tip-video.tip-video', 'title'>;
+    thumbnail: Attribute.Media;
+    route: Attribute.String;
+    vimeoUrl: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tip-video.tip-video',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tip-video.tip-video',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTopUpTopUp extends Schema.CollectionType {
   collectionName: 'top_ups';
   info: {
@@ -2642,6 +2677,7 @@ declare module '@strapi/types' {
       'api::reward.reward': ApiRewardReward;
       'api::school-registration.school-registration': ApiSchoolRegistrationSchoolRegistration;
       'api::subscription.subscription': ApiSubscriptionSubscription;
+      'api::tip-video.tip-video': ApiTipVideoTipVideo;
       'api::top-up.top-up': ApiTopUpTopUp;
       'api::v1.v1': ApiV1V1;
       'api::video.video': ApiVideoVideo;
