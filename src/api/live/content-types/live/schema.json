@@ -74,6 +74,12 @@
     "trending": {
       "type": "boolean",
       "default": false
+    },
+    "speaker": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::live-speaker.live-speaker",
+      "mappedBy": "live"
     }
   }
 }

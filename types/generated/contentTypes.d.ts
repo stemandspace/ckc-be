@@ -1672,12 +1672,55 @@ export interface ApiLiveLive extends Schema.CollectionType {
     to: Attribute.DateTime;
     new: Attribute.Boolean & Attribute.DefaultTo<false>;
     trending: Attribute.Boolean & Attribute.DefaultTo<false>;
+    speaker: Attribute.Relation<
+      'api::live.live',
+      'oneToOne',
+      'api::live-speaker.live-speaker'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::live.live', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::live.live', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLiveSpeakerLiveSpeaker extends Schema.CollectionType {
+  collectionName: 'live_speakers';
+  info: {
+    singularName: 'live-speaker';
+    pluralName: 'live-speakers';
+    displayName: 'Live Speaker';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    introduction: Attribute.Text;
+    role: Attribute.String;
+    profile: Attribute.Media;
+    live: Attribute.Relation<
+      'api::live-speaker.live-speaker',
+      'oneToOne',
+      'api::live.live'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::live-speaker.live-speaker',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::live-speaker.live-speaker',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -2658,6 +2701,7 @@ declare module '@strapi/types' {
       'api::hard-product.hard-product': ApiHardProductHardProduct;
       'api::how-it-work.how-it-work': ApiHowItWorkHowItWork;
       'api::live.live': ApiLiveLive;
+      'api::live-speaker.live-speaker': ApiLiveSpeakerLiveSpeaker;
       'api::nac.nac': ApiNacNac;
       'api::nac-registration.nac-registration': ApiNacRegistrationNacRegistration;
       'api::nac-result.nac-result': ApiNacResultNacResult;

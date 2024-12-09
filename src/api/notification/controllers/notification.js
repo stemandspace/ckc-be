@@ -49,7 +49,6 @@ module.exports = createCoreController("api::notification.notification", {
   async sendMail(ctx) {
     try {
       const { title, html, email } = ctx.request.body.data;
-
       await strapi.plugins["email"].services.email.send({
         to: email,
         subject: title,

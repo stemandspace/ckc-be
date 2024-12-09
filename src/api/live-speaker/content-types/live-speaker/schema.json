@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "live_speakers",
+  "info": {
+    "singularName": "live-speaker",
+    "pluralName": "live-speakers",
+    "displayName": "Live Speaker"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "introduction": {
+      "type": "text"
+    },
+    "role": {
+      "type": "string"
+    },
+    "profile": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "live": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::live.live",
+      "inversedBy": "speaker"
+    }
+  }
+}
