@@ -1643,6 +1643,30 @@ export interface ApiHowItWorkHowItWork extends Schema.CollectionType {
   };
 }
 
+export interface ApiLikeLike extends Schema.CollectionType {
+  collectionName: 'likes';
+  info: {
+    singularName: 'like';
+    pluralName: 'likes';
+    displayName: 'Like';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    userId: Attribute.BigInteger;
+    contentId: Attribute.BigInteger;
+    type: Attribute.Enumeration<['comic', 'video', 'live', 'learn']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::like.like', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::like.like', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLiveLive extends Schema.CollectionType {
   collectionName: 'lives';
   info: {
@@ -2700,6 +2724,7 @@ declare module '@strapi/types' {
       'api::error-type.error-type': ApiErrorTypeErrorType;
       'api::hard-product.hard-product': ApiHardProductHardProduct;
       'api::how-it-work.how-it-work': ApiHowItWorkHowItWork;
+      'api::like.like': ApiLikeLike;
       'api::live.live': ApiLiveLive;
       'api::live-speaker.live-speaker': ApiLiveSpeakerLiveSpeaker;
       'api::nac.nac': ApiNacNac;
