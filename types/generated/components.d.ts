@@ -209,6 +209,23 @@ export interface TimeStampTimeStamp extends Schema.Component {
   };
 }
 
+export interface TimestampRewardTimestampReward extends Schema.Component {
+  collectionName: 'components_timestamp_reward_timestamp_rewards';
+  info: {
+    displayName: 'timestamp-reward';
+    description: '';
+  };
+  attributes: {
+    seconds: Attribute.BigInteger;
+    reward: Attribute.Relation<
+      'timestamp-reward.timestamp-reward',
+      'oneToOne',
+      'api::reward.reward'
+    >;
+    active: Attribute.Boolean & Attribute.DefaultTo<false>;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -226,6 +243,7 @@ declare module '@strapi/types' {
       'quiz-slides.quiz-slides': QuizSlidesQuizSlides;
       'slides.slides': SlidesSlides;
       'time-stamp.time-stamp': TimeStampTimeStamp;
+      'timestamp-reward.timestamp-reward': TimestampRewardTimestampReward;
     }
   }
 }

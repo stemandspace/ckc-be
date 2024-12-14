@@ -1701,6 +1701,7 @@ export interface ApiLiveLive extends Schema.CollectionType {
       'oneToOne',
       'api::live-speaker.live-speaker'
     >;
+    timestamp_reward: Attribute.Component<'timestamp-reward.timestamp-reward'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

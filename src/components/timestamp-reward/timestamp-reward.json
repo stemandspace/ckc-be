@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_timestamp_reward_timestamp_rewards",
+  "info": {
+    "displayName": "timestamp-reward",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "seconds": {
+      "type": "biginteger"
+    },
+    "reward": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::reward.reward"
+    },
+    "active": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

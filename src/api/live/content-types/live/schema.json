@@ -80,6 +80,11 @@
       "relation": "oneToOne",
       "target": "api::live-speaker.live-speaker",
       "mappedBy": "live"
+    },
+    "timestamp_reward": {
+      "type": "component",
+      "repeatable": false,
+      "component": "timestamp-reward.timestamp-reward"
     }
   }
 }
