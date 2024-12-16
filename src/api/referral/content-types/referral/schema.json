@@ -17,6 +17,23 @@
     },
     "referred_user_id": {
       "type": "string"
+    },
+    "joining_reward": {
+      "type": "boolean",
+      "default": false
+    },
+    "user_tier": {
+      "type": "enumeration",
+      "enum": [
+        "free",
+        "premium"
+      ],
+      "default": "free"
+    },
+    "premium_tier_reward": {
+      "type": "boolean",
+      "default": false,
+      "required": false
     }
   }
 }
