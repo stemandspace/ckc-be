@@ -1649,6 +1649,7 @@ export interface ApiLikeLike extends Schema.CollectionType {
     singularName: 'like';
     pluralName: 'likes';
     displayName: 'Like';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1656,7 +1657,7 @@ export interface ApiLikeLike extends Schema.CollectionType {
   attributes: {
     userId: Attribute.BigInteger;
     contentId: Attribute.BigInteger;
-    type: Attribute.Enumeration<['comic', 'video', 'live', 'learn']>;
+    type: Attribute.Enumeration<['comic', 'video', 'live', 'learn', 'titbit']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2545,6 +2546,38 @@ export interface ApiTipVideoTipVideo extends Schema.CollectionType {
   };
 }
 
+export interface ApiTitbitTitbit extends Schema.CollectionType {
+  collectionName: 'titbits';
+  info: {
+    singularName: 'titbit';
+    pluralName: 'titbits';
+    displayName: 'Titbit';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    caption: Attribute.String;
+    media: Attribute.Media;
+    tags: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::titbit.titbit',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::titbit.titbit',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTopUpTopUp extends Schema.CollectionType {
   collectionName: 'top_ups';
   info: {
@@ -2748,6 +2781,7 @@ declare module '@strapi/types' {
       'api::school-registration.school-registration': ApiSchoolRegistrationSchoolRegistration;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::tip-video.tip-video': ApiTipVideoTipVideo;
+      'api::titbit.titbit': ApiTitbitTitbit;
       'api::top-up.top-up': ApiTopUpTopUp;
       'api::v1.v1': ApiV1V1;
       'api::video.video': ApiVideoVideo;

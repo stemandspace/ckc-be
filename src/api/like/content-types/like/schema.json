@@ -4,7 +4,8 @@
   "info": {
     "singularName": "like",
     "pluralName": "likes",
-    "displayName": "Like"
+    "displayName": "Like",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -23,7 +24,8 @@
         "comic",
         "video",
         "live",
-        "learn"
+        "learn",
+        "titbit"
       ]
     }
   }

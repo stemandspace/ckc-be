@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "titbits",
+  "info": {
+    "singularName": "titbit",
+    "pluralName": "titbits",
+    "displayName": "Titbit"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "caption": {
+      "type": "string"
+    },
+    "media": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "tags": {
+      "type": "string"
+    }
+  }
+}
