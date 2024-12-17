@@ -10,6 +10,15 @@ module.exports = {
       },
     },
     {
+      method: "GET",
+      path: "/like-count",
+      handler: "like.getLikeCount",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
       method: "POST",
       path: "/like",
       handler: "like.setLike",

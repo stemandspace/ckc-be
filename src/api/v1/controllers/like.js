@@ -40,6 +40,27 @@ const controller = ({ strapi }) => ({
     }
   },
 
+  async getLikeCount(ctx) {
+    try {
+      const { contentType, contentId } = ctx.request.query;
+
+      if (!contentType || !contentId) {
+        return ctx.badRequest("Content type and content id are required");
+      }
+      const likeCount = await strapi.query("api::like.like").count({
+        where: {
+          contentId,
+          type: contentType,
+        },
+      });
+
+      return ctx.send({ count: likeCount }, 200);
+    } catch (err) {
+      console.error(err);
+      ctx.internalServerError("An error occurred during like count.");
+    }
+  },
+
   async setLike(ctx) {
     const { contentType, contentId, userId } = ctx.request.body.data;
     if (!contentType || !contentId || !userId) {
