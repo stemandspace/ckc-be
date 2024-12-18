@@ -2556,12 +2556,13 @@ export interface ApiTitbitTitbit extends Schema.CollectionType {
     singularName: 'titbit';
     pluralName: 'titbits';
     displayName: 'Titbit';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    caption: Attribute.String;
+    caption: Attribute.Text;
     media: Attribute.Media;
     tags: Attribute.String;
     createdAt: Attribute.DateTime;
