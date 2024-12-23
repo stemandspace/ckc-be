@@ -4,7 +4,8 @@
   "info": {
     "singularName": "titbit",
     "pluralName": "titbits",
-    "displayName": "Titbit"
+    "displayName": "Titbit",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,17 +13,18 @@
   "pluginOptions": {},
   "attributes": {
     "caption": {
-      "type": "string"
+      "type": "text"
     },
     "media": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "tags": {
       "type": "string"
