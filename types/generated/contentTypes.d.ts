@@ -1295,6 +1295,36 @@ export interface ApiComicBookComicBook extends Schema.CollectionType {
   };
 }
 
+export interface ApiControlControl extends Schema.SingleType {
+  collectionName: 'controls';
+  info: {
+    singularName: 'control';
+    pluralName: 'controls';
+    displayName: 'Control';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    payments: Attribute.Boolean;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::control.control',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::control.control',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCourseCourse extends Schema.CollectionType {
   collectionName: 'courses';
   info: {
@@ -2755,6 +2785,7 @@ declare module '@strapi/types' {
       'api::challenge-request.challenge-request': ApiChallengeRequestChallengeRequest;
       'api::comic.comic': ApiComicComic;
       'api::comic-book.comic-book': ApiComicBookComicBook;
+      'api::control.control': ApiControlControl;
       'api::course.course': ApiCourseCourse;
       'api::disconvery-jar-config.disconvery-jar-config': ApiDisconveryJarConfigDisconveryJarConfig;
       'api::discovery-jar-answer.discovery-jar-answer': ApiDiscoveryJarAnswerDiscoveryJarAnswer;

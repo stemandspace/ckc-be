@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "controls",
+  "info": {
+    "singularName": "control",
+    "pluralName": "controls",
+    "displayName": "Control"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "payments": {
+      "type": "boolean"
+    }
+  }
+}
