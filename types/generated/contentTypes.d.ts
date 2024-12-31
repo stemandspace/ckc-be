@@ -2649,6 +2649,46 @@ export interface ApiTopUpTopUp extends Schema.CollectionType {
   };
 }
 
+export interface ApiTransactionTransaction extends Schema.CollectionType {
+  collectionName: 'transactions';
+  info: {
+    singularName: 'transaction';
+    pluralName: 'transactions';
+    displayName: 'Transaction';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    type: Attribute.Enumeration<['subsription', 'credits']>;
+    amount: Attribute.BigInteger;
+    currency: Attribute.String;
+    user_id: Attribute.BigInteger;
+    plan_id: Attribute.BigInteger;
+    topup_id: Attribute.BigInteger;
+    razorpay_order_id: Attribute.String;
+    razorpay_payment_id: Attribute.String;
+    status: Attribute.Enumeration<['created', 'captured', 'refunded']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiV1V1 extends Schema.CollectionType {
   collectionName: 'v1s';
   info: {
@@ -2819,6 +2859,7 @@ declare module '@strapi/types' {
       'api::tip-video.tip-video': ApiTipVideoTipVideo;
       'api::titbit.titbit': ApiTitbitTitbit;
       'api::top-up.top-up': ApiTopUpTopUp;
+      'api::transaction.transaction': ApiTransactionTransaction;
       'api::v1.v1': ApiV1V1;
       'api::video.video': ApiVideoVideo;
       'api::watched.watched': ApiWatchedWatched;
