@@ -9,5 +9,14 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: "POST",
+      path: "/v1/transaction/webhook",
+      handler: "transaction.webhook",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };

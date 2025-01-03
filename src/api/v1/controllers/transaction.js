@@ -23,6 +23,36 @@ const controller = ({ strapi }) => ({
       console.error(error);
     }
   },
+  async webhook(ctx) {
+    try {
+      const {
+        event,
+        payload: {
+          payment: {
+            entity: { id, email, description, contact, notes },
+          },
+        },
+      } = ctx.request.body.data;
+
+      console.log("WEBHOOK", {
+        event,
+        id,
+        email,
+        description,
+        contact,
+        notes,
+      });
+
+      if (event === "payment.captured" && description === "CKC") {
+        console.log("PAYMENT ORIGIN IS VERIFIED");
+      }
+      // when payment is not authorized;
+      console.log("PAYMENT ORIGIN IS NOT VERIFIED");
+      return ctx.send({ ok: true }, 200);
+    } catch (error) {
+      console.error(error);
+    }
+  },
 });
 
 module.exports = controller;
