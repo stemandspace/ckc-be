@@ -61,6 +61,7 @@ const controller = ({ strapi }) => ({
       const order = await razorpay.orders.create({
         currency,
         notes: {
+          type,
           user_id,
           plan_id,
           topup_id,
