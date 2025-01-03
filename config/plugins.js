@@ -13,7 +13,6 @@ module.exports = ({ env }) => ({
         preResponseTransform: (ctx) => {},
         postResponseTransform: (ctx) => {},
       },
-
       plugins: {
         ids: {
           slugify: true,
@@ -166,5 +165,10 @@ module.exports = ({ env }) => ({
   },
   "video-field": {
     enabled: true,
+  },
+  treblle: {
+    config: {
+      routesToMonitor: ["api"], // this is the default
+    },
   },
 });
