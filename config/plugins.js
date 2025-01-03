@@ -22,7 +22,7 @@ module.exports = ({ env }) => ({
     },
   },
   io: {
-    enabled: true,
+    enabled: false,
     config: {
       contentTypes: ["api::notification.notification"],
     },
