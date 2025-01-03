@@ -16,6 +16,7 @@
   "dependencies": {
     "@bn-digital/strapi-plugin-field-uuid": "^1.2.12",
     "@sklinet/strapi-plugin-video-field": "^1.0.5",
+    "@strapi/helper-plugin": "^4.25.12",
     "@strapi/plugin-i18n": "4.15.0",
     "@strapi/plugin-users-permissions": "4.15.0",
     "@strapi/provider-email-amazon-ses": "^4.16.2",

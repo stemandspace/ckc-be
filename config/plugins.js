@@ -171,4 +171,36 @@ module.exports = ({ env }) => ({
       routesToMonitor: ["api"], // this is the default
     },
   },
+  "rest-cache": {
+    config: {
+      provider: {
+        name: "memory",
+        options: {
+          max: 32767,
+          maxAge: 3600,
+        },
+      },
+      strategy: {
+        contentTypes: [
+          "api::achivement.achivement",
+          "api::carousel.carousel",
+          "api::challenge.challenge",
+          "api::comic.comic",
+          "api::course.course",
+          "api::disconvery-jar-config.disconvery-jar-config",
+          "api::discovery-jar-answer.discovery-jar-answer",
+          "api::how-it-work.how-it-work",
+          "api::live.live",
+          "api::nac.nac",
+          "api::notification.notification",
+          "api::purchase.purchase",
+          "api::tip-video.tip-video",
+          "api::titbit.titbit",
+          "api::top-up.top-up",
+          "api::transaction.transaction",
+          "api::video.video",
+        ],
+      },
+    },
+  },
 });
