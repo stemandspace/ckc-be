@@ -13,6 +13,33 @@ const axios = require("axios");
  * @returns {Object} Controller methods.
  */
 const controller = ({ strapi }) => ({
+  // fetch all entries (get request)
+  async registrations(ctx) {
+    try {
+      const response = await strapi
+        .query("api::nac-registration.nac-registration")
+        .findMany({
+          where: {
+            publishedAt: {
+              $ne: null,
+            },
+          },
+          page: 1,
+          pageSize: 10000,
+        });
+      return ctx.send(
+        {
+          page: 1,
+          total: response.length,
+          data: response,
+        },
+        200
+      );
+    } catch (err) {
+      console.error("Error fetching registrations", err);
+      ctx.internalServerError("An error occurred during registration.");
+    }
+  },
   // registation by UI;
   async registration(ctx) {
     try {

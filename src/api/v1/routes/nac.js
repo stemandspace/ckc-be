@@ -10,6 +10,15 @@ module.exports = {
       },
     },
     {
+      method: "GET",
+      path: "/nac/registrations",
+      handler: "nac.registrations",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
       method: "POST",
       path: "/nac/webhook",
       handler: "nac.webhook",
