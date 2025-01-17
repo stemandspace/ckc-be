@@ -2595,6 +2595,7 @@ export interface ApiTitbitTitbit extends Schema.CollectionType {
     caption: Attribute.Text;
     media: Attribute.Media;
     tags: Attribute.String;
+    source: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
