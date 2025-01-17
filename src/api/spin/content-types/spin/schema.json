@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "spins",
+  "info": {
+    "singularName": "spin",
+    "pluralName": "spins",
+    "displayName": "Spin"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_id": {
+      "type": "biginteger"
+    },
+    "reward_id": {
+      "type": "biginteger"
+    }
+  }
+}

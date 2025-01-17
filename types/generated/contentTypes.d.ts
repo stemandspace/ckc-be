@@ -2506,6 +2506,29 @@ export interface ApiSchoolRegistrationSchoolRegistration
   };
 }
 
+export interface ApiSpinSpin extends Schema.CollectionType {
+  collectionName: 'spins';
+  info: {
+    singularName: 'spin';
+    pluralName: 'spins';
+    displayName: 'Spin';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    user_id: Attribute.BigInteger;
+    reward_id: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::spin.spin', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::spin.spin', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSubscriptionSubscription extends Schema.CollectionType {
   collectionName: 'subscriptions';
   info: {
@@ -2856,6 +2879,7 @@ declare module '@strapi/types' {
       'api::reminder.reminder': ApiReminderReminder;
       'api::reward.reward': ApiRewardReward;
       'api::school-registration.school-registration': ApiSchoolRegistrationSchoolRegistration;
+      'api::spin.spin': ApiSpinSpin;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::tip-video.tip-video': ApiTipVideoTipVideo;
       'api::titbit.titbit': ApiTitbitTitbit;
