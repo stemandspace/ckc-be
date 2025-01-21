@@ -50,6 +50,27 @@ export interface CertificationCertificationEvents extends Schema.Component {
   };
 }
 
+export interface DailyQuizQuestions extends Schema.Component {
+  collectionName: 'components_daily_quiz_questions';
+  info: {
+    displayName: 'Questions';
+    icon: 'bulletList';
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 20;
+        maxLength: 100;
+      }>;
+    option1: Attribute.String & Attribute.Required;
+    option2: Attribute.String & Attribute.Required;
+    option3: Attribute.String;
+    option4: Attribute.String;
+    answer: Attribute.String & Attribute.Required;
+  };
+}
+
 export interface ModuleSlideModuleSlide extends Schema.Component {
   collectionName: 'components_module_slide_module_slides';
   info: {
@@ -232,6 +253,7 @@ declare module '@strapi/types' {
       'activity-module.activiy-module': ActivityModuleActiviyModule;
       'certification.certification-config': CertificationCertificationConfig;
       'certification.certification-events': CertificationCertificationEvents;
+      'daily-quiz.questions': DailyQuizQuestions;
       'module-slide.module-slide': ModuleSlideModuleSlide;
       'module.module': ModuleModule;
       'prepration-materials.prepration-materials': PreprationMaterialsPreprationMaterials;

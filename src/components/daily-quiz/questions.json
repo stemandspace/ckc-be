@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_daily_quiz_questions",
+  "info": {
+    "displayName": "Questions",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 20,
+      "required": true
+    },
+    "option1": {
+      "type": "string",
+      "required": true
+    },
+    "option2": {
+      "type": "string",
+      "required": true
+    },
+    "option3": {
+      "type": "string"
+    },
+    "option4": {
+      "type": "string"
+    },
+    "answer": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1383,6 +1383,84 @@ export interface ApiCourseCourse extends Schema.CollectionType {
   };
 }
 
+export interface ApiDailyQuizDailyQuiz extends Schema.CollectionType {
+  collectionName: 'daily_quizs';
+  info: {
+    singularName: 'daily-quiz';
+    pluralName: 'daily-quizs';
+    displayName: 'Daily Quiz';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 50;
+        maxLength: 100;
+      }>;
+    description: Attribute.String;
+    variable_score: Attribute.BigInteger;
+    questions: Attribute.Component<'daily-quiz.questions', true>;
+    reward: Attribute.Relation<
+      'api::daily-quiz.daily-quiz',
+      'oneToOne',
+      'api::reward.reward'
+    >;
+    publish_date: Attribute.Date & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily-quiz.daily-quiz',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily-quiz.daily-quiz',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDailyQuizAttempDailyQuizAttemp
+  extends Schema.CollectionType {
+  collectionName: 'daily_quiz_attemps';
+  info: {
+    singularName: 'daily-quiz-attemp';
+    pluralName: 'daily-quiz-attemps';
+    displayName: 'Daily Quiz Attemp';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    quiz_id: Attribute.BigInteger;
+    user_id: Attribute.BigInteger;
+    reattemped: Attribute.Boolean & Attribute.DefaultTo<false>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily-quiz-attemp.daily-quiz-attemp',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily-quiz-attemp.daily-quiz-attemp',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDisconveryJarConfigDisconveryJarConfig
   extends Schema.CollectionType {
   collectionName: 'disconvery_jar_configs';
@@ -2851,6 +2929,8 @@ declare module '@strapi/types' {
       'api::comic-book.comic-book': ApiComicBookComicBook;
       'api::control.control': ApiControlControl;
       'api::course.course': ApiCourseCourse;
+      'api::daily-quiz.daily-quiz': ApiDailyQuizDailyQuiz;
+      'api::daily-quiz-attemp.daily-quiz-attemp': ApiDailyQuizAttempDailyQuizAttemp;
       'api::disconvery-jar-config.disconvery-jar-config': ApiDisconveryJarConfigDisconveryJarConfig;
       'api::discovery-jar-answer.discovery-jar-answer': ApiDiscoveryJarAnswerDiscoveryJarAnswer;
       'api::discovery-jar-question.discovery-jar-question': ApiDiscoveryJarQuestionDiscoveryJarQuestion;

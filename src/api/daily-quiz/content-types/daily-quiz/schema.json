@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "daily_quizs",
+  "info": {
+    "singularName": "daily-quiz",
+    "pluralName": "daily-quizs",
+    "displayName": "Daily Quiz",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100,
+      "minLength": 50
+    },
+    "description": {
+      "type": "string"
+    },
+    "variable_score": {
+      "type": "biginteger"
+    },
+    "questions": {
+      "displayName": "Questions",
+      "type": "component",
+      "repeatable": true,
+      "component": "daily-quiz.questions"
+    },
+    "reward": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::reward.reward"
+    },
+    "publish_date": {
+      "type": "date",
+      "required": true
+    }
+  }
+}

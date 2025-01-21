@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "daily_quiz_attemps",
+  "info": {
+    "singularName": "daily-quiz-attemp",
+    "pluralName": "daily-quiz-attemps",
+    "displayName": "Daily Quiz Attemp"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "quiz_id": {
+      "type": "biginteger"
+    },
+    "user_id": {
+      "type": "biginteger"
+    },
+    "reattemped": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    }
+  }
+}
