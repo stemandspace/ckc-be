@@ -1463,6 +1463,41 @@ export interface ApiDailyQuizAttempDailyQuizAttemp
   };
 }
 
+export interface ApiDailyQuizScoreDailyQuizScore extends Schema.CollectionType {
+  collectionName: 'daily_quiz_scores';
+  info: {
+    singularName: 'daily-quiz-score';
+    pluralName: 'daily-quiz-scores';
+    displayName: 'Daily Quiz Score';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    user: Attribute.Relation<
+      'api::daily-quiz-score.daily-quiz-score',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    score: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily-quiz-score.daily-quiz-score',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily-quiz-score.daily-quiz-score',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDisconveryJarConfigDisconveryJarConfig
   extends Schema.CollectionType {
   collectionName: 'disconvery_jar_configs';
@@ -2933,6 +2968,7 @@ declare module '@strapi/types' {
       'api::course.course': ApiCourseCourse;
       'api::daily-quiz.daily-quiz': ApiDailyQuizDailyQuiz;
       'api::daily-quiz-attemp.daily-quiz-attemp': ApiDailyQuizAttempDailyQuizAttemp;
+      'api::daily-quiz-score.daily-quiz-score': ApiDailyQuizScoreDailyQuizScore;
       'api::disconvery-jar-config.disconvery-jar-config': ApiDisconveryJarConfigDisconveryJarConfig;
       'api::discovery-jar-answer.discovery-jar-answer': ApiDiscoveryJarAnswerDiscoveryJarAnswer;
       'api::discovery-jar-question.discovery-jar-question': ApiDiscoveryJarQuestionDiscoveryJarQuestion;

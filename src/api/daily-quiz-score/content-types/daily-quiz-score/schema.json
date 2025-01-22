@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "daily_quiz_scores",
+  "info": {
+    "singularName": "daily-quiz-score",
+    "pluralName": "daily-quiz-scores",
+    "displayName": "Daily Quiz Score"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "score": {
+      "type": "biginteger"
+    }
+  }
+}
