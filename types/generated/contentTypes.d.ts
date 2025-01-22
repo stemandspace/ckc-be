@@ -1503,7 +1503,7 @@ export interface ApiDailySpinDailySpin extends Schema.SingleType {
   info: {
     singularName: 'daily-spin';
     pluralName: 'daily-spins';
-    displayName: 'Daily Spin';
+    displayName: 'Daily Spin Config';
     description: '';
   };
   options: {
