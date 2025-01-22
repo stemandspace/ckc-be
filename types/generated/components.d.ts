@@ -71,6 +71,20 @@ export interface DailyQuizQuestions extends Schema.Component {
   };
 }
 
+export interface DailySpinSlice extends Schema.Component {
+  collectionName: 'components_daily_spin_slices';
+  info: {
+    displayName: 'slice';
+    icon: 'command';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    type: Attribute.Enumeration<['coin', 'credit', 'empty ']>;
+    value: Attribute.BigInteger;
+  };
+}
+
 export interface ModuleSlideModuleSlide extends Schema.Component {
   collectionName: 'components_module_slide_module_slides';
   info: {
@@ -254,6 +268,7 @@ declare module '@strapi/types' {
       'certification.certification-config': CertificationCertificationConfig;
       'certification.certification-events': CertificationCertificationEvents;
       'daily-quiz.questions': DailyQuizQuestions;
+      'daily-spin.slice': DailySpinSlice;
       'module-slide.module-slide': ModuleSlideModuleSlide;
       'module.module': ModuleModule;
       'prepration-materials.prepration-materials': PreprationMaterialsPreprationMaterials;

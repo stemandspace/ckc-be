@@ -1498,6 +1498,40 @@ export interface ApiDailyQuizScoreDailyQuizScore extends Schema.CollectionType {
   };
 }
 
+export interface ApiDailySpinDailySpin extends Schema.SingleType {
+  collectionName: 'daily_spins';
+  info: {
+    singularName: 'daily-spin';
+    pluralName: 'daily-spins';
+    displayName: 'Daily Spin';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    slices: Attribute.Component<'daily-spin.slice', true>;
+    title: Attribute.String;
+    description: Attribute.String;
+    introduction_video: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily-spin.daily-spin',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily-spin.daily-spin',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDisconveryJarConfigDisconveryJarConfig
   extends Schema.CollectionType {
   collectionName: 'disconvery_jar_configs';
@@ -2969,6 +3003,7 @@ declare module '@strapi/types' {
       'api::daily-quiz.daily-quiz': ApiDailyQuizDailyQuiz;
       'api::daily-quiz-attemp.daily-quiz-attemp': ApiDailyQuizAttempDailyQuizAttemp;
       'api::daily-quiz-score.daily-quiz-score': ApiDailyQuizScoreDailyQuizScore;
+      'api::daily-spin.daily-spin': ApiDailySpinDailySpin;
       'api::disconvery-jar-config.disconvery-jar-config': ApiDisconveryJarConfigDisconveryJarConfig;
       'api::discovery-jar-answer.discovery-jar-answer': ApiDiscoveryJarAnswerDiscoveryJarAnswer;
       'api::discovery-jar-question.discovery-jar-question': ApiDiscoveryJarQuestionDiscoveryJarQuestion;

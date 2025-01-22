@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_daily_spin_slices",
+  "info": {
+    "displayName": "slice",
+    "icon": "command",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "coin",
+        "credit",
+        "empty "
+      ]
+    },
+    "value": {
+      "type": "biginteger"
+    }
+  }
+}
