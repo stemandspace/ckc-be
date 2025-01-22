@@ -1401,8 +1401,8 @@ export interface ApiDailyQuizDailyQuiz extends Schema.CollectionType {
         minLength: 50;
         maxLength: 100;
       }>;
-    description: Attribute.String;
-    variable_score: Attribute.BigInteger;
+    description: Attribute.String & Attribute.Required;
+    variable_score: Attribute.BigInteger & Attribute.Required;
     questions: Attribute.Component<'daily-quiz.questions', true>;
     reward: Attribute.Relation<
       'api::daily-quiz.daily-quiz',
@@ -1435,6 +1435,7 @@ export interface ApiDailyQuizAttempDailyQuizAttemp
     singularName: 'daily-quiz-attemp';
     pluralName: 'daily-quiz-attemps';
     displayName: 'Daily Quiz Attemp';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1443,6 +1444,7 @@ export interface ApiDailyQuizAttempDailyQuizAttemp
     quiz_id: Attribute.BigInteger;
     user_id: Attribute.BigInteger;
     reattemped: Attribute.Boolean & Attribute.DefaultTo<false>;
+    score: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

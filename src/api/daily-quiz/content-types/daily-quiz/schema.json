@@ -19,10 +19,12 @@
       "minLength": 50
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "variable_score": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "required": true
     },
     "questions": {
       "displayName": "Questions",
