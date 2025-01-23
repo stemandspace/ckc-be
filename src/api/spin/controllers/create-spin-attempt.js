@@ -52,7 +52,7 @@ const controller = ({ strapi }) => ({
           data: {
             rewardId: winSlice.id,
             user: Number(userId),
-            contentType: winSlice.type === "coin" ? "coins" : "credits",
+            contentType: winSlice.type === "coin" ? "coins" : "credit",
             publishedAt: Date.now(),
             label: `You win ${winSlice.value} ${winSlice.type}`,
           },
