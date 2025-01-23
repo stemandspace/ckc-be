@@ -32,7 +32,7 @@ const controller = ({ strapi }) => ({
             },
           },
         });
-      return ctx.send({ todaysQuiz, attempt: attempt ? false : true }, 200);
+      return ctx.send({ todaysQuiz, attempted: attempt ? true : false }, 200);
     } catch (err) {
       console.error(err);
       ctx.internalServerError("An error occurred during get todays quiz.");

@@ -27,7 +27,7 @@ const controller = ({ strapi }) => ({
           },
         },
       });
-      return ctx.send({ dailySpin, attempt: attempt ? false : true }, 200);
+      return ctx.send({ dailySpin, attempted: attempt ? true : false }, 200);
     } catch (err) {
       console.error(err);
       ctx.internalServerError("An error occurred during get daily spin.");
