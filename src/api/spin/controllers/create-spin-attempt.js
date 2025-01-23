@@ -55,6 +55,7 @@ const controller = ({ strapi }) => ({
             contentType: winSlice.type === "coin" ? "coins" : "credit",
             publishedAt: Date.now(),
             label: `You win ${winSlice.value} ${winSlice.type}`,
+            transectionType: "dr",
           },
         });
 
