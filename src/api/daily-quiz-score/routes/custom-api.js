@@ -2,8 +2,8 @@ module.exports = {
   routes: [
     {
       method: "GET",
-      path: "/daily-quiz/today",
-      handler: "get-todays-quiz.getTodaysQuiz",
+      path: "/daily-quiz-score/score",
+      handler: "get-score.getScore",
       config: {
         policies: [],
         middlewares: [],
