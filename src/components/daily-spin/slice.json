@@ -15,7 +15,7 @@
       "enum": [
         "coin",
         "credit",
-        "empty "
+        "empty"
       ]
     },
     "value": {
