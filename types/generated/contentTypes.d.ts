@@ -752,7 +752,8 @@ export interface ApiAchivementAchivement extends Schema.CollectionType {
         'badge',
         'coins',
         'bannar',
-        'referral'
+        'referral',
+        'credit'
       ]
     >;
     label: Attribute.String;
