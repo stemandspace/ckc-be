@@ -32,7 +32,19 @@ const controller = ({ strapi }) => ({
             },
           },
         });
-      return ctx.send({ todaysQuiz, attempted: attempt ? true : false }, 200);
+      let quizScore = await strapi.db
+        .query("api::daily-quiz-score.daily-quiz-score")
+        .findOne({
+          where: {
+            user: {
+              id: userId,
+            },
+          },
+        });
+      return ctx.send(
+        { todaysQuiz, attempted: attempt ? true : false, quizScore },
+        200
+      );
     } catch (err) {
       console.error(err);
       ctx.internalServerError("An error occurred during get todays quiz.");
