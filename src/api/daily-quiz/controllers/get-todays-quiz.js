@@ -32,17 +32,13 @@ const controller = ({ strapi }) => ({
             },
           },
         });
-      let quizScore = await strapi.db
-        .query("api::daily-quiz-score.daily-quiz-score")
-        .findOne({
-          where: {
-            user: {
-              id: userId,
-            },
-          },
-        });
+
       return ctx.send(
-        { todaysQuiz, attempted: attempt ? true : false, quizScore },
+        {
+          todaysQuiz,
+          attempted: attempt ? true : false,
+          attemptedQuizScore: attempt?.score ? attempt.score : 0,
+        },
         200
       );
     } catch (err) {
