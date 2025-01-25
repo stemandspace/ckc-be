@@ -1396,12 +1396,7 @@ export interface ApiDailyQuizDailyQuiz extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 50;
-        maxLength: 100;
-      }>;
+    title: Attribute.String & Attribute.Required;
     description: Attribute.String & Attribute.Required;
     variable_score: Attribute.BigInteger & Attribute.Required;
     questions: Attribute.Component<'daily-quiz.questions', true>;
