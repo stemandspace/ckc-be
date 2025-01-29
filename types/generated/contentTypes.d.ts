@@ -1396,12 +1396,7 @@ export interface ApiDailyQuizDailyQuiz extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 50;
-        maxLength: 100;
-      }>;
+    title: Attribute.String & Attribute.Required;
     description: Attribute.String & Attribute.Required;
     variable_score: Attribute.BigInteger & Attribute.Required;
     questions: Attribute.Component<'daily-quiz.questions', true>;
@@ -2147,6 +2142,132 @@ export interface ApiPlanPlan extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::plan.plan', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::plan.plan', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPodcastPodcast extends Schema.CollectionType {
+  collectionName: 'podcasts';
+  info: {
+    singularName: 'podcast';
+    pluralName: 'podcasts';
+    displayName: 'Podcast';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    desc: Attribute.String;
+    author: Attribute.String;
+    type: Attribute.Enumeration<['audio', 'video']>;
+    media_url: Attribute.String;
+    premium: Attribute.Boolean & Attribute.DefaultTo<false>;
+    tags: Attribute.String;
+    recommend: Attribute.Boolean & Attribute.DefaultTo<false>;
+    thumbnail: Attribute.Media;
+    category: Attribute.Relation<
+      'api::podcast.podcast',
+      'manyToOne',
+      'api::podcast-category.podcast-category'
+    >;
+    attached_clips: Attribute.Relation<
+      'api::podcast.podcast',
+      'oneToOne',
+      'api::podcast-upload.podcast-upload'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::podcast.podcast',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::podcast.podcast',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPodcastCategoryPodcastCategory
+  extends Schema.CollectionType {
+  collectionName: 'podcast_categories';
+  info: {
+    singularName: 'podcast-category';
+    pluralName: 'podcast-categories';
+    displayName: 'Podcast Category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    thumbnail: Attribute.Media;
+    podcasts: Attribute.Relation<
+      'api::podcast-category.podcast-category',
+      'oneToMany',
+      'api::podcast.podcast'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::podcast-category.podcast-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::podcast-category.podcast-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPodcastUploadPodcastUpload extends Schema.CollectionType {
+  collectionName: 'podcast_uploads';
+  info: {
+    singularName: 'podcast-upload';
+    pluralName: 'podcast-uploads';
+    displayName: 'Podcast Upload';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    label: Attribute.String;
+    file: Attribute.Media;
+    user: Attribute.Relation<
+      'api::podcast-upload.podcast-upload',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    podcast: Attribute.Relation<
+      'api::podcast-upload.podcast-upload',
+      'oneToOne',
+      'api::podcast.podcast'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::podcast-upload.podcast-upload',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::podcast-upload.podcast-upload',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -3021,6 +3142,9 @@ declare module '@strapi/types' {
       'api::newsletter-subscriber.newsletter-subscriber': ApiNewsletterSubscriberNewsletterSubscriber;
       'api::notification.notification': ApiNotificationNotification;
       'api::plan.plan': ApiPlanPlan;
+      'api::podcast.podcast': ApiPodcastPodcast;
+      'api::podcast-category.podcast-category': ApiPodcastCategoryPodcastCategory;
+      'api::podcast-upload.podcast-upload': ApiPodcastUploadPodcastUpload;
       'api::product.product': ApiProductProduct;
       'api::promocode.promocode': ApiPromocodePromocode;
       'api::promocode-usage.promocode-usage': ApiPromocodeUsagePromocodeUsage;

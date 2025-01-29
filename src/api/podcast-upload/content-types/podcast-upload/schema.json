@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "podcast_uploads",
+  "info": {
+    "singularName": "podcast-upload",
+    "pluralName": "podcast-uploads",
+    "displayName": "Podcast Upload"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "file": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "podcast": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::podcast.podcast",
+      "inversedBy": "attached_clips"
+    }
+  }
+}
