@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shopify_coupons",
+  "info": {
+    "singularName": "shopify-coupon",
+    "pluralName": "shopify-coupons",
+    "displayName": "Shopify Coupon",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "string"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "start": {
+      "type": "date"
+    },
+    "end": {
+      "type": "date"
+    },
+    "oneTime": {
+      "type": "boolean"
+    },
+    "configuration": {
+      "type": "json"
+    }
+  }
+}
