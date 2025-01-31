@@ -13,10 +13,12 @@
   "pluginOptions": {},
   "attributes": {
     "content_id": {
-      "type": "biginteger"
+      "type": "biginteger",
+      "index": true
     },
     "user_id": {
-      "type": "string"
+      "type": "string",
+      "index": true
     },
     "purchase_id": {
       "type": "string"
@@ -29,12 +31,7 @@
     },
     "status": {
       "type": "enumeration",
-      "enum": [
-        "paid",
-        "pending",
-        "unpaid",
-        "failed"
-      ]
+      "enum": ["paid", "pending", "unpaid", "failed"]
     },
     "user": {
       "type": "relation",
@@ -47,15 +44,7 @@
     },
     "type": {
       "type": "enumeration",
-      "enum": [
-        "course",
-        "video",
-        "comic",
-        "live",
-        "jar",
-        "challange",
-        "nac"
-      ]
+      "enum": ["course", "video", "comic", "live", "jar", "challange", "nac"]
     }
   }
 }
