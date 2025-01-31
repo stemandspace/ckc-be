@@ -31,6 +31,13 @@
     },
     "configuration": {
       "type": "json"
+    },
+    "title": {
+      "type": "string"
+    },
+    "expires": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

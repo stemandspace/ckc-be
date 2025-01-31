@@ -2799,6 +2799,8 @@ export interface ApiShopifyCouponShopifyCoupon extends Schema.CollectionType {
     end: Attribute.Date;
     oneTime: Attribute.Boolean;
     configuration: Attribute.JSON;
+    title: Attribute.String;
+    expires: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
