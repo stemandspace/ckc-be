@@ -2817,6 +2817,40 @@ export interface ApiShopifyCouponShopifyCoupon extends Schema.CollectionType {
   };
 }
 
+export interface ApiShopifyPriceRuleShopifyPriceRule
+  extends Schema.CollectionType {
+  collectionName: 'shopify_price_rules';
+  info: {
+    singularName: 'shopify-price-rule';
+    pluralName: 'shopify-price-rules';
+    displayName: 'Shopify Price Rule';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    priceRuleId: Attribute.String;
+    title: Attribute.String;
+    price: Attribute.String;
+    coins: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::shopify-price-rule.shopify-price-rule',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::shopify-price-rule.shopify-price-rule',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSpinSpin extends Schema.CollectionType {
   collectionName: 'spins';
   info: {
@@ -3198,6 +3232,7 @@ declare module '@strapi/types' {
       'api::reward.reward': ApiRewardReward;
       'api::school-registration.school-registration': ApiSchoolRegistrationSchoolRegistration;
       'api::shopify-coupon.shopify-coupon': ApiShopifyCouponShopifyCoupon;
+      'api::shopify-price-rule.shopify-price-rule': ApiShopifyPriceRuleShopifyPriceRule;
       'api::spin.spin': ApiSpinSpin;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::tip-video.tip-video': ApiTipVideoTipVideo;
