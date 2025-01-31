@@ -67,8 +67,7 @@ const controller = ({ strapi }) => ({
 
       // Map the content to include purchase status and thumbnail URL
       const finalResponse = results.map((content) => {
-        const thumbnailUrl =
-          content?.thumbnail?.[0]?.formats?.thumbnail?.url ?? ""; // Safely access the thumbnail URL
+        const thumbnailUrl = content?.thumbnail?.[0]?.formats?.small?.url ?? ""; // Safely access the thumbnail URL
         return {
           ...content,
           thumbnail: thumbnailUrl,
