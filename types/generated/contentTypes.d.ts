@@ -2824,6 +2824,7 @@ export interface ApiShopifyPriceRuleShopifyPriceRule
     singularName: 'shopify-price-rule';
     pluralName: 'shopify-price-rules';
     displayName: 'Shopify Price Rule';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2831,8 +2832,8 @@ export interface ApiShopifyPriceRuleShopifyPriceRule
   attributes: {
     priceRuleId: Attribute.String;
     title: Attribute.String;
-    price: Attribute.String;
-    coins: Attribute.String;
+    discountPrice: Attribute.String;
+    deductCoins: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

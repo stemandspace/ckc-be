@@ -4,7 +4,8 @@
   "info": {
     "singularName": "shopify-price-rule",
     "pluralName": "shopify-price-rules",
-    "displayName": "Shopify Price Rule"
+    "displayName": "Shopify Price Rule",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,10 +18,10 @@
     "title": {
       "type": "string"
     },
-    "price": {
+    "discountPrice": {
       "type": "string"
     },
-    "coins": {
+    "deductCoins": {
       "type": "string"
     }
   }
