@@ -2802,7 +2802,7 @@ export interface ApiShopifyCouponShopifyCoupon extends Schema.CollectionType {
     title: Attribute.String;
     expires: Attribute.Boolean & Attribute.DefaultTo<false>;
     discount: Attribute.String;
-    discountType: Attribute.Enumeration<['fixedAmount', 'percentage']>;
+    discountType: Attribute.Enumeration<['fixed_amount', 'percentage']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
