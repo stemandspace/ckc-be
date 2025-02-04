@@ -2801,6 +2801,8 @@ export interface ApiShopifyCouponShopifyCoupon extends Schema.CollectionType {
     configuration: Attribute.JSON;
     title: Attribute.String;
     expires: Attribute.Boolean & Attribute.DefaultTo<false>;
+    discount: Attribute.String;
+    discountType: Attribute.Enumeration<['fixedAmount', 'percentage']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2834,8 +2836,9 @@ export interface ApiShopifyPriceRuleShopifyPriceRule
   attributes: {
     priceRuleId: Attribute.String;
     title: Attribute.String;
-    discountPrice: Attribute.String;
+    discount: Attribute.String;
     deductCoins: Attribute.String;
+    discountType: Attribute.Enumeration<['fixed_amount', 'percentage']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -18,11 +18,18 @@
     "title": {
       "type": "string"
     },
-    "discountPrice": {
+    "discount": {
       "type": "string"
     },
     "deductCoins": {
       "type": "string"
+    },
+    "discountType": {
+      "type": "enumeration",
+      "enum": [
+        "fixed_amount",
+        "percentage"
+      ]
     }
   }
 }

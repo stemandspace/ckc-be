@@ -38,6 +38,16 @@
     "expires": {
       "type": "boolean",
       "default": false
+    },
+    "discount": {
+      "type": "string"
+    },
+    "discountType": {
+      "type": "enumeration",
+      "enum": [
+        "fixedAmount",
+        "percentage"
+      ]
     }
   }
 }
