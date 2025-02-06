@@ -44,7 +44,17 @@
     },
     "type": {
       "type": "enumeration",
-      "enum": ["course", "video", "comic", "live", "jar", "challange", "nac"]
+      "enum": [
+        "course",
+        "video",
+        "comic",
+        "live",
+        "jar",
+        "challange",
+        "nac",
+        "podcast",
+        "titbits"
+      ]
     }
   }
 }
