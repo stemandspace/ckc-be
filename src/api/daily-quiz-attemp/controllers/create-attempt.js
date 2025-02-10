@@ -9,14 +9,39 @@ const controller = ({ strapi }) => ({
         return ctx.badRequest("quiz id and user id are required");
       }
 
-      await strapi.db.query("api::daily-quiz-attemp.daily-quiz-attemp").create({
-        data: {
-          score: score ? score : 0,
-          quiz_id: quizId,
-          user_id: userId,
-          publishedAt: Date.now(),
-        },
-      });
+      const attempt = await strapi.db
+        .query("api::daily-quiz-attemp.daily-quiz-attemp")
+        .findOne({
+          where: {
+            quiz_id: quizId,
+            user_id: userId,
+            createdAt: Date.now(),
+          },
+        });
+
+      if (attempt) {
+        await strapi.db
+          .query("api::daily-quiz-attemp.daily-quiz-attemp")
+          .update({
+            where: {
+              id: attempt.id,
+            },
+            data: {
+              score: score ? score : 0,
+            },
+          });
+      } else {
+        await strapi.db
+          .query("api::daily-quiz-attemp.daily-quiz-attemp")
+          .create({
+            data: {
+              score: score ? score : 0,
+              quiz_id: quizId,
+              user_id: userId,
+              publishedAt: Date.now(),
+            },
+          });
+      }
 
       let quizScore = await strapi.db
         .query("api::daily-quiz-score.daily-quiz-score")
