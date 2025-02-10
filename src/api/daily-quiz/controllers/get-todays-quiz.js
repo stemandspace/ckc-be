@@ -1,5 +1,15 @@
 "use strict";
 
+const getGroupName = (grade) => {
+  if (grade >= 1 && grade <= 3) {
+    return "junior";
+  } else if (grade >= 4 && grade <= 6) {
+    return "middle";
+  } else if (grade >= 7 && grade <= 9) {
+    return "senior";
+  }
+};
+
 const controller = ({ strapi }) => ({
   async getTodaysQuiz(ctx) {
     try {
@@ -7,11 +17,23 @@ const controller = ({ strapi }) => ({
       if (!userId) {
         return ctx.send("Please provide user id", 400);
       }
+
+      const user = await strapi.db
+        .query("plugin::users-permissions.user")
+        .findOne({
+          where: {
+            id: userId,
+          },
+        });
+
+      const groupName = getGroupName(user.grade);
+
       const todaysQuiz = await strapi.db
         .query("api::daily-quiz.daily-quiz")
         .findOne({
           where: {
             publish_date: new Date(Date.now()).toISOString(),
+            group: groupName,
           },
           populate: {
             questions: true,
@@ -46,6 +68,7 @@ const controller = ({ strapi }) => ({
       return ctx.send(
         {
           todaysQuiz,
+          userGroupName: groupName,
           attempted: attempt ? true : false,
           attemptedQuizScore: attempt?.score ? attempt.score : 0,
           quizScore,
