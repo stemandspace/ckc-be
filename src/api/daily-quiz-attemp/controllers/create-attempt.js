@@ -15,7 +15,6 @@ const controller = ({ strapi }) => ({
           where: {
             quiz_id: quizId,
             user_id: userId,
-            createdAt: Date.now(),
           },
         });
 
