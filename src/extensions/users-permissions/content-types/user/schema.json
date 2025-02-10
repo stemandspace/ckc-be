@@ -175,6 +175,9 @@
     },
     "whatsapp_notification": {
       "type": "boolean"
+    },
+    "info_review_date": {
+      "type": "date"
     }
   }
 }
