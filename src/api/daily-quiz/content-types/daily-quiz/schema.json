@@ -38,6 +38,14 @@
     "publish_date": {
       "type": "date",
       "required": true
+    },
+    "group": {
+      "type": "enumeration",
+      "enum": [
+        "senior",
+        "middle",
+        "junior"
+      ]
     }
   }
 }

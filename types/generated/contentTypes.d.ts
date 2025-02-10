@@ -1406,6 +1406,7 @@ export interface ApiDailyQuizDailyQuiz extends Schema.CollectionType {
       'api::reward.reward'
     >;
     publish_date: Attribute.Date & Attribute.Required;
+    group: Attribute.Enumeration<['senior', 'middle', 'junior']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2425,7 +2426,17 @@ export interface ApiPurchasePurchase extends Schema.CollectionType {
     >;
     label: Attribute.String;
     type: Attribute.Enumeration<
-      ['course', 'video', 'comic', 'live', 'jar', 'challange', 'nac']
+      [
+        'course',
+        'video',
+        'comic',
+        'live',
+        'jar',
+        'challange',
+        'nac',
+        'podcast',
+        'titbits'
+      ]
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
