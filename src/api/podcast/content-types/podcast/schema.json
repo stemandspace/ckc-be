@@ -4,7 +4,8 @@
   "info": {
     "singularName": "podcast",
     "pluralName": "podcasts",
-    "displayName": "Podcast"
+    "displayName": "Podcast",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -42,14 +43,15 @@
       "default": false
     },
     "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "category": {
       "type": "relation",
@@ -62,6 +64,20 @@
       "relation": "oneToOne",
       "target": "api::podcast-upload.podcast-upload",
       "mappedBy": "podcast"
+    },
+    "price": {
+      "type": "biginteger"
+    },
+    "trending": {
+      "type": "boolean",
+      "default": false
+    },
+    "new": {
+      "type": "boolean",
+      "default": false
+    },
+    "grade": {
+      "type": "string"
     }
   }
 }

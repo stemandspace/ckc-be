@@ -2154,6 +2154,7 @@ export interface ApiPodcastPodcast extends Schema.CollectionType {
     singularName: 'podcast';
     pluralName: 'podcasts';
     displayName: 'Podcast';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2178,6 +2179,10 @@ export interface ApiPodcastPodcast extends Schema.CollectionType {
       'oneToOne',
       'api::podcast-upload.podcast-upload'
     >;
+    price: Attribute.BigInteger;
+    trending: Attribute.Boolean & Attribute.DefaultTo<false>;
+    new: Attribute.Boolean & Attribute.DefaultTo<false>;
+    grade: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
