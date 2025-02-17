@@ -158,8 +158,8 @@ module.exports = ({ env }) => ({
         amazon: "https://email.us-east-1.amazonaws.com",
       },
       settings: {
-        defaultFrom: "hello@cosmickidsclub.in",
-        defaultReplyTo: "hello@cosmickidsclub.in",
+        defaultFrom: "hello@cosmickids.club",
+        defaultReplyTo: "hello@cosmickids.club",
       },
     },
   },
