@@ -2987,6 +2987,11 @@ export interface ApiTitbitTitbit extends Schema.CollectionType {
     media: Attribute.Media;
     tags: Attribute.String;
     source: Attribute.String;
+    titbits_category: Attribute.Relation<
+      'api::titbit.titbit',
+      'manyToOne',
+      'api::titbits-category.titbits-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2998,6 +3003,42 @@ export interface ApiTitbitTitbit extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::titbit.titbit',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTitbitsCategoryTitbitsCategory
+  extends Schema.CollectionType {
+  collectionName: 'titbits_categories';
+  info: {
+    singularName: 'titbits-category';
+    pluralName: 'titbits-categories';
+    displayName: 'Titbits Category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    titbits: Attribute.Relation<
+      'api::titbits-category.titbits-category',
+      'oneToMany',
+      'api::titbit.titbit'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::titbits-category.titbits-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::titbits-category.titbits-category',
       'oneToOne',
       'admin::user'
     > &
@@ -3260,6 +3301,7 @@ declare module '@strapi/types' {
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::tip-video.tip-video': ApiTipVideoTipVideo;
       'api::titbit.titbit': ApiTitbitTitbit;
+      'api::titbits-category.titbits-category': ApiTitbitsCategoryTitbitsCategory;
       'api::top-up.top-up': ApiTopUpTopUp;
       'api::transaction.transaction': ApiTransactionTransaction;
       'api::v1.v1': ApiV1V1;

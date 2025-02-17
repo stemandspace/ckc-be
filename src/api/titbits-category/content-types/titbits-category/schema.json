@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "titbits_categories",
+  "info": {
+    "singularName": "titbits-category",
+    "pluralName": "titbits-categories",
+    "displayName": "Titbits Category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "titbits": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::titbit.titbit",
+      "mappedBy": "titbits_category"
+    }
+  }
+}

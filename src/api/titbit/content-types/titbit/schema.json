@@ -31,6 +31,12 @@
     },
     "source": {
       "type": "string"
+    },
+    "titbits_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::titbits-category.titbits-category",
+      "inversedBy": "titbits"
     }
   }
 }
