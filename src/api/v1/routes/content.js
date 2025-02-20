@@ -9,5 +9,14 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: "GET",
+      path: "/content",
+      handler: "content.getById",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };

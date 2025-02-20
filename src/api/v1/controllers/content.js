@@ -83,7 +83,91 @@ const controller = ({ strapi }) => ({
       );
     }
   },
+  /**
+   * Fetch content based on type and user with pagination and purchase status.
+   * @param {Context} ctx - Koa context object.
+   */
+  async getById(ctx) {
+    const { type, id, user } = ctx.request.query;
+
+    try {
+      const { collection_name, query_params } = contentController[type];
+
+      // validate : content purchases
+      const unlocked = strapi
+        .service("api::purchase.purchase")
+        .unlocked({ contentType: type, contentId: id, userId: user });
+
+      // count : total likes
+      const likes = strapi.service("api::like.like").getLikes({
+        contentType: type,
+        contentId: id,
+        userId: user,
+      });
+
+      // fetch : content feilds
+      const content = strapi.query(collection_name).findOne({
+        where: {
+          id: id,
+        },
+        ...query_params,
+      });
+
+      const [unlocked_res, likes_res, content_res] = await Promise.all([
+        unlocked,
+        likes,
+        content,
+      ]);
+
+      return ctx.send(
+        {
+          type,
+          id,
+          user,
+          likes: likes_res,
+          content: content_res,
+          unlocked: !!unlocked_res,
+        },
+        200
+      );
+    } catch (err) {
+      console.error(err);
+      return ctx.send({ type, id, user }, 500);
+    }
+  },
 });
+
+const contentController = {
+  podcast: {
+    name: "podcast",
+    collection_name: "api::podcast.podcast",
+    query_params: {
+      populate: {
+        thumbnail: true,
+      },
+    },
+  },
+  comic: {
+    name: "comic",
+    collection_name: "api::comic.comic",
+    query_params: {
+      populate: {
+        quiz: true,
+        thumbnail: true,
+      },
+    },
+  },
+  video: {
+    name: "video",
+    collection_name: "api::video.video",
+    query_params: {
+      populate: {
+        quiz: true,
+        thumbnail: true,
+      },
+    },
+  },
+};
 
 const information = {
   course: {
