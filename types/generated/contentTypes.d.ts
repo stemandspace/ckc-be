@@ -2897,6 +2897,37 @@ export interface ApiSpinSpin extends Schema.CollectionType {
   };
 }
 
+export interface ApiStackStack extends Schema.CollectionType {
+  collectionName: 'stacks';
+  info: {
+    singularName: 'stack';
+    pluralName: 'stacks';
+    displayName: 'Stack';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    stackDate: Attribute.DateTime;
+    data: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::stack.stack',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::stack.stack',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSubscriptionSubscription extends Schema.CollectionType {
   collectionName: 'subscriptions';
   info: {
@@ -3298,6 +3329,7 @@ declare module '@strapi/types' {
       'api::shopify-coupon.shopify-coupon': ApiShopifyCouponShopifyCoupon;
       'api::shopify-price-rule.shopify-price-rule': ApiShopifyPriceRuleShopifyPriceRule;
       'api::spin.spin': ApiSpinSpin;
+      'api::stack.stack': ApiStackStack;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::tip-video.tip-video': ApiTipVideoTipVideo;
       'api::titbit.titbit': ApiTitbitTitbit;
