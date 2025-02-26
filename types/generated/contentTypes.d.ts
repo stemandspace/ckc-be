@@ -2909,7 +2909,7 @@ export interface ApiStackStack extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    stackDate: Attribute.DateTime;
+    stackDate: Attribute.Date;
     data: Attribute.JSON;
     identifier: Attribute.String;
     createdAt: Attribute.DateTime;

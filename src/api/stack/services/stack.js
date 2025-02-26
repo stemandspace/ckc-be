@@ -1,5 +1,7 @@
 "use strict";
 
+const clg = require("../../../lib/clg");
+
 /**
  * stack service
  */
@@ -17,12 +19,28 @@ module.exports = createCoreService("api::stack.stack", () => ({
     try {
       await strapi.db.query("api::stack.stack").create({
         data: {
-          stackDate: new Date(),
           data: data,
+          stackDate: new Date(),
+          identifier: "globalleaderboard",
         },
       });
 
       return true;
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  async getGlobalLeaderboardStack() {
+    try {
+      const stack = await strapi.db.query("api::stack.stack").findOne({
+        where: {
+          stackDate: new Date(),
+          identifier: "globalleaderboard",
+        },
+      });
+      clg("Leaderboard Cached Data ->", stack);
+      return stack?.data ?? undefined;
     } catch (err) {
       console.log(err);
     }

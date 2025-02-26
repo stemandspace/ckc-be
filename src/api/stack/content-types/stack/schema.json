@@ -13,7 +13,7 @@
   "pluginOptions": {},
   "attributes": {
     "stackDate": {
-      "type": "datetime"
+      "type": "date"
     },
     "data": {
       "type": "json"
