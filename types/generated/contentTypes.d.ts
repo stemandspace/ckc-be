@@ -2903,6 +2903,7 @@ export interface ApiStackStack extends Schema.CollectionType {
     singularName: 'stack';
     pluralName: 'stacks';
     displayName: 'Stack';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2910,6 +2911,7 @@ export interface ApiStackStack extends Schema.CollectionType {
   attributes: {
     stackDate: Attribute.DateTime;
     data: Attribute.JSON;
+    identifier: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

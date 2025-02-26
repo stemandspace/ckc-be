@@ -4,7 +4,8 @@
   "info": {
     "singularName": "stack",
     "pluralName": "stacks",
-    "displayName": "Stack"
+    "displayName": "Stack",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,6 +17,9 @@
     },
     "data": {
       "type": "json"
+    },
+    "identifier": {
+      "type": "string"
     }
   }
 }
