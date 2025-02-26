@@ -2903,13 +2903,15 @@ export interface ApiStackStack extends Schema.CollectionType {
     singularName: 'stack';
     pluralName: 'stacks';
     displayName: 'Stack';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    stackDate: Attribute.DateTime;
+    stackDate: Attribute.Date;
     data: Attribute.JSON;
+    identifier: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
