@@ -9,5 +9,14 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: "POST",
+      path: "/get-referral-credits",
+      handler: "get-referral-credits.getRefCredit",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };
