@@ -80,6 +80,12 @@
       "relation": "manyToOne",
       "target": "api::challenge.challenge",
       "inversedBy": "winner_reward"
+    },
+    "discovery_jar_config": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::disconvery-jar-config.disconvery-jar-config",
+      "inversedBy": "request_rewards"
     }
   }
 }

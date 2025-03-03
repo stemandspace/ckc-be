@@ -1560,6 +1560,11 @@ export interface ApiDisconveryJarConfigDisconveryJarConfig
       'oneToMany',
       'api::discovery-jar-question.discovery-jar-question'
     >;
+    request_rewards: Attribute.Relation<
+      'api::disconvery-jar-config.disconvery-jar-config',
+      'oneToMany',
+      'api::reward.reward'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2734,6 +2739,11 @@ export interface ApiRewardReward extends Schema.CollectionType {
       'api::reward.reward',
       'manyToOne',
       'api::challenge.challenge'
+    >;
+    discovery_jar_config: Attribute.Relation<
+      'api::reward.reward',
+      'manyToOne',
+      'api::disconvery-jar-config.disconvery-jar-config'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

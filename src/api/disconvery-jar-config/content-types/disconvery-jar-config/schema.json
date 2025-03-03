@@ -32,14 +32,15 @@
       "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
     },
     "background": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "from": {
       "type": "date"
@@ -52,6 +53,12 @@
       "relation": "oneToMany",
       "target": "api::discovery-jar-question.discovery-jar-question",
       "mappedBy": "theme"
+    },
+    "request_rewards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reward.reward",
+      "mappedBy": "discovery_jar_config"
     }
   }
 }
