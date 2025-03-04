@@ -1367,16 +1367,6 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'manyToMany',
       'api::reward.reward'
     >;
-    request_rewards: Attribute.Relation<
-      'api::course.course',
-      'oneToOne',
-      'api::reward.reward'
-    >;
-    request_winner_rewards: Attribute.Relation<
-      'api::course.course',
-      'oneToOne',
-      'api::reward.reward'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2834,16 +2824,6 @@ export interface ApiRewardReward extends Schema.CollectionType {
       'api::reward.reward',
       'manyToOne',
       'api::disconvery-jar-config.disconvery-jar-config'
-    >;
-    course_request: Attribute.Relation<
-      'api::reward.reward',
-      'oneToOne',
-      'api::course.course'
-    >;
-    course_request_winner: Attribute.Relation<
-      'api::reward.reward',
-      'oneToOne',
-      'api::course.course'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

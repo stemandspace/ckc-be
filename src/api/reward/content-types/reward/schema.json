@@ -86,18 +86,6 @@
       "relation": "manyToOne",
       "target": "api::disconvery-jar-config.disconvery-jar-config",
       "inversedBy": "request_rewards"
-    },
-    "course_request_reward": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::course.course",
-      "inversedBy": "request_rewards"
-    },
-    "course_winner_reward": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::course.course",
-      "inversedBy": "request_winner_rewards"
     }
   }
 }
