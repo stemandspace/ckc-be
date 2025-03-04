@@ -9,5 +9,14 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: "GET",
+      path: "/v1/daily-quiz-leaderboard",
+      handler: "daily-quiz-leaderboard.quizLeaderboard",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };

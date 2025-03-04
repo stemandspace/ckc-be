@@ -46,11 +46,36 @@ const controller = ({ strapi }) => ({
           },
         });
       }
-      return ctx.send({ ok: true ,existingReferral}, 200);
+      return ctx.send({ ok: true, existingReferral }, 200);
     } catch (error) {
       console.error(error);
       return ctx.send(
         { error: "An error occurred while processing the referral" },
+        500
+      );
+    }
+  },
+
+  async getUserScores(ctx) {
+    try {
+      const users = await strapi
+        .query("plugin::users-permissions.user")
+        .findMany({
+          select: ["id", "username", "credits"],
+          orderBy: { credits: "desc" },
+        });
+
+      return ctx.send(
+        {
+          success: true,
+          data: users,
+        },
+        200
+      );
+    } catch (error) {
+      console.error(error);
+      return ctx.send(
+        { error: "An error occurred while fetching user scores" },
         500
       );
     }
