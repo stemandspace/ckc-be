@@ -82,6 +82,18 @@
       "relation": "manyToMany",
       "target": "api::reward.reward",
       "inversedBy": "course"
+    },
+    "request_rewards": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::reward.reward",
+      "mappedBy": "course_request_reward"
+    },
+    "request_winner_rewards": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::reward.reward",
+      "mappedBy": "course_winner_reward"
     }
   }
 }
