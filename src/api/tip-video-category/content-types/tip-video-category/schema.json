@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tip_video_categories",
+  "info": {
+    "singularName": "tip-video-category",
+    "pluralName": "tip-video-categories",
+    "displayName": "Tip Video Category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "tip_videos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tip-video.tip-video",
+      "mappedBy": "category"
+    }
+  }
+}

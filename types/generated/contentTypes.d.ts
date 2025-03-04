@@ -3076,6 +3076,11 @@ export interface ApiTipVideoTipVideo extends Schema.CollectionType {
     thumbnail: Attribute.Media;
     route: Attribute.String;
     vimeoUrl: Attribute.String;
+    category: Attribute.Relation<
+      'api::tip-video.tip-video',
+      'manyToOne',
+      'api::tip-video-category.tip-video-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3087,6 +3092,42 @@ export interface ApiTipVideoTipVideo extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::tip-video.tip-video',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTipVideoCategoryTipVideoCategory
+  extends Schema.CollectionType {
+  collectionName: 'tip_video_categories';
+  info: {
+    singularName: 'tip-video-category';
+    pluralName: 'tip-video-categories';
+    displayName: 'Tip Video Category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    tip_videos: Attribute.Relation<
+      'api::tip-video-category.tip-video-category',
+      'oneToMany',
+      'api::tip-video.tip-video'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tip-video-category.tip-video-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tip-video-category.tip-video-category',
       'oneToOne',
       'admin::user'
     > &
@@ -3426,6 +3467,7 @@ declare module '@strapi/types' {
       'api::stack.stack': ApiStackStack;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::tip-video.tip-video': ApiTipVideoTipVideo;
+      'api::tip-video-category.tip-video-category': ApiTipVideoCategoryTipVideoCategory;
       'api::titbit.titbit': ApiTitbitTitbit;
       'api::titbits-category.titbits-category': ApiTitbitsCategoryTitbitsCategory;
       'api::top-up.top-up': ApiTopUpTopUp;

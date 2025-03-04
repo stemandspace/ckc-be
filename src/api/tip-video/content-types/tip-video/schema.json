@@ -36,6 +36,12 @@
     },
     "vimeoUrl": {
       "type": "string"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tip-video-category.tip-video-category",
+      "inversedBy": "tip_videos"
     }
   }
 }
