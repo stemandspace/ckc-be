@@ -37,6 +37,16 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "sent",
+        "bounce",
+        "read"
+      ],
+      "default": "pending"
     }
   }
 }

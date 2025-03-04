@@ -2185,6 +2185,8 @@ export interface ApiNotificationxNotificationx extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    status: Attribute.Enumeration<['pending', 'sent', 'bounce', 'read']> &
+      Attribute.DefaultTo<'pending'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
