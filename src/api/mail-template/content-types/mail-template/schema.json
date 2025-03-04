@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mail_templates",
+  "info": {
+    "singularName": "mail-template",
+    "pluralName": "mail-templates",
+    "displayName": "Mail template"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subject": {
+      "type": "string"
+    },
+    "body": {
+      "type": "text"
+    },
+    "variables": {
+      "type": "json"
+    },
+    "template": {
+      "type": "json"
+    },
+    "label": {
+      "type": "string"
+    }
+  }
+}

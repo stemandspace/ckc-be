@@ -1933,6 +1933,40 @@ export interface ApiLiveSpeakerLiveSpeaker extends Schema.CollectionType {
   };
 }
 
+export interface ApiMailTemplateMailTemplate extends Schema.CollectionType {
+  collectionName: 'mail_templates';
+  info: {
+    singularName: 'mail-template';
+    pluralName: 'mail-templates';
+    displayName: 'Mail template';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    subject: Attribute.String;
+    body: Attribute.Text;
+    variables: Attribute.JSON;
+    template: Attribute.JSON;
+    label: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::mail-template.mail-template',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::mail-template.mail-template',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiNacNac extends Schema.CollectionType {
   collectionName: 'nacs';
   info: {
@@ -2118,6 +2152,50 @@ export interface ApiNotificationNotification extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::notification.notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiNotificationxNotificationx extends Schema.CollectionType {
+  collectionName: 'notificationxes';
+  info: {
+    singularName: 'notificationx';
+    pluralName: 'notificationxes';
+    displayName: 'notificationx';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    mail_template: Attribute.Relation<
+      'api::notificationx.notificationx',
+      'oneToOne',
+      'api::mail-template.mail-template'
+    >;
+    channel: Attribute.Enumeration<['system', 'mail']>;
+    subject: Attribute.String;
+    body: Attribute.String;
+    variables: Attribute.JSON;
+    user: Attribute.Relation<
+      'api::notificationx.notificationx',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::notificationx.notificationx',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::notificationx.notificationx',
       'oneToOne',
       'admin::user'
     > &
@@ -3317,11 +3395,13 @@ declare module '@strapi/types' {
       'api::like.like': ApiLikeLike;
       'api::live.live': ApiLiveLive;
       'api::live-speaker.live-speaker': ApiLiveSpeakerLiveSpeaker;
+      'api::mail-template.mail-template': ApiMailTemplateMailTemplate;
       'api::nac.nac': ApiNacNac;
       'api::nac-registration.nac-registration': ApiNacRegistrationNacRegistration;
       'api::nac-result.nac-result': ApiNacResultNacResult;
       'api::newsletter-subscriber.newsletter-subscriber': ApiNewsletterSubscriberNewsletterSubscriber;
       'api::notification.notification': ApiNotificationNotification;
+      'api::notificationx.notificationx': ApiNotificationxNotificationx;
       'api::plan.plan': ApiPlanPlan;
       'api::podcast.podcast': ApiPodcastPodcast;
       'api::podcast-category.podcast-category': ApiPodcastCategoryPodcastCategory;
