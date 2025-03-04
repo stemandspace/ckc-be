@@ -1,5 +1,7 @@
 "use strict";
 
+const clg = require("./lib/clg");
+
 module.exports = {
   /**
    * An asynchronous register function that runs before
@@ -16,5 +18,19 @@ module.exports = {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/*{ strapi }*/) {},
+  bootstrap({ strapi }) {
+    strapi.db.lifecycles.subscribe({
+      // Watching NotificationX model : onCreate
+      models: ["api::notificationx.notificationx"],
+      // Called after an entry has been created
+      async afterCreate(event) {
+        clg("event", event.result);
+        if (event?.result?.channel === "mail") {
+          await strapi
+            .service("api::notificationx.notificationx")
+            .notifyByMail(event?.result?.id);
+        }
+      },
+    });
+  },
 };
