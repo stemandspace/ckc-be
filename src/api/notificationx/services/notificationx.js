@@ -1,4 +1,6 @@
 "use strict";
+const { SendZeptoMail } = require("../../../lib/send-mail");
+
 const clg = require("../../../lib/clg");
 /**
  * notificationx service
@@ -22,7 +24,15 @@ module.exports = createCoreService("api::notificationx.notificationx", () => ({
       const notification = await strapi.db
         .query("api::notificationx.notificationx")
         .findOne(query);
-      clg("notifyByMail Response", notification);
+    //  clg("notifyByMail Response", notification);
+      if (notification.mail_template.template.id) {
+        await SendZeptoMail({
+          templateKey: notification.mail_template.template.id,
+          email: notification.variables.email,
+          name: notification.variables.name,
+          variables: notification.variables.variables,
+        });
+      }
       return notification;
     } catch (error) {
       console.log("error", error);
