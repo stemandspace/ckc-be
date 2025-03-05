@@ -65,14 +65,6 @@ module.exports = createCoreService("api::reward.reward", () => ({
           });
         return { achievement, reward, user };
       });
-
-      await SendZeptoMail({
-        templateKey:
-          "2518b.5ca07f11c3f3c129.k1.0edde191-f8c6-11ef-bc61-525400b0b0f3.1955ff2c625",
-        email: user.email,
-        name: `${user.firstname} ${user.lastname}`,
-        variables: {},
-      });
       const res = await Promise.all(promises);
       return res;
     } catch (error) {
