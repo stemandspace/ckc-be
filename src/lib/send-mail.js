@@ -1,10 +1,9 @@
 const axios = require("axios");
 const clg = require("./clg");
- async function SendZeptoMail({ templateKey,email,name,variables }) {
+async function SendZeptoMail({ templateKey, email, name, variables }) {
   try {
     const payload = {
-      mail_template_key:
-         templateKey,
+      mail_template_key: templateKey,
       from: {
         address: "noreply@fullstackartists.com",
         name: "noreply",
@@ -13,12 +12,12 @@ const clg = require("./clg");
         {
           email_address: {
             address: email,
-            name:  name,
+            name: name,
           },
         },
       ],
       merge_info: {
-       ...variables
+        ...variables,
       },
     };
     const res = await axios.post(

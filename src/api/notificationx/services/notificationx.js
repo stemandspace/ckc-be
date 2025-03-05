@@ -24,14 +24,22 @@ module.exports = createCoreService("api::notificationx.notificationx", () => ({
       const notification = await strapi.db
         .query("api::notificationx.notificationx")
         .findOne(query);
-    //  clg("notifyByMail Response", notification);
+      //  clg("notifyByMail Response", notification);
       if (notification.mail_template.template.id) {
-        await SendZeptoMail({
+        const res = await SendZeptoMail({
           templateKey: notification.mail_template.template.id,
           email: notification.variables.email,
           name: notification.variables.name,
           variables: notification.variables.variables,
         });
+        if (res.ok) {
+          await strapi.db.query("api::notificationx.notificationx").update({
+            where: { id: id },
+            data: {
+              status: "sent",
+            },
+          });
+        }
       }
       return notification;
     } catch (error) {
