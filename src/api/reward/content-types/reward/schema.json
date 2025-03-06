@@ -86,6 +86,12 @@
       "relation": "manyToOne",
       "target": "api::disconvery-jar-config.disconvery-jar-config",
       "inversedBy": "request_rewards"
+    },
+    "time_tracking_reward": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::time-tracking-reward.time-tracking-reward",
+      "mappedBy": "reward"
     }
   }
 }

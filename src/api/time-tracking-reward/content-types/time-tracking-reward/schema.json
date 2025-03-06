@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "time_tracking_rewards",
+  "info": {
+    "singularName": "time-tracking-reward",
+    "pluralName": "time-tracking-rewards",
+    "displayName": "Time Tracking",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "contentType": {
+      "type": "enumeration",
+      "enum": [
+        "video",
+        "comic",
+        "live"
+      ]
+    },
+    "contentId": {
+      "type": "biginteger"
+    },
+    "reward": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::reward.reward",
+      "inversedBy": "time_tracking_reward"
+    },
+    "duration": {
+      "type": "biginteger"
+    }
+  }
+}
