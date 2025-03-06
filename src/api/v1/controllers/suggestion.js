@@ -62,6 +62,7 @@ const controller = ({ strapi }) => ({
         where: {
           $or: tagConditions,
           id: { $ne: contentId }, // exclude the current content
+          publishedAt: { $ne: null }, // exclude unpublished content
         },
         select: ["title", "price", "grade"],
         populate: {
