@@ -70,7 +70,7 @@ const controller = ({ strapi }) => ({
             select: ["url"],
           },
         },
-        limit: 5,
+        limit: 4,
       });
       clg("suggestions", suggestions);
       return ctx.send({ data: suggestions }, 200);
