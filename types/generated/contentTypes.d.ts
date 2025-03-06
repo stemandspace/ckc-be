@@ -2825,6 +2825,11 @@ export interface ApiRewardReward extends Schema.CollectionType {
       'manyToOne',
       'api::disconvery-jar-config.disconvery-jar-config'
     >;
+    time_tracking_reward: Attribute.Relation<
+      'api::reward.reward',
+      'oneToOne',
+      'api::time-tracking-reward.time-tracking-reward'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3052,6 +3057,45 @@ export interface ApiSubscriptionSubscription extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::subscription.subscription',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTimeTrackingRewardTimeTrackingReward
+  extends Schema.CollectionType {
+  collectionName: 'time_tracking_rewards';
+  info: {
+    singularName: 'time-tracking-reward';
+    pluralName: 'time-tracking-rewards';
+    displayName: 'Time Tracking';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    contentType: Attribute.Enumeration<['video', 'comic', 'live']>;
+    contentId: Attribute.BigInteger;
+    reward: Attribute.Relation<
+      'api::time-tracking-reward.time-tracking-reward',
+      'oneToOne',
+      'api::reward.reward'
+    >;
+    duration: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::time-tracking-reward.time-tracking-reward',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::time-tracking-reward.time-tracking-reward',
       'oneToOne',
       'admin::user'
     > &
@@ -3466,6 +3510,7 @@ declare module '@strapi/types' {
       'api::spin.spin': ApiSpinSpin;
       'api::stack.stack': ApiStackStack;
       'api::subscription.subscription': ApiSubscriptionSubscription;
+      'api::time-tracking-reward.time-tracking-reward': ApiTimeTrackingRewardTimeTrackingReward;
       'api::tip-video.tip-video': ApiTipVideoTipVideo;
       'api::tip-video-category.tip-video-category': ApiTipVideoCategoryTipVideoCategory;
       'api::titbit.titbit': ApiTitbitTitbit;
