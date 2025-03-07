@@ -1,4 +1,7 @@
 "use strict";
+
+const axios = require("axios");
+
 const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::notification.notification", {
@@ -48,15 +51,43 @@ module.exports = createCoreController("api::notification.notification", {
 
   async sendMail(ctx) {
     try {
+      //@ts-ignore
       const { title, html, email } = ctx.request.body.data;
-      await strapi.plugins["email"].services.email.send({
+      /*       await strapi.plugins["email"].services.email.send({
         to: email,
         subject: title,
         html: html,
-      });
-
+      }); */
+      const payload = {
+        from: {
+          address: "noreply@spacetopia.in",
+        },
+        to: [
+          {
+            email_address: {
+              address: email,
+              name: "Deepak Vishwakarma",
+            },
+          },
+        ],
+        subject: title,
+        htmlbody: html,
+      };
+      const res = await axios.post(
+        "https://api.zeptomail.in/v1.1/email",
+        payload,
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `${process.env.STEMANDSPACE_ZEPTO_MAIL_AUTHORIZATION_KEY}`,
+          },
+        }
+      );
+      //console.log("Send Zepto mail............. Response - ", res);
       return ctx.send({ ok: true }, 200);
     } catch (error) {
+      console.log(error)
       ctx.throw(500, error);
     }
   },
