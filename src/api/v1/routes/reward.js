@@ -9,5 +9,14 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: "GET",
+      path: "/v1/time-tracking-reward",
+      handler: "get-ttr.getTTR",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };
