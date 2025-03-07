@@ -125,6 +125,7 @@ module.exports = ({ env }) => ({
       // See `Config` section.
     },
   },
+  // AWS - S3 Bucket Configuration
   upload: {
     config: {
       provider: "aws-s3",
@@ -148,6 +149,7 @@ module.exports = ({ env }) => ({
       },
     },
   },
+  // AWS - Simple Email Service Configuration
   email: {
     config: {
       provider: "amazon-ses",
@@ -164,11 +166,6 @@ module.exports = ({ env }) => ({
   },
   "video-field": {
     enabled: true,
-  },
-  treblle: {
-    config: {
-      routesToMonitor: ["api"], // this is the default
-    },
   },
   "rest-cache": {
     config: {
