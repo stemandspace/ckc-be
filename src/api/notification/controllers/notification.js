@@ -66,7 +66,7 @@ module.exports = createCoreController("api::notification.notification", {
           {
             email_address: {
               address: email,
-              name: "Deepak Vishwakarma",
+              name: email,
             },
           },
         ],
@@ -87,7 +87,7 @@ module.exports = createCoreController("api::notification.notification", {
       //console.log("Send Zepto mail............. Response - ", res);
       return ctx.send({ ok: true }, 200);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       ctx.throw(500, error);
     }
   },
