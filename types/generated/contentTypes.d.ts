@@ -1385,6 +1385,41 @@ export interface ApiCourseCourse extends Schema.CollectionType {
   };
 }
 
+export interface ApiCreditAccountCreditAccount extends Schema.CollectionType {
+  collectionName: 'credit_accounts';
+  info: {
+    singularName: 'credit-account';
+    pluralName: 'credit-accounts';
+    displayName: 'Credit Account';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    user: Attribute.Relation<
+      'api::credit-account.credit-account',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    credits: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::credit-account.credit-account',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::credit-account.credit-account',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDailyQuizDailyQuiz extends Schema.CollectionType {
   collectionName: 'daily_quizs';
   info: {
@@ -3470,6 +3505,7 @@ declare module '@strapi/types' {
       'api::comic-book.comic-book': ApiComicBookComicBook;
       'api::control.control': ApiControlControl;
       'api::course.course': ApiCourseCourse;
+      'api::credit-account.credit-account': ApiCreditAccountCreditAccount;
       'api::daily-quiz.daily-quiz': ApiDailyQuizDailyQuiz;
       'api::daily-quiz-attemp.daily-quiz-attemp': ApiDailyQuizAttempDailyQuizAttemp;
       'api::daily-quiz-score.daily-quiz-score': ApiDailyQuizScoreDailyQuizScore;

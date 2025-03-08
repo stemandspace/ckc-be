@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "credit_accounts",
+  "info": {
+    "singularName": "credit-account",
+    "pluralName": "credit-accounts",
+    "displayName": "Credit Account"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "credits": {
+      "type": "biginteger"
+    }
+  }
+}
