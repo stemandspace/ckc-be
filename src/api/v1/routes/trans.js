@@ -3,12 +3,12 @@ module.exports = {
     {
       method: "POST",
       path: "/transaction/order", // Only match when the URL parameter is composed of lowercase letters
-      handler: "transaction.createRzOrder",
+      handler: "trans.createRzOrder",
     },
     {
       method: "POST",
       path: "/transaction/webhook", // Only match when the URL parameter is composed of lowercase letters
-      handler: "transaction.handleWebhook",
+      handler: "trans.handleWebhook",
     },
   ],
 };
