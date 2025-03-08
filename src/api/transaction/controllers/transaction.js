@@ -29,12 +29,13 @@ module.exports = createCoreController("api::transaction.transaction", {
    * @returns {Promise<any>}
    */
   async createRzOrder(ctx) {
+    const TRX = await strapi.db.connection.transaction();
     try {
       // @ts-ignore
       const { type, planId, topupId, userId } = ctx.request.body.data;
 
       // @ts-ignore
-      console.log("Request body:", ctx.request.body.data);
+      clg("Request body:", ctx.request.body.data);
 
       if (
         !type ||
@@ -98,9 +99,10 @@ module.exports = createCoreController("api::transaction.transaction", {
         });
 
       clg("Updated Transaction:", updatedTransaction);
-
+      TRX.commit();
       return ctx.send(rz_order);
     } catch (error) {
+      TRX.rollback();
       console.error("Error creating Razorpay order:", error);
       return ctx.badRequest("Error creating Razorpay order");
     }
