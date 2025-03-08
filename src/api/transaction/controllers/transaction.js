@@ -34,7 +34,7 @@ module.exports = createCoreController("api::transaction.transaction", {
    * @returns {Promise<any>}
    */
   async createRzOrder(ctx) {
-    const TRX = await strapi.db.connection.transaction();
+    // const TRX = await strapi.db.connection.transaction();
     try {
       // @ts-ignore
       const { type, planId, topupId, userId } = ctx.request.body.data;
@@ -104,10 +104,10 @@ module.exports = createCoreController("api::transaction.transaction", {
         });
 
       clg("Updated Transaction:", updatedTransaction);
-      TRX.commit();
+      // TRX.commit();
       return ctx.send(rz_order);
     } catch (error) {
-      TRX.rollback();
+      // TRX.rollback();
       console.error("Error creating Razorpay order:", error);
       return ctx.badRequest("Error creating Razorpay order");
     }
@@ -118,7 +118,7 @@ module.exports = createCoreController("api::transaction.transaction", {
    * @returns {Promise<any>}
    */
   async handleWebhook(ctx) {
-    const TRX = await strapi.db.connection.transaction();
+    // const TRX = await strapi.db.connection.transaction();
     try {
       const {
         payload: {
@@ -159,11 +159,11 @@ module.exports = createCoreController("api::transaction.transaction", {
           .updateAccount(notes.user_id, "add", topup?.credits);
       }
 
-      TRX.commit();
+      // TRX.commit();
 
       return ctx.send({ ok: true }, 200);
     } catch (error) {
-      TRX.rollback();
+      // TRX.rollback();
       console.error("Error handling webhook:", error);
       return ctx.badRequest("Error handling webhook");
     }
