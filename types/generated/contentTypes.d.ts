@@ -2002,6 +2002,54 @@ export interface ApiMailTemplateMailTemplate extends Schema.CollectionType {
   };
 }
 
+export interface ApiMembershipMembership extends Schema.CollectionType {
+  collectionName: 'memberships';
+  info: {
+    singularName: 'membership';
+    pluralName: 'memberships';
+    displayName: 'Membership';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    plan: Attribute.Relation<
+      'api::membership.membership',
+      'oneToOne',
+      'api::plan.plan'
+    >;
+    user: Attribute.Relation<
+      'api::membership.membership',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    status: Attribute.Enumeration<['expired', 'active', 'in-active']> &
+      Attribute.DefaultTo<'in-active'>;
+    start_date: Attribute.Date;
+    end_date: Attribute.Date;
+    transaction: Attribute.Relation<
+      'api::membership.membership',
+      'oneToOne',
+      'api::transaction.transaction'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::membership.membership',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::membership.membership',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiNacNac extends Schema.CollectionType {
   collectionName: 'nacs';
   info: {
@@ -3349,6 +3397,11 @@ export interface ApiTransactionTransaction extends Schema.CollectionType {
     razorpay_order_id: Attribute.String;
     razorpay_payment_id: Attribute.String;
     status: Attribute.Enumeration<['created', 'captured', 'refunded']>;
+    membership: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'api::membership.membership'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3521,6 +3574,7 @@ declare module '@strapi/types' {
       'api::live.live': ApiLiveLive;
       'api::live-speaker.live-speaker': ApiLiveSpeakerLiveSpeaker;
       'api::mail-template.mail-template': ApiMailTemplateMailTemplate;
+      'api::membership.membership': ApiMembershipMembership;
       'api::nac.nac': ApiNacNac;
       'api::nac-registration.nac-registration': ApiNacRegistrationNacRegistration;
       'api::nac-result.nac-result': ApiNacResultNacResult;
