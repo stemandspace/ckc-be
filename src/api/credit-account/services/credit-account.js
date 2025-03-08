@@ -29,6 +29,7 @@ module.exports = createCoreService(
           data: {
             user: userId,
             credits: value,
+            publishedAt: new Date(),
           },
         });
       } else {
