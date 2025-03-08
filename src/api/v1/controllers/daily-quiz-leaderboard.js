@@ -36,7 +36,17 @@ const controller = ({ strapi }) => ({
         };
       });
 
-      return ctx.send({ data: dataMap }, 200);
+      const sortedLeaderboard = Array.from(dataMap.values()).sort(
+        (a, b) => b?.points - a?.points
+      );
+      const addRankInLeaderboard = sortedLeaderboard.map((_, index) => {
+        return {
+          ..._,
+          rank: index + 1,
+        };
+      });
+
+      return ctx.send({ data: addRankInLeaderboard }, 200);
     } catch (err) {
       console.log(err);
       return ctx.badRequest("Error fetching leaderboard", 400);
