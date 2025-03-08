@@ -48,5 +48,13 @@ module.exports = createCoreService(
         });
       }
     },
+
+    // just fetch the balance if account is not available then return 0
+    fetchCreditBalance: async (userId) => {
+      const account = await strapi
+        .query("api::credit-account.credit-account")
+        .findOne({ where: { user: userId }, select: ["credits"] });
+      return account?.credits || 0;
+    },
   })
 );

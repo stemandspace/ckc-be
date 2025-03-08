@@ -10,5 +10,10 @@ module.exports = {
       path: "/transaction/webhook", // Only match when the URL parameter is composed of lowercase letters
       handler: "trans.handleWebhook",
     },
+    {
+      method: "GET",
+      path: "/credit-balance", // Only match when the URL parameter is composed of lowercase letters
+      handler: "trans.fetchCreditBalance",
+    },
   ],
 };

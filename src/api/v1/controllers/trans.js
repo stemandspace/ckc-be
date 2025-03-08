@@ -160,6 +160,26 @@ const controller = ({ strapi }) => ({
       return ctx.badRequest("Error handling webhook");
     }
   },
+  /**
+   * Create Razorpay Order
+   * @param {Context} ctx - Koa context
+   * @returns {Promise<any>}
+   */
+  getCredits: async (ctx) => {
+    const { userId } = ctx.request.query;
+    try {
+      if (!userId) {
+        return ctx.badRequest("Missing parameters");
+      }
+      const credits = await strapi
+        .service("api::credit-account.credit-account")
+        .fetchBalance(userId);
+      return ctx.send(credits);
+    } catch (error) {
+      console.error("Error getting credits:", error);
+      return ctx.badRequest("Error getting credits");
+    }
+  },
 });
 
 module.exports = controller;
