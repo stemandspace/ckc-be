@@ -134,7 +134,7 @@ module.exports = createCoreController("api::transaction.transaction", {
       await strapi.query("api::transaction.transaction").update({
         where: { id: notes.id },
         data: {
-          status: "success",
+          status: "captured",
           razorpay_payment_id: id,
         },
       });
