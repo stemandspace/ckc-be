@@ -171,13 +171,34 @@ const controller = ({ strapi }) => ({
       if (!userId) {
         return ctx.badRequest("Missing parameters");
       }
-      const credits = await strapi
-        .service("api::credit-account.credit-account")
-        .fetchBalance(userId);
-      return ctx.send(credits);
+      const account = await strapi
+        .query("api::credit-account.credit-account")
+        .findOne({ where: { user: userId }, select: ["credits"] });
+
+      return ctx.send(account?.credits || 0);
     } catch (error) {
       console.error("Error getting credits:", error);
       return ctx.badRequest("Error getting credits");
+    }
+  },
+  /**
+   * Create Razorpay Order
+   * @param {Context} ctx - Koa context
+   * @returns {Promise<any>}
+   */
+  getActiveMembership: async (ctx) => {
+    const { userId } = ctx.request.query;
+    try {
+      if (!userId) {
+        return ctx.badRequest("Missing parameters");
+      }
+      const membership = await strapi
+        .service("api::membership.membership")
+        .getActiveMembership(userId);
+      return ctx.send(membership);
+    } catch (error) {
+      console.error("Error getting membership status:", error);
+      return ctx.badRequest("Error getting membership status");
     }
   },
 });

@@ -1400,7 +1400,8 @@ export interface ApiCreditAccountCreditAccount extends Schema.CollectionType {
       'api::credit-account.credit-account',
       'oneToOne',
       'plugin::users-permissions.user'
-    >;
+    > &
+      Attribute.Unique;
     credits: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -2022,8 +2023,10 @@ export interface ApiMembershipMembership extends Schema.CollectionType {
       'api::membership.membership',
       'oneToOne',
       'plugin::users-permissions.user'
-    >;
+    > &
+      Attribute.Unique;
     status: Attribute.Enumeration<['expired', 'active', 'in-active']> &
+      Attribute.Unique &
       Attribute.DefaultTo<'in-active'>;
     start_date: Attribute.Date;
     end_date: Attribute.Date;

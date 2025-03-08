@@ -17,17 +17,15 @@
       "target": "api::plan.plan"
     },
     "user": {
+      "unique": true,
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
     },
     "status": {
+      "unique": true,
       "type": "enumeration",
-      "enum": [
-        "expired",
-        "active",
-        "in-active"
-      ],
+      "enum": ["expired", "active", "in-active"],
       "default": "in-active",
       "required": false
     },

@@ -12,6 +12,7 @@
   "pluginOptions": {},
   "attributes": {
     "user": {
+      "unique": true,
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"

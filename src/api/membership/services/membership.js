@@ -24,4 +24,15 @@ module.exports = createCoreService("api::membership.membership", () => ({
     });
     return membership;
   },
+  getActiveMembership: async (userId) => {
+    const membership = await strapi
+      .query("api::membership.membership")
+      .findOne({
+        where: {
+          user: userId,
+          status: "active",
+        },
+      });
+    return membership;
+  },
 }));
