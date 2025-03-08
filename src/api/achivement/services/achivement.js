@@ -78,8 +78,14 @@ module.exports = createCoreService("api::achivement.achivement", () => ({
       const sortedLeaderboard = Array.from(dataMap.values()).sort(
         (a, b) => b?.points - a?.points
       );
+      const addRankInLeaderboard = sortedLeaderboard.map((_,index)=>{
+        return {
+          ..._,
+          rank:index+1
+        }
+      })
 
-      return sortedLeaderboard;
+      return addRankInLeaderboard;
     } catch (err) {}
   },
 }));
