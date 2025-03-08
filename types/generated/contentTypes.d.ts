@@ -3388,7 +3388,7 @@ export interface ApiTransactionTransaction extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.String;
-    type: Attribute.Enumeration<['subsription', 'credits']>;
+    type: Attribute.Enumeration<['subscription', 'credits']>;
     amount: Attribute.BigInteger;
     currency: Attribute.String;
     user_id: Attribute.BigInteger;
