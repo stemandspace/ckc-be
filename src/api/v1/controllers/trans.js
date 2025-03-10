@@ -186,6 +186,26 @@ const controller = ({ strapi }) => ({
    * @param {Context} ctx - Koa context
    * @returns {Promise<any>}
    */
+  getCoins: async (ctx) => {
+    const { userId } = ctx.request.query;
+    try {
+      if (!userId) {
+        return ctx.badRequest("Missing parameters");
+      }
+      const account = await strapi
+        .query("plugin::users-permissions.user")
+        .findOne({ where: { user: userId }, select: ["coins"] });
+      return ctx.send(account?.coins || 0);
+    } catch (error) {
+      console.error("Error getting credits:", error);
+      return ctx.badRequest("Error getting credits");
+    }
+  },
+  /**
+   * Create Razorpay Order
+   * @param {Context} ctx - Koa context
+   * @returns {Promise<any>}
+   */
   getActiveMembership: async (ctx) => {
     const { userId } = ctx.request.query;
     try {

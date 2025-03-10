@@ -17,6 +17,11 @@ module.exports = {
     },
     {
       method: "GET",
+      path: "/coins-balance", // Only match when the URL parameter is composed of lowercase letters
+      handler: "trans.getCoins",
+    },
+    {
+      method: "GET",
       path: "/active-membership", // Only match when the URL parameter is composed of lowercase letters
       handler: "trans.getActiveMembership",
     },
