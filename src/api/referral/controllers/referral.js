@@ -8,6 +8,7 @@ const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController("api::referral.referral", {
   async create(ctx) {
+    //@ts-ignore
     const data = ctx.request.body;
     console.log(data);
     const response = await super.create(ctx);

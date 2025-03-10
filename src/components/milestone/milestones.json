@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_milestone_milestones",
+  "info": {
+    "displayName": "milestones",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "rewards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reward.reward"
+    },
+    "milestone": {
+      "type": "integer"
+    }
+  }
+}

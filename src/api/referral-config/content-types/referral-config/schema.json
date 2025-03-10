@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "referral_configs",
+  "info": {
+    "singularName": "referral-config",
+    "pluralName": "referral-configs",
+    "displayName": "referral-config",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titile": {
+      "type": "string"
+    },
+    "milestones": {
+      "displayName": "milestones",
+      "type": "component",
+      "repeatable": true,
+      "component": "milestone.milestones"
+    },
+    "referralLimitPerMonth": {
+      "type": "integer"
+    }
+  }
+}

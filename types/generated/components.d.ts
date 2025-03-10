@@ -85,6 +85,22 @@ export interface DailySpinSlice extends Schema.Component {
   };
 }
 
+export interface MilestoneMilestones extends Schema.Component {
+  collectionName: 'components_milestone_milestones';
+  info: {
+    displayName: 'milestones';
+    description: '';
+  };
+  attributes: {
+    rewards: Attribute.Relation<
+      'milestone.milestones',
+      'oneToMany',
+      'api::reward.reward'
+    >;
+    milestone: Attribute.Integer;
+  };
+}
+
 export interface ModuleSlideModuleSlide extends Schema.Component {
   collectionName: 'components_module_slide_module_slides';
   info: {
@@ -269,6 +285,7 @@ declare module '@strapi/types' {
       'certification.certification-events': CertificationCertificationEvents;
       'daily-quiz.questions': DailyQuizQuestions;
       'daily-spin.slice': DailySpinSlice;
+      'milestone.milestones': MilestoneMilestones;
       'module-slide.module-slide': ModuleSlideModuleSlide;
       'module.module': ModuleModule;
       'prepration-materials.prepration-materials': PreprationMaterialsPreprationMaterials;

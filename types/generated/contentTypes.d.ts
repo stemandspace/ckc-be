@@ -2775,6 +2775,39 @@ export interface ApiReferralReferral extends Schema.CollectionType {
   };
 }
 
+export interface ApiReferralConfigReferralConfig extends Schema.SingleType {
+  collectionName: 'referral_configs';
+  info: {
+    singularName: 'referral-config';
+    pluralName: 'referral-configs';
+    displayName: 'referral-config';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titile: Attribute.String;
+    milestones: Attribute.Component<'milestone.milestones', true>;
+    referralLimitPerMonth: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::referral-config.referral-config',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::referral-config.referral-config',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiReferralRewardReferralReward extends Schema.CollectionType {
   collectionName: 'referral_rewards';
   info: {
@@ -3596,6 +3629,7 @@ declare module '@strapi/types' {
       'api::quiz-config.quiz-config': ApiQuizConfigQuizConfig;
       'api::real-purchase.real-purchase': ApiRealPurchaseRealPurchase;
       'api::referral.referral': ApiReferralReferral;
+      'api::referral-config.referral-config': ApiReferralConfigReferralConfig;
       'api::referral-reward.referral-reward': ApiReferralRewardReferralReward;
       'api::reminder.reminder': ApiReminderReminder;
       'api::reward.reward': ApiRewardReward;
