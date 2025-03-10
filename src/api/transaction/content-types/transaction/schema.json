@@ -18,7 +18,7 @@
     "type": {
       "type": "enumeration",
       "enum": [
-        "subsription",
+        "subscription",
         "credits"
       ]
     },
@@ -50,6 +50,12 @@
         "captured",
         "refunded"
       ]
+    },
+    "membership": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::membership.membership",
+      "mappedBy": "transaction"
     }
   }
 }

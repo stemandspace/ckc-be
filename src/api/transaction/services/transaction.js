@@ -22,6 +22,7 @@ const razorpay = require("../../../rz/index");
 
 const controller = ({ strapi }) => ({
   //   async getTransaction(ctx) {},
+
   async initiateTransection(params) {
     const TRX = await strapi.db.connection.transaction();
     try {

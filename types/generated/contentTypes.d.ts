@@ -1385,6 +1385,42 @@ export interface ApiCourseCourse extends Schema.CollectionType {
   };
 }
 
+export interface ApiCreditAccountCreditAccount extends Schema.CollectionType {
+  collectionName: 'credit_accounts';
+  info: {
+    singularName: 'credit-account';
+    pluralName: 'credit-accounts';
+    displayName: 'Credit Account';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    user: Attribute.Relation<
+      'api::credit-account.credit-account',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    > &
+      Attribute.Unique;
+    credits: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::credit-account.credit-account',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::credit-account.credit-account',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDailyQuizDailyQuiz extends Schema.CollectionType {
   collectionName: 'daily_quizs';
   info: {
@@ -1960,6 +1996,56 @@ export interface ApiMailTemplateMailTemplate extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::mail-template.mail-template',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMembershipMembership extends Schema.CollectionType {
+  collectionName: 'memberships';
+  info: {
+    singularName: 'membership';
+    pluralName: 'memberships';
+    displayName: 'Membership';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    plan: Attribute.Relation<
+      'api::membership.membership',
+      'oneToOne',
+      'api::plan.plan'
+    >;
+    user: Attribute.Relation<
+      'api::membership.membership',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    > &
+      Attribute.Unique;
+    status: Attribute.Enumeration<['expired', 'active', 'in-active']> &
+      Attribute.Unique &
+      Attribute.DefaultTo<'in-active'>;
+    start_date: Attribute.Date;
+    end_date: Attribute.Date;
+    transaction: Attribute.Relation<
+      'api::membership.membership',
+      'oneToOne',
+      'api::transaction.transaction'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::membership.membership',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::membership.membership',
       'oneToOne',
       'admin::user'
     > &
@@ -3305,7 +3391,7 @@ export interface ApiTransactionTransaction extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.String;
-    type: Attribute.Enumeration<['subsription', 'credits']>;
+    type: Attribute.Enumeration<['subscription', 'credits']>;
     amount: Attribute.BigInteger;
     currency: Attribute.String;
     user_id: Attribute.BigInteger;
@@ -3314,6 +3400,11 @@ export interface ApiTransactionTransaction extends Schema.CollectionType {
     razorpay_order_id: Attribute.String;
     razorpay_payment_id: Attribute.String;
     status: Attribute.Enumeration<['created', 'captured', 'refunded']>;
+    membership: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'api::membership.membership'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3470,6 +3561,7 @@ declare module '@strapi/types' {
       'api::comic-book.comic-book': ApiComicBookComicBook;
       'api::control.control': ApiControlControl;
       'api::course.course': ApiCourseCourse;
+      'api::credit-account.credit-account': ApiCreditAccountCreditAccount;
       'api::daily-quiz.daily-quiz': ApiDailyQuizDailyQuiz;
       'api::daily-quiz-attemp.daily-quiz-attemp': ApiDailyQuizAttempDailyQuizAttemp;
       'api::daily-quiz-score.daily-quiz-score': ApiDailyQuizScoreDailyQuizScore;
@@ -3485,6 +3577,7 @@ declare module '@strapi/types' {
       'api::live.live': ApiLiveLive;
       'api::live-speaker.live-speaker': ApiLiveSpeakerLiveSpeaker;
       'api::mail-template.mail-template': ApiMailTemplateMailTemplate;
+      'api::membership.membership': ApiMembershipMembership;
       'api::nac.nac': ApiNacNac;
       'api::nac-registration.nac-registration': ApiNacRegistrationNacRegistration;
       'api::nac-result.nac-result': ApiNacResultNacResult;
