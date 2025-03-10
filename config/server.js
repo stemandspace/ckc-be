@@ -1,4 +1,4 @@
-const cronTasks = require("./cron-tasks");
+const cronTasks = require("./cron-for-live-notification");
 
 module.exports = ({ env }) => ({
   host: env("HOST", "0.0.0.0"),
@@ -12,7 +12,7 @@ module.exports = ({ env }) => ({
     populateRelations: env.bool("WEBHOOKS_POPULATE_RELATIONS", false),
   },
   cron: {
-    enabled: false,
+    enabled: true,
     tasks: cronTasks,
   },
 });

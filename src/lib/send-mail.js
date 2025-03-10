@@ -31,7 +31,7 @@ async function SendZeptoMail({ templateKey, email, name, variables }) {
         },
       }
     );
-    // clg("Send Zepto mail............. Response - ", res);
+   // clg("Send Zepto mail............. Response - ", res);
     return { ok: true };
   } catch (error) {
     console.log("Zepto mail send Error: ", error);
