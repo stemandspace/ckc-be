@@ -36,6 +36,9 @@ const controller = ({ strapi }) => ({
         }
       );
       const milestones = referConfig.milestones;
+      const sortedMilestones = milestones.sort(
+        (a, b) => b.milestone - a.milestone
+      ).reverse();
       const referralLimitPerMonth = referConfig.referralLimitPerMonth;
 
       const referralsThisMonth = await strapi
@@ -48,7 +51,7 @@ const controller = ({ strapi }) => ({
         {
           referrals,
           totalReferrals: referrals?.length,
-          milestones,
+          milestones:sortedMilestones,
           referralLimitPerMonth,
           referralsThisMonth,
           canMakeReferral,
