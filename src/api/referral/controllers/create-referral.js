@@ -20,7 +20,20 @@ const controller = ({ strapi }) => ({
           },
         }
       );
-      const referralLimitPerMonth = referConfig.referralLimitPerMonth;
+      const referralLimitPerMonth = referConfig?.referralLimitPerMonth;
+      const milestones = referConfig?.milestones;
+      const referralCount = await strapi.db
+        .query("api::achivement.achivement")
+        .count({
+          where: {
+            user: Number(refId),
+            contentType: "referral",
+          },
+        });
+      const foundMilestone = milestones.find(
+        (m) => m.milestone ===  referralCount
+      );
+
       const referralsThisMonth = await strapi
         .service("api::referral.referral")
         .getReferralCountForMonth(userId);
@@ -49,6 +62,15 @@ const controller = ({ strapi }) => ({
           publishedAt: new Date(),
         },
       });
+      if (foundMilestone) {
+        const rewardIds = foundMilestone?.rewards.map((r) => r.id);
+        await strapi.service("api::reward.reward").reward({
+          userId: Number(refId),
+          rewardIds,
+          type: "referral",
+          contentId: referral.id.toString(),
+        });
+      }
 
       // find user details
       const user = await strapi
