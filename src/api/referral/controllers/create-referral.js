@@ -7,6 +7,28 @@ const controller = ({ strapi }) => ({
       if (!refId || !userId) {
         ctx.send({ error: "Please provide refId and userId" });
       }
+      const referConfig = await strapi.entityService.findOne(
+        "api::referral-config.referral-config",
+        1,
+        {
+          populate: {
+            milestones: {
+              populate: {
+                rewards: true,
+              },
+            },
+          },
+        }
+      );
+      const referralLimitPerMonth = referConfig.referralLimitPerMonth;
+      const referralsThisMonth = await strapi
+        .service("api::referral.referral")
+        .getReferralCountForMonth(userId);
+
+      const canMakeReferral = referralsThisMonth < referralLimitPerMonth;
+      if (!canMakeReferral) {
+        return ctx.send({ ok: true, message: "monthly refer limit over" }, 200);
+      }
       // create referral
       const referral = await strapi.query("api::referral.referral").create({
         data: {
