@@ -31,7 +31,7 @@ const controller = ({ strapi }) => ({
           },
         });
       const foundMilestone = milestones.find(
-        (m) => m.milestone ===  referralCount
+        (m) => m.milestone === referralCount
       );
 
       const referralsThisMonth = await strapi
@@ -51,6 +51,16 @@ const controller = ({ strapi }) => ({
         },
       });
 
+      // find user details
+      const referringUser = await strapi
+        .query("plugin::users-permissions.user")
+        .findOne({
+          where: { id: Number(userId) },
+          select: ["email"],
+        });
+
+      const referringUserEmail = referringUser.email;
+
       await strapi.query("api::achivement.achivement").create({
         data: {
           user: Number(refId),
@@ -58,7 +68,7 @@ const controller = ({ strapi }) => ({
           transectionAmount: CREDIT,
           transectionType: "dr",
           contentType: "referral",
-          label: `${CREDIT} credits earn by refer`,
+          label: `${referringUserEmail}`,
           publishedAt: new Date(),
         },
       });

@@ -11,8 +11,8 @@ module.exports = {
     },
     {
       method: "POST",
-      path: "/get-referral-credits",
-      handler: "get-referral-credits.getRefCredit",
+      path: "/premium-purchase-referral-credits",
+      handler: "premium-purchase-referral.getRefCredit",
       config: {
         policies: [],
         middlewares: [],

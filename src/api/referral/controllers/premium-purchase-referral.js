@@ -18,6 +18,14 @@ const controller = ({ strapi }) => ({
         });
 
       if (existingReferral) {
+        const referringUser = await strapi
+          .query("plugin::users-permissions.user")
+          .findOne({
+            where: { id: Number(userId) },
+            select: ["email"],
+          });
+
+        const referringUserEmail = referringUser.email;
         await strapi.query("api::achivement.achivement").create({
           data: {
             user: Number(existingReferral?.referred_user_id),
@@ -25,7 +33,7 @@ const controller = ({ strapi }) => ({
             transectionAmount: CREDIT,
             transectionType: "dr",
             contentType: "referral",
-            label: `${CREDIT} credits earn by refer`,
+            label: `${referringUserEmail} purchased premium by your referral`,
             publishedAt: new Date(),
           },
         });
