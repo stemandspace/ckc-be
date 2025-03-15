@@ -94,6 +94,16 @@
       "relation": "oneToOne",
       "target": "api::time-tracking-reward.time-tracking-reward",
       "mappedBy": "reward"
+    },
+    "system_promocode": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::promocode.promocode"
+    },
+    "marketplace_promocode": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::shopify-coupon.shopify-coupon"
     }
   }
 }

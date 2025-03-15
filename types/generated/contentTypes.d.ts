@@ -2961,6 +2961,16 @@ export interface ApiRewardReward extends Schema.CollectionType {
       'oneToOne',
       'api::time-tracking-reward.time-tracking-reward'
     >;
+    system_promocode: Attribute.Relation<
+      'api::reward.reward',
+      'oneToOne',
+      'api::promocode.promocode'
+    >;
+    marketplace_promocode: Attribute.Relation<
+      'api::reward.reward',
+      'oneToOne',
+      'api::shopify-coupon.shopify-coupon'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
