@@ -58,7 +58,7 @@ const controller = ({ strapi }) => ({
             },
           });
 
-        const plan = await strapi.db.query("api:plans.plans").findOne({
+        const plan = await strapi.db.query("api:plan.plan").findOne({
           where: {
             id: plan_id,
           },
