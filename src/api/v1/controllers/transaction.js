@@ -37,7 +37,7 @@ const controller = ({ strapi }) => ({
         },
       } = ctx.request.body.data;
 
-      if (description !== "CKC") {
+      if (description !== "STUDENT_APP_PAYMENT") {
         console.log("payment description not matched!");
         return ctx.send({ ok: true }, 200);
       }
