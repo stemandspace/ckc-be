@@ -19,7 +19,7 @@ module.exports = createCoreService("api::membership.membership", () => ({
     await strapi.query("api::membership.membership").create({
       data: {
         ...payload,
-        status: membership > 0 ? "inactive" : "active",
+        status: membership > 0 ? "in-active" : "active",
       },
     });
     return membership;
