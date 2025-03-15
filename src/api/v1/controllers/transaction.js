@@ -47,7 +47,7 @@ const controller = ({ strapi }) => ({
       if (type === "subscription") {
         // update & fetch transaction;
         const transaction = await strapi.db
-          .query("api::transactions.transaction")
+          .query("api::transaction.transaction")
           .update({
             where: {
               id: transaction_id,
