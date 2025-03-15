@@ -19,23 +19,26 @@
       "type": "string"
     },
     "discount": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "deductCoins": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "discountType": {
       "type": "enumeration",
       "enum": [
         "fixed_amount",
         "percentage"
-      ]
+      ],
+      "required": true,
+      "default": "fixed_amount"
     },
-    "shopify_coupons": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::shopify-coupon.shopify-coupon",
-      "mappedBy": "shopify_price_rule"
+    "usage_limit": {
+      "type": "integer",
+      "default": 1,
+      "required": true
     }
   }
 }

@@ -21,17 +21,17 @@ module.exports = createCoreService(
     async generateShopifyCoupon(shopifyCoupon) {
       const code = generateCouponCode();
       const fetchInstance = shopifyFetchInstance();
+      const priceRuleId = shopifyCoupon.shopify_price_rule.priceRuleId;
+      const selectedPriceRule = shopifyCoupon.shopify_price_rule;
+      const usage_limit = shopifyCoupon.shopify_price_rule.usage_limit;
 
       // POST Request
       const postData = {
         discount_code: {
           code,
-          usage_limit: 1,
+          usage_limit: Number(usage_limit),
         },
       };
-
-      const priceRuleId = shopifyCoupon.shopify_price_rule.priceRuleId;
-      const selectedPriceRule = shopifyCoupon.shopify_price_rule;
 
       const shopifyRes = await fetchInstance(
         `price_rules/${priceRuleId}/discount_codes.json`,
@@ -42,7 +42,7 @@ module.exports = createCoreService(
         where: { id: shopifyCoupon.id },
         data: {
           code,
-          oneTime: true,
+          oneTime: Number(usage_limit) === 1 ? true : false,
           start: new Date(Date.now()).toISOString(),
           title: `Coupon code for ₹${selectedPriceRule.discount} Discount`,
           discount: selectedPriceRule.discount.toString(),

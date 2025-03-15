@@ -24,6 +24,7 @@ module.exports = {
       models: [
         "api::notificationx.notificationx",
         "api::shopify-coupon.shopify-coupon",
+        "api::shopify-price-rule.shopify-price-rule",
       ],
       // Called after an entry has been created
       async afterCreate(event) {
@@ -35,6 +36,8 @@ module.exports = {
             .service("api::notificationx.notificationx")
             .notifyByMail(event?.result?.id);
         }
+
+        // create coupon code
         if (event.model.uid === "api::shopify-coupon.shopify-coupon") {
           const shopifyCoupon = await strapi
             .query("api::shopify-coupon.shopify-coupon")
@@ -49,6 +52,20 @@ module.exports = {
           await strapi
             .service("api::shopify-coupon.shopify-coupon")
             .generateShopifyCoupon(shopifyCoupon);
+        }
+
+        // create shopify price rule
+        if (event.model.uid === "api::shopify-price-rule.shopify-price-rule") {
+          const priceRule = await strapi
+            .query("api::shopify-price-rule.shopify-price-rule")
+            .findOne({
+              where: {
+                id: event.result.id,
+              },
+            });
+          await strapi
+            .service("api::shopify-price-rule.shopify-price-rule")
+            .generateShopifyPriceRule(priceRule);
         }
       },
     });
