@@ -28,7 +28,9 @@
         "badge",
         "avatar",
         "certificate",
-        "bannar"
+        "bannar",
+        "marketplacePromocode",
+        "systemPromocode"
       ]
     },
     "value": {

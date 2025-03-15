@@ -754,7 +754,9 @@ export interface ApiAchivementAchivement extends Schema.CollectionType {
         'coins',
         'bannar',
         'referral',
-        'credit'
+        'credit',
+        'marketplacePromocode',
+        'systemPromocode'
       ]
     >;
     label: Attribute.String;
@@ -2897,7 +2899,15 @@ export interface ApiRewardReward extends Schema.CollectionType {
     title: Attribute.String;
     description: Attribute.Text;
     type: Attribute.Enumeration<
-      ['coins', 'badge', 'avatar', 'certificate', 'bannar']
+      [
+        'coins',
+        'badge',
+        'avatar',
+        'certificate',
+        'bannar',
+        'marketplacePromocode',
+        'systemPromocode'
+      ]
     >;
     value: Attribute.String;
     content_id: Attribute.String;

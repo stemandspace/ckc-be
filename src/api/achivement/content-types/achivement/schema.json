@@ -42,7 +42,9 @@
         "coins",
         "bannar",
         "referral",
-        "credit"
+        "credit",
+        "marketplacePromocode",
+        "systemPromocode"
       ]
     },
     "label": {
