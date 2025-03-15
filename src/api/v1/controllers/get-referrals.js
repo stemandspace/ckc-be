@@ -29,16 +29,29 @@ const controller = ({ strapi }) => ({
           populate: {
             milestones: {
               populate: {
-                rewards: true,
+                rewards: {
+                  populate: {
+                    avatar: {
+                      populate: {
+                        media: true,
+                      },
+                    },
+                    badge: {
+                      populate: {
+                        media: true,
+                      },
+                    },
+                  },
+                },
               },
             },
           },
         }
       );
       const milestones = referConfig.milestones;
-      const sortedMilestones = milestones.sort(
-        (a, b) => b.milestone - a.milestone
-      ).reverse();
+      const sortedMilestones = milestones
+        .sort((a, b) => b.milestone - a.milestone)
+        .reverse();
       const referralLimitPerMonth = referConfig.referralLimitPerMonth;
 
       const referralsThisMonth = await strapi
@@ -51,7 +64,7 @@ const controller = ({ strapi }) => ({
         {
           referrals,
           totalReferrals: referrals?.length,
-          milestones:sortedMilestones,
+          milestones: sortedMilestones,
           referralLimitPerMonth,
           referralsThisMonth,
           canMakeReferral,
