@@ -21,14 +21,34 @@ module.exports = {
   bootstrap({ strapi }) {
     strapi.db.lifecycles.subscribe({
       // Watching NotificationX model : onCreate
-      models: ["api::notificationx.notificationx"],
+      models: [
+        "api::notificationx.notificationx",
+        "api::shopify-coupon.shopify-coupon",
+      ],
       // Called after an entry has been created
       async afterCreate(event) {
-        clg("event", event.result);
-        if (event?.result?.channel === "mail") {
+        if (
+          event?.result?.channel === "mail" &&
+          event.model.uid === "api::notificationx.notificationx"
+        ) {
           await strapi
             .service("api::notificationx.notificationx")
             .notifyByMail(event?.result?.id);
+        }
+        if (event.model.uid === "api::shopify-coupon.shopify-coupon") {
+          const shopifyCoupon = await strapi
+            .query("api::shopify-coupon.shopify-coupon")
+            .findOne({
+              where: {
+                id: event.result.id,
+              },
+              populate: {
+                shopify_price_rule: true,
+              },
+            });
+          await strapi
+            .service("api::shopify-coupon.shopify-coupon")
+            .generateShopifyCoupon(shopifyCoupon);
         }
       },
     });

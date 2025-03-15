@@ -3056,6 +3056,11 @@ export interface ApiShopifyCouponShopifyCoupon extends Schema.CollectionType {
     expires: Attribute.Boolean & Attribute.DefaultTo<false>;
     discount: Attribute.String;
     discountType: Attribute.Enumeration<['fixed_amount', 'percentage']>;
+    shopify_price_rule: Attribute.Relation<
+      'api::shopify-coupon.shopify-coupon',
+      'manyToOne',
+      'api::shopify-price-rule.shopify-price-rule'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3092,6 +3097,11 @@ export interface ApiShopifyPriceRuleShopifyPriceRule
     discount: Attribute.String;
     deductCoins: Attribute.String;
     discountType: Attribute.Enumeration<['fixed_amount', 'percentage']>;
+    shopify_coupons: Attribute.Relation<
+      'api::shopify-price-rule.shopify-price-rule',
+      'oneToMany',
+      'api::shopify-coupon.shopify-coupon'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
