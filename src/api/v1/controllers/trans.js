@@ -115,11 +115,17 @@ const controller = ({ strapi }) => ({
       const {
         payload: {
           payment: {
-            entity: { id, notes },
+            entity: { id, description, notes },
           },
         },
         // @ts-ignore
       } = ctx.request.body.data;
+
+      // validation for payment origin;
+      if (description !== "STUDENT_APP_PAYMENT") {
+        console.log("PAYMENT ORIGIN IS NOT VERIFIED");
+        return ctx.send({ ok: true }, 200);
+      }
 
       const isSubscription = notes.type === "subscription";
 
@@ -148,7 +154,7 @@ const controller = ({ strapi }) => ({
 
         await strapi
           .service("api::credit-account.credit-account")
-          .updateAccount(notes.user_id, "add", topup?.credits);
+          .addMembershipCredits(notes.user_id, topup?.credits);
       }
 
       // TRX.commit();
