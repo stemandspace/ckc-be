@@ -115,11 +115,17 @@ const controller = ({ strapi }) => ({
       const {
         payload: {
           payment: {
-            entity: { id, notes },
+            entity: { id, description, notes },
           },
         },
         // @ts-ignore
       } = ctx.request.body.data;
+
+      // validation for payment origin;
+      if (description !== "STUDENT_APP_PAYMENT") {
+        console.log("PAYMENT ORIGIN IS NOT VERIFIED");
+        return ctx.send({ ok: true }, 200);
+      }
 
       const isSubscription = notes.type === "subscription";
 
