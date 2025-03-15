@@ -37,7 +37,7 @@ const controller = ({ strapi }) => ({
         },
       } = ctx.request.body.data;
 
-      if (description !== "CKC") {
+      if (description !== "STUDENT_APP_PAYMENT") {
         console.log("payment description not matched!");
         return ctx.send({ ok: true }, 200);
       }
@@ -47,7 +47,7 @@ const controller = ({ strapi }) => ({
       if (type === "subscription") {
         // update & fetch transaction;
         const transaction = await strapi.db
-          .query("api::transactions.transaction")
+          .query("api::transaction.transaction")
           .update({
             where: {
               id: transaction_id,
@@ -58,7 +58,7 @@ const controller = ({ strapi }) => ({
             },
           });
 
-        const plan = await strapi.db.query("api:plans.plans").findOne({
+        const plan = await strapi.db.query("api:plan.plan").findOne({
           where: {
             id: plan_id,
           },
