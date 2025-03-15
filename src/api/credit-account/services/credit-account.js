@@ -49,6 +49,21 @@ module.exports = createCoreService(
       }
     },
 
+    // here we directly update to user account
+    addMembershipCredits: async (userId, value = 0) => {
+      const account = await strapi
+        .query("plugin::users-permissions.user")
+        .findOne({ where: { id: userId } });
+
+      const updatedCoins = parseInt(account.credits) + value;
+      await strapi.query("plugin::users-permissions.user").update({
+        where: { id: userId },
+        data: {
+          credits: updatedCoins,
+        },
+      });
+    },
+
     // just fetch the balance if account is not available then return 0
     fetchCreditBalance: async (userId) => {
       const account = await strapi

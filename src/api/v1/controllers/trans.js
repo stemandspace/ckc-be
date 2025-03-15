@@ -154,7 +154,7 @@ const controller = ({ strapi }) => ({
 
         await strapi
           .service("api::credit-account.credit-account")
-          .updateAccount(notes.user_id, "add", topup?.credits);
+          .addMembershipCredits(notes.user_id, topup?.credits);
       }
 
       // TRX.commit();
