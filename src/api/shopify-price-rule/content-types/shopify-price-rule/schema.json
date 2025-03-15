@@ -30,6 +30,12 @@
         "fixed_amount",
         "percentage"
       ]
+    },
+    "shopify_coupons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::shopify-coupon.shopify-coupon",
+      "mappedBy": "shopify_price_rule"
     }
   }
 }

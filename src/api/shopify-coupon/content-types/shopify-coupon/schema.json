@@ -48,6 +48,12 @@
         "fixed_amount",
         "percentage"
       ]
+    },
+    "shopify_price_rule": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::shopify-price-rule.shopify-price-rule",
+      "inversedBy": "shopify_coupons"
     }
   }
 }
