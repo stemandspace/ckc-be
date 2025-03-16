@@ -48,6 +48,7 @@ module.exports = createCoreService(
           discount: selectedPriceRule.discount.toString(),
           discountType: selectedPriceRule.discountType,
           configuration: JSON.stringify(shopifyRes),
+          publishedAt: new Date(),
         },
       });
     },
