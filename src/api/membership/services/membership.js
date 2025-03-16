@@ -32,6 +32,11 @@ module.exports = createCoreService("api::membership.membership", () => ({
           user: userId,
           status: "active",
         },
+        populate: {
+          plan: {
+            select: ["title"],
+          },
+        },
       });
     return membership;
   },
