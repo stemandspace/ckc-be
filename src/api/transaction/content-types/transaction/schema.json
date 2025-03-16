@@ -56,6 +56,12 @@
       "relation": "oneToOne",
       "target": "api::membership.membership",
       "mappedBy": "transaction"
+    },
+    "promocode_usage": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::promocode-usage.promocode-usage",
+      "mappedBy": "transaction"
     }
   }
 }

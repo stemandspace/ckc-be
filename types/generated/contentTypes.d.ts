@@ -2522,17 +2522,28 @@ export interface ApiPromocodePromocode extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    promocode: Attribute.String;
-    from: Attribute.Date;
-    to: Attribute.Date;
+    code: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 8;
+        maxLength: 10;
+      }>;
+    discount_type: Attribute.Enumeration<['percentage', 'fixed']>;
+    discount_value: Attribute.String;
+    valid_from: Attribute.Date;
+    valid_until: Attribute.Date;
+    min_purchase_amount: Attribute.BigInteger &
+      Attribute.SetMinMax<{
+        min: '1';
+      }>;
+    max_discount: Attribute.BigInteger;
+    is_active: Attribute.Boolean & Attribute.DefaultTo<false>;
     users: Attribute.Relation<
       'api::promocode.promocode',
       'oneToMany',
       'plugin::users-permissions.user'
     >;
-    type: Attribute.Enumeration<['flat', 'percentage']>;
-    value: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2557,13 +2568,27 @@ export interface ApiPromocodeUsagePromocodeUsage extends Schema.CollectionType {
     singularName: 'promocode-usage';
     pluralName: 'promocode-usages';
     displayName: 'promocode_usage';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    promocode: Attribute.String;
-    userId: Attribute.Integer;
+    user: Attribute.Relation<
+      'api::promocode-usage.promocode-usage',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    promocode: Attribute.Relation<
+      'api::promocode-usage.promocode-usage',
+      'oneToOne',
+      'api::promocode.promocode'
+    >;
+    transaction: Attribute.Relation<
+      'api::promocode-usage.promocode-usage',
+      'oneToOne',
+      'api::transaction.transaction'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3467,6 +3492,11 @@ export interface ApiTransactionTransaction extends Schema.CollectionType {
       'api::transaction.transaction',
       'oneToOne',
       'api::membership.membership'
+    >;
+    promocode_usage: Attribute.Relation<
+      'api::transaction.transaction',
+      'oneToOne',
+      'api::promocode-usage.promocode-usage'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

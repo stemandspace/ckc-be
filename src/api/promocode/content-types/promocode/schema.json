@@ -12,32 +12,44 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 8,
+      "maxLength": 10
+    },
+    "discount_type": {
+      "type": "enumeration",
+      "enum": [
+        "percentage",
+        "fixed"
+      ]
+    },
+    "discount_value": {
       "type": "string"
     },
-    "promocode": {
-      "type": "string"
-    },
-    "from": {
+    "valid_from": {
       "type": "date"
     },
-    "to": {
+    "valid_until": {
       "type": "date"
+    },
+    "min_purchase_amount": {
+      "type": "biginteger",
+      "min": "1"
+    },
+    "max_discount": {
+      "type": "biginteger"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": false
     },
     "users": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "plugin::users-permissions.user"
-    },
-    "type": {
-      "type": "enumeration",
-      "enum": [
-        "flat",
-        "percentage"
-      ]
-    },
-    "value": {
-      "type": "integer"
     }
   }
 }

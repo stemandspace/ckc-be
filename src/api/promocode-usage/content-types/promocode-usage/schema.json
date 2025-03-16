@@ -4,18 +4,29 @@
   "info": {
     "singularName": "promocode-usage",
     "pluralName": "promocode-usages",
-    "displayName": "promocode_usage"
+    "displayName": "promocode_usage",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "promocode": {
-      "type": "string"
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     },
-    "userId": {
-      "type": "integer"
+    "promocode": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::promocode.promocode"
+    },
+    "transaction": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::transaction.transaction",
+      "inversedBy": "promocode_usage"
     }
   }
 }
