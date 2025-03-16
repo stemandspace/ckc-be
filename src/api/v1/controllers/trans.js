@@ -28,8 +28,10 @@ const controller = ({ strapi }) => ({
   async createRzOrder(ctx) {
     // const TRX = await strapi.db.connection.transaction();
     try {
-      // @ts-ignore
-      const { type, planId, topupId, userId } = ctx.request.body.data;
+      let promocode_res = null;
+      const { type, planId, topupId, userId, promocode } =
+        // @ts-ignore
+        ctx.request.body.data;
 
       // @ts-ignore
       clg("Request body:", ctx.request.body.data);
@@ -61,10 +63,26 @@ const controller = ({ strapi }) => ({
 
       const price = isSubscription ? data.price : data.INR;
 
+      promocode_res = await strapi
+        .service("api::promocode.promocode")
+        .applicable(promocode, userId, price);
+
+      const promocode_applicable = promocode_res?.applicable;
+
+      clg("Promocode:", promocode_res);
+
+      if (promocode && !promocode_applicable) {
+        return ctx.badRequest(promocode_res.reason);
+      }
+
       const transaction_payload = {
         label: isSubscription ? "Subscription" : "Credit Purchase",
         type,
         amount: price,
+        discounted: promocode_applicable,
+        discounted_price: promocode_applicable
+          ? promocode_res?.discounted_price
+          : 0,
         currency: "INR",
         status: "created",
         user_id: userId,
@@ -79,9 +97,25 @@ const controller = ({ strapi }) => ({
 
       clg("Transaction:", transaction);
 
+      if (promocode && promocode_applicable) {
+        await strapi
+          .service("api::promocode.promocode")
+          .attach(userId, promocode_res?.data?.id, transaction?.id);
+      }
+
+      const managed_price =
+        promocode_applicable && transaction?.discounted
+          ? transaction?.discounted_price
+          : price; // Ensured Razorpay paise format
+
+      // remove unwanted fields
+      delete transaction.createdAt;
+      delete transaction.updatedAt;
+      delete transaction.publishedAt;
+
       const rz_order = await rz.orders.create({
+        amount: managed_price * 100,
         currency: "INR",
-        amount: price * 100, // Ensured Razorpay paise format
         notes: transaction,
         receipt: `receipt_fsa_${transaction.id}`,
       });

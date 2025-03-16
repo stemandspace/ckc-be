@@ -1,7 +1,7 @@
 module.exports = {
   routes: [
     {
-      method: "POST",
+      method: "GET",
       path: "/v1/logger",
       handler: "logger.Logger",
       config: {

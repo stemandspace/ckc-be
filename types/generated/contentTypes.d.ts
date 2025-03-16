@@ -3499,6 +3499,8 @@ export interface ApiTransactionTransaction extends Schema.CollectionType {
       'oneToOne',
       'api::promocode-usage.promocode-usage'
     >;
+    discount: Attribute.Boolean & Attribute.DefaultTo<false>;
+    discounted_price: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

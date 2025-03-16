@@ -62,6 +62,14 @@
       "relation": "oneToOne",
       "target": "api::promocode-usage.promocode-usage",
       "mappedBy": "transaction"
+    },
+    "discount": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "discounted_price": {
+      "type": "biginteger"
     }
   }
 }
