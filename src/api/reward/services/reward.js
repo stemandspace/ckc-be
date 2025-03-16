@@ -9,7 +9,7 @@ const { createCoreService } = require("@strapi/strapi").factories;
 
 module.exports = createCoreService("api::reward.reward", () => ({
   // reward to user achievement;
-  reward: async ({ userId, rewardIds = [], type, contentId }) => {
+  reward: async ({ userId, rewardIds = [], type, contentId = null }) => {
     try {
       const availableRewardId = await strapi.db
         .query("api::achivement.achivement")
@@ -35,6 +35,7 @@ module.exports = createCoreService("api::reward.reward", () => ({
         return !flatterRewardId.includes(rewardId);
       });
       let totalCoins = 0;
+      let cId = contentId;
       const promises = unavailableRewardIds.map(async (rewardId) => {
         const reward = await strapi.db.query("api::reward.reward").findOne({
           where: {
@@ -46,7 +47,21 @@ module.exports = createCoreService("api::reward.reward", () => ({
                 shopify_price_rule: true,
               },
             },
-            system_promocode: true,
+            system_promocode: {
+              select: ["id"],
+            },
+            badge: {
+              select: ["id"],
+            },
+            avatar: {
+              select: ["id"],
+            },
+            certificate: {
+              select: ["id"],
+            },
+            bannar: {
+              select: ["id"],
+            },
           },
         });
         if (reward.type === "coins") {
@@ -60,12 +75,15 @@ module.exports = createCoreService("api::reward.reward", () => ({
           const priceRuleId =
             reward?.marketplace_promocode?.shopify_price_rule?.id;
           if (priceRuleId) {
-            await strapi.db.query("api::shopify-coupon.shopify-coupon").create({
-              data: {
-                user: Number(userId),
-                shopify_price_rule: Number(priceRuleId),
-              },
-            });
+            const coupon = await strapi.db
+              .query("api::shopify-coupon.shopify-coupon")
+              .create({
+                data: {
+                  user: Number(userId),
+                  shopify_price_rule: Number(priceRuleId),
+                },
+              });
+            cId = coupon.id.toString();
           }
         }
         if (reward.type === "systemPromocode") {
@@ -80,6 +98,31 @@ module.exports = createCoreService("api::reward.reward", () => ({
               },
             });
           }
+          cId = systemPromocode.id.toString();
+        }
+        if (reward.type === "badge") {
+          const badgeId = reward?.badge?.id;
+          if (badgeId) {
+            cId = badgeId.toString();
+          }
+        }
+        if (reward.type === "avatar") {
+          const avatarId = reward?.avatar?.id;
+          if (avatarId) {
+            cId = avatarId.toString();
+          }
+        }
+        if (reward.type === "certificate") {
+          const certificateId = reward?.certificate?.id;
+          if (certificateId) {
+            cId = certificateId.toString();
+          }
+        }
+        if (reward.type === "bannar") {
+          const bannarId = reward?.bannar?.id;
+          if (bannarId) {
+            cId = bannarId.toString();
+          }
         }
         const payload = {
           user: Number(userId),
@@ -89,7 +132,7 @@ module.exports = createCoreService("api::reward.reward", () => ({
           transectionType: "dr",
           label: "Challenge Reward",
           publishedAt: new Date(),
-          contentId: contentId ? contentId : null,
+          contentId: cId ? cId : null,
         };
 
         const achievement = await strapi.db
