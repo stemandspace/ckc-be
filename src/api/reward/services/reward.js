@@ -40,9 +40,32 @@ module.exports = createCoreService("api::reward.reward", () => ({
           where: {
             id: rewardId,
           },
+          populate: {
+            marketplace_promocode: {
+              populate: {
+                shopify_price_rule: true,
+              },
+            },
+          },
         });
         if (reward.type === "coins") {
           totalCoins += Number(reward.value);
+          await strapi.service("api::reward.reward").updateCoins({
+            userId,
+            coins: totalCoins,
+          });
+        }
+        if (reward.type === "marketplacePromocode") {
+          const priceRuleId =
+            reward?.marketplace_promocode?.shopify_price_rule?.id;
+          if (priceRuleId) {
+            await strapi.db.query("api::shopify-coupon.shopify-coupon").create({
+              data: {
+                user: Number(userId),
+                shopify_price_rule: Number(priceRuleId),
+              },
+            });
+          }
         }
         const payload = {
           user: Number(userId),
@@ -54,16 +77,13 @@ module.exports = createCoreService("api::reward.reward", () => ({
           publishedAt: new Date(),
           contentId: contentId ? contentId : null,
         };
-        await strapi.service("api::reward.reward").updateCoins({
-          userId,
-          coins: totalCoins,
-        });
 
         const achievement = await strapi.db
           .query("api::achivement.achivement")
           .create({
             data: { ...payload },
           });
+
         return { achievement, reward, user };
       });
       const res = await Promise.all(promises);

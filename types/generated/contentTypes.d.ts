@@ -19,15 +19,15 @@ export interface AdminPermission extends Schema.CollectionType {
   };
   attributes: {
     action: Attribute.String &
-    Attribute.Required &
-    Attribute.SetMinMaxLength<{
-      minLength: 1;
-    }>;
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     actionParameters: Attribute.JSON & Attribute.DefaultTo<{}>;
     subject: Attribute.String &
-    Attribute.SetMinMaxLength<{
-      minLength: 1;
-    }>;
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     properties: Attribute.JSON & Attribute.DefaultTo<{}>;
     conditions: Attribute.JSON & Attribute.DefaultTo<[]>;
     role: Attribute.Relation<'admin::permission', 'manyToOne', 'admin::role'>;
@@ -38,13 +38,13 @@ export interface AdminPermission extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'admin::permission',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -67,41 +67,41 @@ export interface AdminUser extends Schema.CollectionType {
   };
   attributes: {
     firstname: Attribute.String &
-    Attribute.SetMinMaxLength<{
-      minLength: 1;
-    }>;
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     lastname: Attribute.String &
-    Attribute.SetMinMaxLength<{
-      minLength: 1;
-    }>;
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     username: Attribute.String;
     email: Attribute.Email &
-    Attribute.Required &
-    Attribute.Private &
-    Attribute.Unique &
-    Attribute.SetMinMaxLength<{
-      minLength: 6;
-    }>;
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 6;
+      }>;
     password: Attribute.Password &
-    Attribute.Private &
-    Attribute.SetMinMaxLength<{
-      minLength: 6;
-    }>;
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        minLength: 6;
+      }>;
     resetPasswordToken: Attribute.String & Attribute.Private;
     registrationToken: Attribute.String & Attribute.Private;
     isActive: Attribute.Boolean &
-    Attribute.Private &
-    Attribute.DefaultTo<false>;
+      Attribute.Private &
+      Attribute.DefaultTo<false>;
     roles: Attribute.Relation<'admin::user', 'manyToMany', 'admin::role'> &
-    Attribute.Private;
+      Attribute.Private;
     blocked: Attribute.Boolean & Attribute.Private & Attribute.DefaultTo<false>;
     preferedLanguage: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<'admin::user', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -124,17 +124,17 @@ export interface AdminRole extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
-    Attribute.Required &
-    Attribute.Unique &
-    Attribute.SetMinMaxLength<{
-      minLength: 1;
-    }>;
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     code: Attribute.String &
-    Attribute.Required &
-    Attribute.Unique &
-    Attribute.SetMinMaxLength<{
-      minLength: 1;
-    }>;
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     description: Attribute.String;
     users: Attribute.Relation<'admin::role', 'manyToMany', 'admin::user'>;
     permissions: Attribute.Relation<
@@ -145,9 +145,9 @@ export interface AdminRole extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<'admin::role', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -170,24 +170,24 @@ export interface AdminApiToken extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
-    Attribute.Required &
-    Attribute.Unique &
-    Attribute.SetMinMaxLength<{
-      minLength: 1;
-    }>;
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     description: Attribute.String &
-    Attribute.SetMinMaxLength<{
-      minLength: 1;
-    }> &
-    Attribute.DefaultTo<''>;
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }> &
+      Attribute.DefaultTo<''>;
     type: Attribute.Enumeration<['read-only', 'full-access', 'custom']> &
-    Attribute.Required &
-    Attribute.DefaultTo<'read-only'>;
+      Attribute.Required &
+      Attribute.DefaultTo<'read-only'>;
     accessKey: Attribute.String &
-    Attribute.Required &
-    Attribute.SetMinMaxLength<{
-      minLength: 1;
-    }>;
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     lastUsedAt: Attribute.DateTime;
     permissions: Attribute.Relation<
       'admin::api-token',
@@ -203,13 +203,13 @@ export interface AdminApiToken extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'admin::api-token',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -232,10 +232,10 @@ export interface AdminApiTokenPermission extends Schema.CollectionType {
   };
   attributes: {
     action: Attribute.String &
-    Attribute.Required &
-    Attribute.SetMinMaxLength<{
-      minLength: 1;
-    }>;
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     token: Attribute.Relation<
       'admin::api-token-permission',
       'manyToOne',
@@ -248,13 +248,13 @@ export interface AdminApiTokenPermission extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'admin::api-token-permission',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -277,21 +277,21 @@ export interface AdminTransferToken extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
-    Attribute.Required &
-    Attribute.Unique &
-    Attribute.SetMinMaxLength<{
-      minLength: 1;
-    }>;
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     description: Attribute.String &
-    Attribute.SetMinMaxLength<{
-      minLength: 1;
-    }> &
-    Attribute.DefaultTo<''>;
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }> &
+      Attribute.DefaultTo<''>;
     accessKey: Attribute.String &
-    Attribute.Required &
-    Attribute.SetMinMaxLength<{
-      minLength: 1;
-    }>;
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     lastUsedAt: Attribute.DateTime;
     permissions: Attribute.Relation<
       'admin::transfer-token',
@@ -307,13 +307,13 @@ export interface AdminTransferToken extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'admin::transfer-token',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -336,10 +336,10 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
   attributes: {
     action: Attribute.String &
-    Attribute.Required &
-    Attribute.SetMinMaxLength<{
-      minLength: 1;
-    }>;
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     token: Attribute.Relation<
       'admin::transfer-token-permission',
       'manyToOne',
@@ -352,13 +352,13 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'admin::transfer-token-permission',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -399,13 +399,13 @@ export interface PluginUploadFile extends Schema.CollectionType {
       'manyToOne',
       'plugin::upload.folder'
     > &
-    Attribute.Private;
+      Attribute.Private;
     folderPath: Attribute.String &
-    Attribute.Required &
-    Attribute.Private &
-    Attribute.SetMinMax<{
-      min: 1;
-    }>;
+      Attribute.Required &
+      Attribute.Private &
+      Attribute.SetMinMax<{
+        min: 1;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -413,13 +413,13 @@ export interface PluginUploadFile extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::upload.file',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -440,10 +440,10 @@ export interface PluginUploadFolder extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
-    Attribute.Required &
-    Attribute.SetMinMax<{
-      min: 1;
-    }>;
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 1;
+      }>;
     pathId: Attribute.Integer & Attribute.Required & Attribute.Unique;
     parent: Attribute.Relation<
       'plugin::upload.folder',
@@ -461,10 +461,10 @@ export interface PluginUploadFolder extends Schema.CollectionType {
       'plugin::upload.file'
     >;
     path: Attribute.String &
-    Attribute.Required &
-    Attribute.SetMinMax<{
-      min: 1;
-    }>;
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 1;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -472,13 +472,13 @@ export interface PluginUploadFolder extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::upload.folder',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -504,10 +504,10 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
-    Attribute.SetMinMax<{
-      min: 1;
-      max: 50;
-    }>;
+      Attribute.SetMinMax<{
+        min: 1;
+        max: 50;
+      }>;
     code: Attribute.String & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -516,13 +516,13 @@ export interface PluginI18NLocale extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::i18n.locale',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -558,13 +558,13 @@ export interface PluginUsersPermissionsPermission
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::users-permissions.permission',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -587,10 +587,10 @@ export interface PluginUsersPermissionsRole extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
-    Attribute.Required &
-    Attribute.SetMinMaxLength<{
-      minLength: 3;
-    }>;
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }>;
     description: Attribute.String;
     type: Attribute.String & Attribute.Unique;
     permissions: Attribute.Relation<
@@ -610,13 +610,13 @@ export interface PluginUsersPermissionsRole extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::users-permissions.role',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -634,22 +634,22 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   attributes: {
     username: Attribute.String &
-    Attribute.Required &
-    Attribute.Unique &
-    Attribute.SetMinMaxLength<{
-      minLength: 3;
-    }>;
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }>;
     email: Attribute.Email &
-    Attribute.Required &
-    Attribute.SetMinMaxLength<{
-      minLength: 6;
-    }>;
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 6;
+      }>;
     provider: Attribute.String;
     password: Attribute.Password &
-    Attribute.Private &
-    Attribute.SetMinMaxLength<{
-      minLength: 6;
-    }>;
+      Attribute.Private &
+      Attribute.SetMinMaxLength<{
+        minLength: 6;
+      }>;
     resetPasswordToken: Attribute.String & Attribute.Private;
     confirmationToken: Attribute.String & Attribute.Private;
     confirmed: Attribute.Boolean & Attribute.DefaultTo<false>;
@@ -676,10 +676,10 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     private: Attribute.Boolean & Attribute.DefaultTo<false>;
     premium: Attribute.BigInteger;
     credits: Attribute.BigInteger &
-    Attribute.SetMinMax<{
-      min: '0';
-    }> &
-    Attribute.DefaultTo<'15'>;
+      Attribute.SetMinMax<{
+        min: '0';
+      }> &
+      Attribute.DefaultTo<'15'>;
     mobile: Attribute.BigInteger;
     level: Attribute.BigInteger;
     purchases: Attribute.Relation<
@@ -688,10 +688,10 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'api::purchase.purchase'
     >;
     coins: Attribute.BigInteger &
-    Attribute.SetMinMax<{
-      min: '0';
-    }> &
-    Attribute.DefaultTo<'0'>;
+      Attribute.SetMinMax<{
+        min: '0';
+      }> &
+      Attribute.DefaultTo<'0'>;
     achivements: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
@@ -699,7 +699,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     >;
     setup: Attribute.Boolean & Attribute.DefaultTo<false>;
     type: Attribute.Enumeration<['free', 'basic', 'premium']> &
-    Attribute.DefaultTo<'free'>;
+      Attribute.DefaultTo<'free'>;
     country: Attribute.String;
     state: Attribute.String;
     city: Attribute.String;
@@ -714,13 +714,13 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -769,13 +769,13 @@ export interface ApiAchivementAchivement extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::achivement.achivement',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -808,13 +808,13 @@ export interface ApiActivityRequestActivityRequest
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::activity-request.activity-request',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -840,13 +840,13 @@ export interface ApiAvatarAvatar extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::avatar.avatar',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -873,13 +873,13 @@ export interface ApiBadgeBadge extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::badge.badge',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -905,13 +905,13 @@ export interface ApiBannarBannar extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::bannar.bannar',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -939,13 +939,13 @@ export interface ApiBannerBanner extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::banner.banner',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -971,13 +971,13 @@ export interface ApiCarouselCarousel extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::carousel.carousel',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1004,13 +1004,13 @@ export interface ApiCertificateCertificate extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::certificate.certificate',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1036,13 +1036,13 @@ export interface ApiCertificationCertification extends Schema.SingleType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::certification.certification',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1079,13 +1079,13 @@ export interface ApiCertificationEventCertificationEvent
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::certification-event.certification-event',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1113,13 +1113,13 @@ export interface ApiCertificationEventModuleCertificationEventModule
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::certification-event-module.certification-event-module',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1165,13 +1165,13 @@ export interface ApiChallengeChallenge extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::challenge.challenge',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1205,13 +1205,13 @@ export interface ApiChallengeRequestChallengeRequest
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::challenge-request.challenge-request',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1249,13 +1249,13 @@ export interface ApiComicComic extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::comic.comic',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1289,13 +1289,13 @@ export interface ApiComicBookComicBook extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::comic-book.comic-book',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1319,13 +1319,13 @@ export interface ApiControlControl extends Schema.SingleType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::control.control',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1343,10 +1343,10 @@ export interface ApiCourseCourse extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     price: Attribute.Decimal &
-    Attribute.Required &
-    Attribute.SetMinMax<{
-      min: 0;
-    }>;
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
     premium: Attribute.Boolean & Attribute.DefaultTo<false>;
     thumbnail: Attribute.Media & Attribute.Required;
     trailer: Attribute.Text;
@@ -1377,13 +1377,13 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::course.course',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1403,7 +1403,7 @@ export interface ApiCreditAccountCreditAccount extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     > &
-    Attribute.Unique;
+      Attribute.Unique;
     credits: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1413,13 +1413,13 @@ export interface ApiCreditAccountCreditAccount extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::credit-account.credit-account',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1454,13 +1454,13 @@ export interface ApiDailyQuizDailyQuiz extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::daily-quiz.daily-quiz',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1489,13 +1489,13 @@ export interface ApiDailyQuizAttempDailyQuizAttemp
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::daily-quiz-attemp.daily-quiz-attemp',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1524,13 +1524,13 @@ export interface ApiDailyQuizScoreDailyQuizScore extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::daily-quiz-score.daily-quiz-score',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1558,13 +1558,13 @@ export interface ApiDailySpinDailySpin extends Schema.SingleType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::daily-spin.daily-spin',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1611,13 +1611,13 @@ export interface ApiDisconveryJarConfigDisconveryJarConfig
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::disconvery-jar-config.disconvery-jar-config',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1663,13 +1663,13 @@ export interface ApiDiscoveryJarAnswerDiscoveryJarAnswer
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::discovery-jar-answer.discovery-jar-answer',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1711,13 +1711,13 @@ export interface ApiDiscoveryJarQuestionDiscoveryJarQuestion
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::discovery-jar-question.discovery-jar-question',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1751,13 +1751,13 @@ export interface ApiErrorLogErrorLog extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::error-log.error-log',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1782,13 +1782,13 @@ export interface ApiErrorTypeErrorType extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::error-type.error-type',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1815,13 +1815,13 @@ export interface ApiHardProductHardProduct extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::hard-product.hard-product',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1853,13 +1853,13 @@ export interface ApiHowItWorkHowItWork extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::how-it-work.how-it-work',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1882,9 +1882,9 @@ export interface ApiLikeLike extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::like.like', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<'api::like.like', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1927,9 +1927,9 @@ export interface ApiLiveLive extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::live.live', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<'api::live.live', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1961,13 +1961,13 @@ export interface ApiLiveSpeakerLiveSpeaker extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::live-speaker.live-speaker',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -1995,13 +1995,13 @@ export interface ApiMailTemplateMailTemplate extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::mail-template.mail-template',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2026,10 +2026,10 @@ export interface ApiMembershipMembership extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     > &
-    Attribute.Unique;
+      Attribute.Unique;
     status: Attribute.Enumeration<['expired', 'active', 'in-active']> &
-    Attribute.Unique &
-    Attribute.DefaultTo<'in-active'>;
+      Attribute.Unique &
+      Attribute.DefaultTo<'in-active'>;
     start_date: Attribute.Date;
     end_date: Attribute.Date;
     transaction: Attribute.Relation<
@@ -2045,13 +2045,13 @@ export interface ApiMembershipMembership extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::membership.membership',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2085,9 +2085,9 @@ export interface ApiNacNac extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::nac.nac', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<'api::nac.nac', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2125,13 +2125,13 @@ export interface ApiNacRegistrationNacRegistration
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::nac-registration.nac-registration',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2166,13 +2166,13 @@ export interface ApiNacResultNacResult extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::nac-result.nac-result',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2199,13 +2199,13 @@ export interface ApiNewsletterSubscriberNewsletterSubscriber
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::newsletter-subscriber.newsletter-subscriber',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2237,13 +2237,13 @@ export interface ApiNotificationNotification extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::notification.notification',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2276,7 +2276,7 @@ export interface ApiNotificationxNotificationx extends Schema.CollectionType {
     status: Attribute.Enumeration<
       ['pending', 'sent', 'bounce', 'read', 'unread']
     > &
-    Attribute.DefaultTo<'pending'>;
+      Attribute.DefaultTo<'pending'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2285,13 +2285,13 @@ export interface ApiNotificationxNotificationx extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::notificationx.notificationx',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2317,9 +2317,9 @@ export interface ApiPlanPlan extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::plan.plan', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<'api::plan.plan', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2366,13 +2366,13 @@ export interface ApiPodcastPodcast extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::podcast.podcast',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2403,13 +2403,13 @@ export interface ApiPodcastCategoryPodcastCategory
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::podcast-category.podcast-category',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2444,13 +2444,13 @@ export interface ApiPodcastUploadPodcastUpload extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::podcast-upload.podcast-upload',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2467,21 +2467,21 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String &
-    Attribute.Required &
-    Attribute.SetMinMaxLength<{
-      maxLength: 15;
-    }>;
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 15;
+      }>;
     coins: Attribute.Decimal &
-    Attribute.Required &
-    Attribute.SetMinMax<{
-      min: 0;
-    }>;
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 0;
+      }>;
     type: Attribute.Enumeration<['avatar', 'banner']> &
-    Attribute.Required &
-    Attribute.DefaultTo<'avatar'>;
+      Attribute.Required &
+      Attribute.DefaultTo<'avatar'>;
     premium: Attribute.Boolean &
-    Attribute.Required &
-    Attribute.DefaultTo<false>;
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     avatar: Attribute.Relation<
       'api::product.product',
       'oneToOne',
@@ -2500,13 +2500,13 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product.product',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2523,20 +2523,20 @@ export interface ApiPromocodePromocode extends Schema.CollectionType {
   };
   attributes: {
     code: Attribute.String &
-    Attribute.Required &
-    Attribute.Unique &
-    Attribute.SetMinMaxLength<{
-      minLength: 8;
-      maxLength: 10;
-    }>;
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 8;
+        maxLength: 10;
+      }>;
     discount_type: Attribute.Enumeration<['percentage', 'fixed']>;
     discount_value: Attribute.String;
     valid_from: Attribute.Date;
     valid_until: Attribute.Date;
     min_purchase_amount: Attribute.BigInteger &
-    Attribute.SetMinMax<{
-      min: '1';
-    }>;
+      Attribute.SetMinMax<{
+        min: '1';
+      }>;
     max_discount: Attribute.BigInteger;
     is_active: Attribute.Boolean & Attribute.DefaultTo<false>;
     users: Attribute.Relation<
@@ -2552,13 +2552,13 @@ export interface ApiPromocodePromocode extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::promocode.promocode',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2597,13 +2597,13 @@ export interface ApiPromocodeUsagePromocodeUsage extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::promocode-usage.promocode-usage',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2652,13 +2652,13 @@ export interface ApiPurchasePurchase extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::purchase.purchase',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2688,9 +2688,9 @@ export interface ApiQuizQuiz extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::quiz.quiz', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<'api::quiz.quiz', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2721,13 +2721,13 @@ export interface ApiQuizConfigQuizConfig extends Schema.SingleType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::quiz-config.quiz-config',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2756,13 +2756,13 @@ export interface ApiRealPurchaseRealPurchase extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::real-purchase.real-purchase',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2782,7 +2782,7 @@ export interface ApiReferralReferral extends Schema.CollectionType {
     referred_user_id: Attribute.String;
     joining_reward: Attribute.Boolean & Attribute.DefaultTo<false>;
     user_tier: Attribute.Enumeration<['free', 'premium']> &
-    Attribute.DefaultTo<'free'>;
+      Attribute.DefaultTo<'free'>;
     premium_tier_reward: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -2792,13 +2792,13 @@ export interface ApiReferralReferral extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::referral.referral',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2825,13 +2825,13 @@ export interface ApiReferralConfigReferralConfig extends Schema.SingleType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::referral-config.referral-config',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2857,13 +2857,13 @@ export interface ApiReferralRewardReferralReward extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::referral-reward.referral-reward',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -2898,13 +2898,13 @@ export interface ApiReminderReminder extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::reminder.reminder',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3004,13 +3004,13 @@ export interface ApiRewardReward extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::reward.reward',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3045,13 +3045,13 @@ export interface ApiSchoolRegistrationSchoolRegistration
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::school-registration.school-registration',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3095,13 +3095,13 @@ export interface ApiShopifyCouponShopifyCoupon extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::shopify-coupon.shopify-coupon',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3123,11 +3123,11 @@ export interface ApiShopifyPriceRuleShopifyPriceRule
     discount: Attribute.String & Attribute.Required;
     deductCoins: Attribute.String & Attribute.Required;
     discountType: Attribute.Enumeration<['fixed_amount', 'percentage']> &
-    Attribute.Required &
-    Attribute.DefaultTo<'fixed_amount'>;
+      Attribute.Required &
+      Attribute.DefaultTo<'fixed_amount'>;
     usage_limit: Attribute.Integer &
-    Attribute.Required &
-    Attribute.DefaultTo<1>;
+      Attribute.Required &
+      Attribute.DefaultTo<1>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3136,13 +3136,13 @@ export interface ApiShopifyPriceRuleShopifyPriceRule
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::shopify-price-rule.shopify-price-rule',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3163,9 +3163,9 @@ export interface ApiSpinSpin extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::spin.spin', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<'api::spin.spin', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3192,13 +3192,13 @@ export interface ApiStackStack extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::stack.stack',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3231,13 +3231,13 @@ export interface ApiSubscriptionSubscription extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::subscription.subscription',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3270,13 +3270,13 @@ export interface ApiTimeTrackingRewardTimeTrackingReward
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::time-tracking-reward.time-tracking-reward',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3310,13 +3310,13 @@ export interface ApiTipVideoTipVideo extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::tip-video.tip-video',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3346,13 +3346,13 @@ export interface ApiTipVideoCategoryTipVideoCategory
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::tip-video-category.tip-video-category',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3385,13 +3385,13 @@ export interface ApiTitbitTitbit extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::titbit.titbit',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3421,13 +3421,13 @@ export interface ApiTitbitsCategoryTitbitsCategory
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::titbits-category.titbits-category',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3457,13 +3457,13 @@ export interface ApiTopUpTopUp extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::top-up.top-up',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3507,13 +3507,13 @@ export interface ApiTransactionTransaction extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::transaction.transaction',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3533,9 +3533,9 @@ export interface ApiV1V1 extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::v1.v1', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<'api::v1.v1', 'oneToOne', 'admin::user'> &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3555,8 +3555,8 @@ export interface ApiVideoVideo extends Schema.CollectionType {
     desc: Attribute.RichText & Attribute.Required;
     price: Attribute.Decimal & Attribute.Required;
     premium: Attribute.Boolean &
-    Attribute.Required &
-    Attribute.DefaultTo<false>;
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     duration: Attribute.BigInteger;
     grade: Attribute.String;
     mentor: Attribute.String;
@@ -3575,13 +3575,13 @@ export interface ApiVideoVideo extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::video.video',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
@@ -3612,13 +3612,13 @@ export interface ApiWatchedWatched extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::watched.watched',
       'oneToOne',
       'admin::user'
     > &
-    Attribute.Private;
+      Attribute.Private;
   };
 }
 
