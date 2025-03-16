@@ -69,6 +69,8 @@ const controller = ({ strapi }) => ({
 
       const promocode_applicable = promocode_res?.applicable;
 
+      clg("Promocode:", promocode_res);
+
       if (promocode && !promocode_applicable) {
         return ctx.badRequest(promocode_res.reason);
       }
@@ -101,11 +103,18 @@ const controller = ({ strapi }) => ({
           .attach(userId, promocode_res?.data?.id, transaction?.id);
       }
 
-      const amount =
-        (transaction.discounted ? transaction.discounted_price : price) * 100; // Ensured Razorpay paise format
+      const managed_price =
+        promocode_applicable && transaction?.discounted
+          ? transaction?.discounted_price
+          : price; // Ensured Razorpay paise format
+
+      // remove unwanted fields
+      delete transaction.createdAt;
+      delete transaction.updatedAt;
+      delete transaction.publishedAt;
 
       const rz_order = await rz.orders.create({
-        amount,
+        amount: managed_price * 100,
         currency: "INR",
         notes: transaction,
         receipt: `receipt_fsa_${transaction.id}`,
