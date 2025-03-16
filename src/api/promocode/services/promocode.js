@@ -49,6 +49,17 @@ module.exports = createCoreService("api::promocode.promocode", () => ({
       };
     }
 
+    const promocode_usage = await strapi
+      .query("api::promocode-usage.promocode-usage")
+      .count({
+        where: {
+          promocode: promocode?.id,
+          user: userId,
+        },
+      });
+
+    const promocode_used = promocode_usage > 0;
+
     // check if promocode is valid
     const currentDate = +new Date();
     const discount = calculateDiscount(
@@ -84,6 +95,10 @@ module.exports = createCoreService("api::promocode.promocode", () => ({
         reason = "Promocode has expired";
         applicable = false;
         break;
+      case promocode_used:
+        reason = "Promocode has already been used";
+        applicable = false;
+        break;
       default:
         break;
     }
@@ -103,6 +118,7 @@ module.exports = createCoreService("api::promocode.promocode", () => ({
         user: userId,
         promocode: promocodeId,
         transaction: transactionId,
+        publishedAt: new Date(),
       },
     });
   },

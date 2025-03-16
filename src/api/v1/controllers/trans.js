@@ -79,7 +79,7 @@ const controller = ({ strapi }) => ({
         label: isSubscription ? "Subscription" : "Credit Purchase",
         type,
         amount: price,
-        discounted: promocode_applicable,
+        discount: promocode_applicable,
         discounted_price: promocode_applicable
           ? promocode_res?.discounted_price
           : 0,
@@ -104,7 +104,7 @@ const controller = ({ strapi }) => ({
       }
 
       const managed_price =
-        promocode_applicable && transaction?.discounted
+        promocode_applicable && transaction?.discount
           ? transaction?.discounted_price
           : price; // Ensured Razorpay paise format
 
