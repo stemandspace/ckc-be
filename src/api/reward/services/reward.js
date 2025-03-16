@@ -46,6 +46,7 @@ module.exports = createCoreService("api::reward.reward", () => ({
                 shopify_price_rule: true,
               },
             },
+            system_promocode: true,
           },
         });
         if (reward.type === "coins") {
@@ -63,6 +64,19 @@ module.exports = createCoreService("api::reward.reward", () => ({
               data: {
                 user: Number(userId),
                 shopify_price_rule: Number(priceRuleId),
+              },
+            });
+          }
+        }
+        if (reward.type === "systemPromocode") {
+          const systemPromocode = reward?.system_promocode;
+          if (systemPromocode) {
+            await strapi.db.query("api::promocode.promocode").update({
+              where: { id: systemPromocode.id },
+              data: {
+                users: {
+                  connect: [{ id: Number(userId) }],
+                },
               },
             });
           }
