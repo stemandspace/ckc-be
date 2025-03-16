@@ -53,6 +53,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::shopify-price-rule.shopify-price-rule"
+    },
+    "template": {
+      "type": "boolean",
+      "default": false,
+      "required": false
     }
   }
 }
