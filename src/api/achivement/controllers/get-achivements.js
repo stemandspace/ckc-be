@@ -50,10 +50,26 @@ const controller = ({ strapi }) => ({
                   },
                 },
                 system_promocode: true,
-                badge: true,
-                avatar: true,
-                certificate: true,
-                bannar: true,
+                badge: {
+                  populate: {
+                    media: true,
+                  },
+                },
+                avatar: {
+                  populate: {
+                    media: true,
+                  },
+                },
+                certificate: {
+                  populate: {
+                    media: true,
+                  },
+                },
+                bannar: {
+                  populate: {
+                    media: true,
+                  },
+                },
               },
             });
             return { ...achivement, reward };
