@@ -79,7 +79,6 @@ const controller = ({ strapi }) => ({
       );
       const categorizedAchievements = {
         quiz: [],
-        banner: [],
         avatar: [],
         certificate: [],
         badge: [],
