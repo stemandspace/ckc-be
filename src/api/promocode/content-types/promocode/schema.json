@@ -50,6 +50,9 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "plugin::users-permissions.user"
+    },
+    "title": {
+      "type": "string"
     }
   }
 }
