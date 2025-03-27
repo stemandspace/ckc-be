@@ -1863,6 +1863,76 @@ export interface ApiHowItWorkHowItWork extends Schema.CollectionType {
   };
 }
 
+export interface ApiJustLaunchedConfigJustLaunchedConfig
+  extends Schema.SingleType {
+  collectionName: 'just_launched_configs';
+  info: {
+    singularName: 'just-launched-config';
+    pluralName: 'just-launched-configs';
+    displayName: 'Just Launched Config';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    nacs: Attribute.Relation<
+      'api::just-launched-config.just-launched-config',
+      'oneToMany',
+      'api::nac.nac'
+    >;
+    course: Attribute.Relation<
+      'api::just-launched-config.just-launched-config',
+      'oneToOne',
+      'api::course.course'
+    >;
+    challenges: Attribute.Relation<
+      'api::just-launched-config.just-launched-config',
+      'oneToMany',
+      'api::challenge.challenge'
+    >;
+    comics: Attribute.Relation<
+      'api::just-launched-config.just-launched-config',
+      'oneToMany',
+      'api::comic.comic'
+    >;
+    lives: Attribute.Relation<
+      'api::just-launched-config.just-launched-config',
+      'oneToMany',
+      'api::live.live'
+    >;
+    podcasts: Attribute.Relation<
+      'api::just-launched-config.just-launched-config',
+      'oneToMany',
+      'api::podcast.podcast'
+    >;
+    discovery_jar_questions: Attribute.Relation<
+      'api::just-launched-config.just-launched-config',
+      'oneToMany',
+      'api::discovery-jar-question.discovery-jar-question'
+    >;
+    videos: Attribute.Relation<
+      'api::just-launched-config.just-launched-config',
+      'oneToMany',
+      'api::video.video'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::just-launched-config.just-launched-config',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::just-launched-config.just-launched-config',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLikeLike extends Schema.CollectionType {
   collectionName: 'likes';
   info: {
@@ -3669,6 +3739,7 @@ declare module '@strapi/types' {
       'api::error-type.error-type': ApiErrorTypeErrorType;
       'api::hard-product.hard-product': ApiHardProductHardProduct;
       'api::how-it-work.how-it-work': ApiHowItWorkHowItWork;
+      'api::just-launched-config.just-launched-config': ApiJustLaunchedConfigJustLaunchedConfig;
       'api::like.like': ApiLikeLike;
       'api::live.live': ApiLiveLive;
       'api::live-speaker.live-speaker': ApiLiveSpeakerLiveSpeaker;
