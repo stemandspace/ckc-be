@@ -1,0 +1,55 @@
+{
+  "kind": "singleType",
+  "collectionName": "just_launched_configs",
+  "info": {
+    "singularName": "just-launched-config",
+    "pluralName": "just-launched-configs",
+    "displayName": "Just Launched Config"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nacs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::nac.nac"
+    },
+    "course": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::course.course"
+    },
+    "challenges": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::challenge.challenge"
+    },
+    "comics": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comic.comic"
+    },
+    "lives": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::live.live"
+    },
+    "podcasts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::podcast.podcast"
+    },
+    "discovery_jar_questions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::discovery-jar-question.discovery-jar-question"
+    },
+    "videos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::video.video"
+    }
+  }
+}
