@@ -44,21 +44,44 @@ module.exports = createCoreService("api::achivement.achivement", () => ({
           where: whereFilter[type],
           populate: {
             user: {
-              select: ["id", "firstname", "lastname", "avatar", "username"],
+              select: [
+                "id",
+                "firstname",
+                "lastname",
+                "avatar",
+                "username",
+                "grade",
+              ],
             },
           },
           pageSize: 100000,
         });
 
+      const badgeFindAchievement = await Promise.all(
+        achievements.map(async (achivement) => {
+          if (achivement.contentType === "badge") {
+            const badge = await strapi.db.query("api::badge.badge").findOne({
+              where: {
+                id: Number(achivement.contentId),
+              },
+              populate: {
+                media: true,
+              },
+            });
+            return { ...achivement, badge: badge?.media?.url };
+          }
+          return { ...achivement, badge: null };
+        })
+      );
+
       const dataMap = new Map();
 
-      achievements.forEach((achievement) => {
+      badgeFindAchievement.forEach((achievement) => {
         if (achievement?.user == null) {
           return;
         } else {
           const userId = achievement?.user?.id;
           const coins = parseInt(achievement?.transectionAmount);
-
           if (!dataMap.has(userId)) {
             dataMap.set(userId, {
               points: 0,
@@ -67,10 +90,15 @@ module.exports = createCoreService("api::achivement.achivement", () => ({
               lastname: achievement?.user?.lastname,
               username: achievement?.user?.username,
               firstname: achievement?.user?.firstname,
+              grade: achievement?.user?.grade,
+              badge: [],
             });
           }
           if (achievement.transectionType == "dr") {
             dataMap.get(userId).points += coins;
+          }
+          if (achievement.badge) {
+            dataMap.get(userId).badge.push(achievement?.badge);
           }
         }
       });
@@ -78,15 +106,17 @@ module.exports = createCoreService("api::achivement.achivement", () => ({
       const sortedLeaderboard = Array.from(dataMap.values()).sort(
         (a, b) => b?.points - a?.points
       );
-      const addRankInLeaderboard = sortedLeaderboard.map((_,index)=>{
+      const addRankInLeaderboard = sortedLeaderboard.map((_, index) => {
         return {
           ..._,
-          rank:index+1
-        }
-      })
+          rank: index + 1,
+        };
+      });
 
       return addRankInLeaderboard;
-    } catch (err) {}
+    } catch (err) {
+      console.log("leaderboard get error:-> ", err);
+    }
   },
 }));
 
