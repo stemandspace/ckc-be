@@ -14,11 +14,12 @@ const controller = ({ strapi }) => ({
   async reward(ctx) {
     try {
       const { data } = ctx.request.body;
-      const { userId, rewardIds } = data;
+      const { userId, rewardIds,label } = data;
 
       const res = await strapi.service("api::reward.reward").reward({
         userId,
         rewardIds,
+        label
       });
 
       return ctx.send({ userId, rewardIds, res }, 200);

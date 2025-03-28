@@ -9,7 +9,7 @@ const { createCoreService } = require("@strapi/strapi").factories;
 
 module.exports = createCoreService("api::reward.reward", () => ({
   // reward to user achievement;
-  reward: async ({ userId, rewardIds = [], type, contentId = null }) => {
+  reward: async ({ userId, rewardIds = [], type, contentId = null,label }) => {
     try {
       const availableRewardId = await strapi.db
         .query("api::achivement.achivement")
@@ -130,7 +130,7 @@ module.exports = createCoreService("api::reward.reward", () => ({
           contentType: type ? type : reward.type,
           transectionAmount: reward.value ? reward.value : "0",
           transectionType: "dr",
-          label: "Challenge Reward",
+          label: label ? label : "Reward",
           publishedAt: new Date(),
           contentId: cId ? cId : null,
         };
