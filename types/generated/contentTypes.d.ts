@@ -1870,6 +1870,7 @@ export interface ApiJustLaunchedConfigJustLaunchedConfig
     singularName: 'just-launched-config';
     pluralName: 'just-launched-configs';
     displayName: 'Just Launched Config';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1880,9 +1881,9 @@ export interface ApiJustLaunchedConfigJustLaunchedConfig
       'oneToMany',
       'api::nac.nac'
     >;
-    course: Attribute.Relation<
+    courses: Attribute.Relation<
       'api::just-launched-config.just-launched-config',
-      'oneToOne',
+      'oneToMany',
       'api::course.course'
     >;
     challenges: Attribute.Relation<

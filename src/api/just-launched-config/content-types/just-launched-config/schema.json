@@ -4,7 +4,8 @@
   "info": {
     "singularName": "just-launched-config",
     "pluralName": "just-launched-configs",
-    "displayName": "Just Launched Config"
+    "displayName": "Just Launched Config",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,9 +17,9 @@
       "relation": "oneToMany",
       "target": "api::nac.nac"
     },
-    "course": {
+    "courses": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::course.course"
     },
     "challenges": {
