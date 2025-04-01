@@ -28,11 +28,14 @@
     "node-cron": "^3.0.3",
     "pg": "^8.11.3",
     "razorpay": "^2.9.5",
+    "sharp": "^0.33.5",
     "strapi-plugin-fuzzy-search": "^2.2.0",
     "strapi-plugin-import-export-entries": "^1.23.0",
     "strapi-plugin-io": "^2.0.6",
-    "strapi-plugin-rest-cache": "^4.2.8",
+    "strapi-plugin-redis": "^1.1.0",
+    "strapi-plugin-rest-cache": "^4.2.9",
     "strapi-plugin-transformer": "^3.1.2",
+    "strapi-provider-rest-cache-redis": "^4.2.9",
     "uuid": "^9.0.1"
   },
   "engines": {

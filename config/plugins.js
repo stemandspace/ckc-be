@@ -10,8 +10,8 @@ module.exports = ({ env }) => ({
         wrapBodyWithDataKey: true,
       },
       hooks: {
-        preResponseTransform: (ctx) => {},
-        postResponseTransform: (ctx) => {},
+        preResponseTransform: (ctx) => { },
+        postResponseTransform: (ctx) => { },
       },
       plugins: {
         ids: {
@@ -167,34 +167,98 @@ module.exports = ({ env }) => ({
   "video-field": {
     enabled: true,
   },
+
+  redis: {
+    config: {
+      settings: {
+        enableRedlock: true,
+        lockDelay: null,
+        lockTTL: 5000,
+        redlockConfig: {
+          driftFactor: 0.01,
+          retryCount: 10,
+          retryDelay: 200,
+          retryJitter: 200,
+        },
+      },
+      connections: {
+        default: {
+          connection: {
+            host: process.env.REDIS_HOST || "127.0.0.1",
+            port: process.env.REDIS_PORT || 6379,
+            password: process.env.REDIS_PASSWORD,
+            db: 0,
+          },
+          settings: {
+            debug: false,
+          },
+        },
+      },
+    },
+  },
   "rest-cache": {
     config: {
+      // provider: {
+      //   name: "memory",
+      //   options: {
+      //     max: 32767,
+      //     maxAge: 3600,
+      //   },
+      // },
       provider: {
-        name: "memory",
+        name: "redis",
         options: {
-          max: 32767,
-          maxAge: 3600,
+          host: process.env.REDIS_HOST || "127.0.0.1",
+          port: process.env.REDIS_PORT || 6379,
+          password: process.env.REDIS_PASSWORD,
         },
       },
       strategy: {
+        debug: true,
         contentTypes: [
-          "api::achivement.achivement",
-          "api::carousel.carousel",
-          "api::challenge.challenge",
-          "api::comic.comic",
-          "api::course.course",
-          "api::disconvery-jar-config.disconvery-jar-config",
-          "api::discovery-jar-answer.discovery-jar-answer",
-          "api::how-it-work.how-it-work",
-          "api::live.live",
-          "api::nac.nac",
-          "api::notification.notification",
-          "api::purchase.purchase",
-          "api::tip-video.tip-video",
-          "api::titbit.titbit",
-          "api::top-up.top-up",
-          "api::transaction.transaction",
-          "api::video.video",
+          // { contentType: "api::achivement.achivement", maxAge: 60 * 60 * 1000 },
+          { contentType: "api::carousel.carousel", maxAge: 60 * 60 * 1000 },
+          { contentType: "api::challenge.challenge", maxAge: 60 * 60 * 1000 },
+          { contentType: "api::comic.comic", maxAge: 60 * 60 * 1000 },
+          { contentType: "api::course.course", maxAge: 60 * 60 * 1000 },
+          {
+            contentType: "api::disconvery-jar-config.disconvery-jar-config",
+            maxAge: 60 * 60 * 1000,
+          },
+          {
+            contentType: "api::discovery-jar-answer.discovery-jar-answer",
+            maxAge: 60 * 60 * 1000,
+          },
+          // {
+          //   contentType: "api::how-it-work.how-it-work",
+          //   maxAge: 60 * 60 * 1000,
+          // },
+          { contentType: "api::live.live", maxAge: 60 * 60 * 1000 },
+          { contentType: "api::nac.nac", maxAge: 60 * 60 * 1000 },
+          { contentType: "api::purchase.purchase", maxAge: 60 * 60 * 1000 },
+          { contentType: "api::tip-video.tip-video", maxAge: 60 * 60 * 1000 },
+          { contentType: "api::titbit.titbit", maxAge: 60 * 60 * 1000 },
+          { contentType: "api::top-up.top-up", maxAge: 60 * 60 * 1000 },
+          // {
+          //   contentType: "api::transaction.transaction",
+          //   maxAge: 60 * 60 * 1000,
+          // },
+          { contentType: "api::video.video", maxAge: 60 * 60 * 1000 },
+          { contentType: "api::plan.plan", maxAge: 7 * 24 * 60 * 60 * 1000 },
+          { contentType: "api::stack.stack", maxAge: 60 * 60 * 1000 },
+          { contentType: "api::daily-quiz.daily-quiz", maxAge: 60 * 60 * 1000 },
+          {
+            contentType: "api::daily-spin.daily-spin",
+            maxAge: 12 * 60 * 60 * 1000,
+          },
+          {
+            contentType: "api::just-launched-config.just-launched-config",
+            maxAge: 24 * 60 * 60 * 1000,
+          },
+          {
+            contentType: "api::referral-config.referral-config",
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+          },
         ],
       },
     },
