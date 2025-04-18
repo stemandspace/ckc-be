@@ -178,6 +178,12 @@
     },
     "info_review_date": {
       "type": "date"
+    },
+    "profile_picture": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profile-picture.profile-picture",
+      "mappedBy": "user"
     }
   }
 }

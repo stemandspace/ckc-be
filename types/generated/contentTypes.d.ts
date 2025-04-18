@@ -707,6 +707,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     notification_token: Attribute.String;
     whatsapp_notification: Attribute.Boolean;
     info_review_date: Attribute.Date;
+    profile_picture: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::profile-picture.profile-picture'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -2581,6 +2586,41 @@ export interface ApiProductProduct extends Schema.CollectionType {
   };
 }
 
+export interface ApiProfilePictureProfilePicture extends Schema.CollectionType {
+  collectionName: 'profile_pictures';
+  info: {
+    singularName: 'profile-picture';
+    pluralName: 'profile-pictures';
+    displayName: 'Profile Picture';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    user: Attribute.Relation<
+      'api::profile-picture.profile-picture',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::profile-picture.profile-picture',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::profile-picture.profile-picture',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPromocodePromocode extends Schema.CollectionType {
   collectionName: 'promocodes';
   info: {
@@ -3758,6 +3798,7 @@ declare module '@strapi/types' {
       'api::podcast-category.podcast-category': ApiPodcastCategoryPodcastCategory;
       'api::podcast-upload.podcast-upload': ApiPodcastUploadPodcastUpload;
       'api::product.product': ApiProductProduct;
+      'api::profile-picture.profile-picture': ApiProfilePictureProfilePicture;
       'api::promocode.promocode': ApiPromocodePromocode;
       'api::promocode-usage.promocode-usage': ApiPromocodeUsagePromocodeUsage;
       'api::purchase.purchase': ApiPurchasePurchase;
