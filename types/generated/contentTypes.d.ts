@@ -2990,7 +2990,7 @@ export interface ApiRefferalRefferal extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    referral: Attribute.Relation<
+    refferal: Attribute.Relation<
       'api::refferal.refferal',
       'oneToOne',
       'plugin::users-permissions.user'

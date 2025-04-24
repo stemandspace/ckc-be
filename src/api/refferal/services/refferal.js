@@ -5,16 +5,27 @@
  */
 
 const { createCoreService } = require("@strapi/strapi").factories;
+const plan_based_reward = require("../../../lib/refferal");
 
 module.exports = createCoreService("api::refferal.refferal", () => {
   return {
-    async getMilestoneReward() {
-      // I need to fetch data from single type
-      //   const milestone_rewards = await strapi.entityService.findMany(
-      //     "api::referral-config.referral-config"
-      //   );
-      //   return milestone_rewards;
-      console.log("milestone_rewards");
+    async rewardCoins(referee, coins) {
+      const user = await strapi.entityService.findOne(
+        "plugin::users-permissions.user",
+        referee
+      );
+      if (!user) {
+        throw new Error("User not found");
+      }
+      await strapi.entityService.update(
+        "plugin::users-permissions.user",
+        user.id,
+        {
+          data: {
+            coins: parseInt(user.coins) + parseInt(coins),
+          },
+        }
+      );
     },
 
     async getRefferals(refferal, referee) {
@@ -33,6 +44,25 @@ module.exports = createCoreService("api::refferal.refferal", () => {
                 referee: referee,
               },
             ],
+          },
+        }
+      );
+      return referrals;
+    },
+    async getRefferalsByReferee(referee) {
+      if (!referee) {
+        throw new Error("Refferal and referee are required");
+      }
+      const referrals = await strapi.entityService.findMany(
+        "api::refferal.refferal",
+        {
+          filters: {
+            referee: referee,
+          },
+          populate: {
+            refferal: {
+              fields: ["id"],
+            },
           },
         }
       );
@@ -63,18 +93,12 @@ module.exports = createCoreService("api::refferal.refferal", () => {
       return newReferral;
     },
 
-    async validateRefferal(refferal, referee, selected_plan) {
-      const plan_based_reward = {
-        free: 5,
-        basic: 10,
-        premium: 20,
-      };
-
-      if (!refferal || !referee) {
+    async validateRefferal(referee, selected_plan) {
+      if (!referee) {
         throw new Error("Refferal and referee are required");
       }
 
-      const referrals = await this.getRefferals(refferal, referee);
+      const referrals = await this.getRefferalsByReferee(referee);
 
       if (referrals.length === 0) {
         throw new Error("Refferal not found");
@@ -82,36 +106,13 @@ module.exports = createCoreService("api::refferal.refferal", () => {
 
       const [referral] = referrals;
 
-      const refferal_tracks = await strapi
-        .query("api::refferal-track.refferal-track")
-        .findMany({
-          filters: {
-            id: referral.id,
-          },
-        });
+      const new_refferal_track = await strapi
+        .service("api::refferal-track.refferal-track")
+        .validateAndCreateRefferalTrack(referral.id, referee, selected_plan);
 
-      const subscription_tracks =
-        refferal_tracks.filter((track) => track.type == "subscription") ?? [];
-
-      const list_of_plans = subscription_tracks.map((track) => track.plan);
-
-      if (list_of_plans.includes(selected_plan)) {
-        throw new Error("Refferal tracks already has this plan");
-      }
-
-      const milestone_rewards = await this.getMilestoneReward();
-
-      const new_refferal_track = await strapi.entityService.create(
-        "api::refferal-track.refferal-track",
-        {
-          data: {
-            refferal: referral.id,
-            plan: selected_plan,
-            type: "subscription",
-            publishedAt: new Date(),
-            coins: plan_based_reward[selected_plan],
-          },
-        }
+      await this.rewardCoins(
+        referral?.refferal?.id,
+        plan_based_reward[selected_plan]
       );
 
       return new_refferal_track;

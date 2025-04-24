@@ -39,13 +39,12 @@ const controller = ({ strapi }) => ({
   // GET /api/refferal/validate
   async validateRefferal(ctx) {
     try {
-      const { refferal, referee, selected_plan } = ctx.request.body;
+      const { referee, selected_plan } = ctx.request.body;
       console.log("body", {
-        refferal,
         referee,
         selected_plan,
       });
-      if (!refferal || !referee || !selected_plan) {
+      if (!referee || !selected_plan) {
         ctx.status = 400;
         ctx.body = {
           error: "Refferal, referee and selected plan are re  quired",
@@ -54,7 +53,7 @@ const controller = ({ strapi }) => ({
       }
       const referral = await strapi
         .service("api::refferal.refferal")
-        .validateRefferal(refferal, referee, selected_plan);
+        .validateRefferal(referee, selected_plan);
       ctx.status = 200;
       ctx.body = referral;
     } catch (error) {
