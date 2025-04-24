@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "refferal_tracks",
+  "info": {
+    "singularName": "refferal-track",
+    "pluralName": "refferal-tracks",
+    "displayName": "Refferal Track"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "refferal": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::refferal.refferal",
+      "inversedBy": "refferal_tracks"
+    },
+    "coins": {
+      "type": "biginteger"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "subscription",
+        "milestone"
+      ]
+    },
+    "reward": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::reward.reward"
+    },
+    "milestone": {
+      "type": "biginteger"
+    },
+    "plan": {
+      "type": "enumeration",
+      "enum": [
+        "free",
+        "basic",
+        "premium"
+      ]
+    }
+  }
+}

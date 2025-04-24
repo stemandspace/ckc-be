@@ -20,6 +20,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "refferal_tracks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::refferal-track.refferal-track",
+      "mappedBy": "refferal"
     }
   }
 }

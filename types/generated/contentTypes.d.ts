@@ -3000,6 +3000,11 @@ export interface ApiRefferalRefferal extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    refferal_tracks: Attribute.Relation<
+      'api::refferal.refferal',
+      'oneToMany',
+      'api::refferal-track.refferal-track'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3011,6 +3016,49 @@ export interface ApiRefferalRefferal extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::refferal.refferal',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRefferalTrackRefferalTrack extends Schema.CollectionType {
+  collectionName: 'refferal_tracks';
+  info: {
+    singularName: 'refferal-track';
+    pluralName: 'refferal-tracks';
+    displayName: 'Refferal Track';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    refferal: Attribute.Relation<
+      'api::refferal-track.refferal-track',
+      'manyToOne',
+      'api::refferal.refferal'
+    >;
+    coins: Attribute.BigInteger;
+    type: Attribute.Enumeration<['subscription', 'milestone']>;
+    reward: Attribute.Relation<
+      'api::refferal-track.refferal-track',
+      'oneToOne',
+      'api::reward.reward'
+    >;
+    milestone: Attribute.BigInteger;
+    plan: Attribute.Enumeration<['free', 'basic', 'premium']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::refferal-track.refferal-track',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::refferal-track.refferal-track',
       'oneToOne',
       'admin::user'
     > &
@@ -3848,6 +3896,7 @@ declare module '@strapi/types' {
       'api::referral-config.referral-config': ApiReferralConfigReferralConfig;
       'api::referral-reward.referral-reward': ApiReferralRewardReferralReward;
       'api::refferal.refferal': ApiRefferalRefferal;
+      'api::refferal-track.refferal-track': ApiRefferalTrackRefferalTrack;
       'api::reminder.reminder': ApiReminderReminder;
       'api::reward.reward': ApiRewardReward;
       'api::school-registration.school-registration': ApiSchoolRegistrationSchoolRegistration;
