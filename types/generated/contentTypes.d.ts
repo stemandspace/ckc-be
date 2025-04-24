@@ -2979,6 +2979,45 @@ export interface ApiReferralRewardReferralReward extends Schema.CollectionType {
   };
 }
 
+export interface ApiRefferalRefferal extends Schema.CollectionType {
+  collectionName: 'refferals';
+  info: {
+    singularName: 'refferal';
+    pluralName: 'refferals';
+    displayName: 'refferal';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    referral: Attribute.Relation<
+      'api::refferal.refferal',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    referee: Attribute.Relation<
+      'api::refferal.refferal',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::refferal.refferal',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::refferal.refferal',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiReminderReminder extends Schema.CollectionType {
   collectionName: 'reminders';
   info: {
@@ -3808,6 +3847,7 @@ declare module '@strapi/types' {
       'api::referral.referral': ApiReferralReferral;
       'api::referral-config.referral-config': ApiReferralConfigReferralConfig;
       'api::referral-reward.referral-reward': ApiReferralRewardReferralReward;
+      'api::refferal.refferal': ApiRefferalRefferal;
       'api::reminder.reminder': ApiReminderReminder;
       'api::reward.reward': ApiRewardReward;
       'api::school-registration.school-registration': ApiSchoolRegistrationSchoolRegistration;
