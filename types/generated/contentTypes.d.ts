@@ -1450,7 +1450,7 @@ export interface ApiDailyQuizDailyQuiz extends Schema.CollectionType {
       'api::reward.reward'
     >;
     publish_date: Attribute.Date & Attribute.Required;
-    group: Attribute.Enumeration<['senior', 'middle', 'junior']>;
+    difficulty: Attribute.Enumeration<['easy', 'medium', 'hard']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

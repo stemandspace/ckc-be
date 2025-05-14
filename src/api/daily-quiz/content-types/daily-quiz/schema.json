@@ -39,12 +39,12 @@
       "type": "date",
       "required": true
     },
-    "group": {
+    "difficulty": {
       "type": "enumeration",
       "enum": [
-        "senior",
-        "middle",
-        "junior"
+        "easy",
+        "medium",
+        "hard"
       ]
     }
   }
