@@ -11,14 +11,14 @@ const controller = ({ strapi }) => ({
 
       const attempted = await strapi
         .service("api::daily-quiz.daily-quiz")
-        .validateQuizAttemp(userId);
+        .validateQuizAttempt(userId);
 
       const quiz = await strapi
         .service("api::daily-quiz.daily-quiz")
         .getQuizByDifficulty(difficulty);
 
       const score = await strapi
-        .service("api::daily-quiz-score")
+        .service("api::daily-quiz-score.daily-quiz-score")
         .getDailyQuizScore(userId);
 
       return ctx.send(

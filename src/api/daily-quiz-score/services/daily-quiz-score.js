@@ -22,8 +22,7 @@ module.exports = createCoreService(
             },
           },
         });
-
-      return quizScore ?? 0;
+      return quizScore ? quizScore?.score ?? 0 : 0;
     },
   })
 );

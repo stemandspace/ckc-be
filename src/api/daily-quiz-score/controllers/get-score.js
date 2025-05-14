@@ -7,16 +7,10 @@ const controller = ({ strapi }) => ({
       if (!userId) {
         return ctx.send("Please provide user id", 400);
       }
-      let quizScore = await strapi.db
-        .query("api::daily-quiz-score.daily-quiz-score")
-        .findOne({
-          where: {
-            user: {
-              id: userId,
-            },
-          },
-        });
-      return ctx.send({ quizScore:quizScore?.score||0 }, 200);
+      const score = await strapi
+        .service("api::daily-quiz-score.daily-quiz-score")
+        .getDailyQuizScore(userId);
+      return ctx.send({ score }, 200);
     } catch (err) {
       console.error(err);
       ctx.internalServerError("An error occurred during get todays quiz.");
