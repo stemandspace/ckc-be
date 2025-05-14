@@ -19,22 +19,26 @@ module.exports = createCoreService(
     },
 
     async findRefferalTrackByReferee(referee) {
-      return await strapi.entityService.findMany(
+      const refferals = await strapi
+        .service("api::refferal.refferal")
+        .getRefferalsByReferee(referee);
+
+      const refferal_track = await strapi.entityService.findMany(
         "api::refferal-track.refferal-track",
         {
-          populate: {
-            refferal: {
-              filters: {
-                referee: referee,
-              },
-            },
+          filters: {
+            refferal: refferals[0].id,
           },
         }
       );
+      return refferal_track;
     },
 
     async validateAndCreateRefferalTrack(refferal, referee, plan) {
       const refferal_tracks = await this.findRefferalTrackByReferee(referee);
+
+      console.log("refferal_tracks", refferal_tracks);
+      console.log("referee", referee);
 
       const list_of_plans = refferal_tracks.map((track) => track.plan);
 
@@ -51,6 +55,42 @@ module.exports = createCoreService(
       });
 
       return new_refferal_track;
+    },
+
+    async filterPaidRefferalTrackForRefferal(refferal) {
+      console.log("refferal-user", refferal);
+      const paid_refferal_tracks = await strapi.entityService.findMany(
+        "api::refferal-track.refferal-track",
+        {
+          filters: {
+            type: "subscription",
+            $or: [
+              {
+                plan: {
+                  $eq: "basic",
+                },
+              },
+              {
+                plan: {
+                  $eq: "premium",
+                },
+              },
+            ],
+          },
+          populate: {
+            refferal: {
+              populate: {
+                refferal: {
+                  filters: {
+                    id: refferal,
+                  },
+                },
+              },
+            },
+          },
+        }
+      );
+      return paid_refferal_tracks;
     },
   })
 );

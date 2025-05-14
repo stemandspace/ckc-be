@@ -2,6 +2,7 @@ module.exports = {
   type: "admin",
   routes: [
     {
+      // refferal, refferee - params reequired.
       method: "POST",
       path: "/refferal/create",
       handler: "custom-refferal.createRefferal",
