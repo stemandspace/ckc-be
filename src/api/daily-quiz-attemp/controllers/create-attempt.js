@@ -3,7 +3,7 @@
 const controller = ({ strapi }) => ({
   async createQuizAttempt(ctx) {
     try {
-      const { score, quizId, userId } = ctx.request.body.data;
+      const { score = 0, quizId, userId } = ctx.request.body.data;
 
       if (!quizId || !userId) {
         return ctx.badRequest("quiz id and user id are required");
