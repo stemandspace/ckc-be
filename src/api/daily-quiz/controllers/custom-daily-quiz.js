@@ -9,7 +9,7 @@ const controller = ({ strapi }) => ({
         return ctx.send({ error: "difficulty and userId are required" }, 400);
       }
 
-      const attempted = await strapi
+      const attempt = await strapi
         .service("api::daily-quiz.daily-quiz")
         .validateQuizAttempt(userId);
 
@@ -25,7 +25,7 @@ const controller = ({ strapi }) => ({
         {
           quiz,
           score,
-          attempted,
+          attempt,
         },
         200
       );

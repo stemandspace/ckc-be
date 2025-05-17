@@ -47,6 +47,6 @@ module.exports = createCoreService("api::daily-quiz.daily-quiz", () => ({
           },
         },
       });
-    return !!attempt;
+    return attempt;
   },
 }));
