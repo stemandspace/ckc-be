@@ -10,8 +10,8 @@ module.exports = ({ env }) => ({
         wrapBodyWithDataKey: true,
       },
       hooks: {
-        preResponseTransform: (ctx) => { },
-        postResponseTransform: (ctx) => { },
+        preResponseTransform: (ctx) => {},
+        postResponseTransform: (ctx) => {},
       },
       plugins: {
         ids: {
