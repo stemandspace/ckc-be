@@ -25,16 +25,16 @@ const controller = ({ strapi }) => ({
     try {
       // we need to also implement radis for cache
 
-      const cacheKey = "titbits-categories";
+      // const cacheKey = "titbits-categories";
 
-      const cachedData = await strapi.plugins[
-        "rest-cache"
-      ].services.cacheStore.get(cacheKey);
+      // const cachedData = await strapi.plugins[
+      //   "rest-cache"
+      // ].services.cacheStore.get(cacheKey);
 
-      if (cachedData) {
-        ctx.body = cachedData;
-        return;
-      }
+      // if (cachedData) {
+      //   ctx.body = cachedData;
+      //   return;
+      // }
       const categories = await strapi.entityService.findMany(
         "api::titbits-category.titbits-category",
         {
@@ -43,11 +43,11 @@ const controller = ({ strapi }) => ({
           sort: [DEFAULT_SORT],
         }
       );
-      await strapi.plugins["rest-cache"].services.cacheStore.set(
-        cacheKey,
-        categories,
-        CACHE_TTL
-      );
+      // await strapi.plugins["rest-cache"].services.cacheStore.set(
+      //   cacheKey,
+      //   categories,
+      //   CACHE_TTL
+      // );
       ctx.body = categories;
     } catch (error) {
       console.error(error);
@@ -67,16 +67,16 @@ const controller = ({ strapi }) => ({
         pageSize = PAGE_SIZE,
       } = ctx.request.query;
 
-      const cacheKey = `titbits-by-category-${id}-${page}-${pageSize}`;
+      // const cacheKey = `titbits-by-category-${id}-${page}-${pageSize}`;
 
-      const cachedData = await strapi.plugins[
-        "rest-cache"
-      ].services.cacheStore.get(cacheKey);
+      // const cachedData = await strapi.plugins[
+      //   "rest-cache"
+      // ].services.cacheStore.get(cacheKey);
 
-      if (cachedData) {
-        ctx.body = cachedData;
-        return;
-      }
+      // if (cachedData) {
+      //   ctx.body = cachedData;
+      //   return;
+      // }
 
       const titbits = await strapi.entityService.findMany(
         "api::titbit.titbit",
@@ -107,11 +107,11 @@ const controller = ({ strapi }) => ({
         }
       );
 
-      await strapi.plugins["rest-cache"].services.cacheStore.set(
-        cacheKey,
-        titbits,
-        CACHE_TTL
-      );
+      // await strapi.plugins["rest-cache"].services.cacheStore.set(
+      //   cacheKey,
+      //   titbits,
+      //   CACHE_TTL
+      // );
       ctx.body = titbits;
     } catch (error) {
       console.error(error);
