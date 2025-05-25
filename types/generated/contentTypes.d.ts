@@ -1999,6 +1999,7 @@ export interface ApiLiveLive extends Schema.CollectionType {
       'api::live-speaker.live-speaker'
     >;
     timestamp_reward: Attribute.Component<'timestamp-reward.timestamp-reward'>;
+    dev: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

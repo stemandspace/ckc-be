@@ -85,6 +85,10 @@
       "type": "component",
       "repeatable": false,
       "component": "timestamp-reward.timestamp-reward"
+    },
+    "dev": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

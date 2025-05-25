@@ -11,7 +11,7 @@ const DEFAULT_PAGE = 1;
 /**
  * NAC custom APIs
  * @param {{ strapi: Strapi }} param0 - Strapi instance.
- * @returns {Object} Controller methods.
+ * @returns {Object} Controller methds.
  */
 
 const controller = ({ strapi }) => ({
