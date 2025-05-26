@@ -89,6 +89,11 @@
     "dev": {
       "type": "boolean",
       "default": false
+    },
+    "quiz": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::quiz.quiz"
     }
   }
 }
