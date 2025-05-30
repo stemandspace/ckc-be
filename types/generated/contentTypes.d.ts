@@ -1660,6 +1660,7 @@ export interface ApiDiscoveryJarAnswerDiscoveryJarAnswer
     trending: Attribute.Boolean;
     grade: Attribute.String;
     desc: Attribute.RichText;
+    banner: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
