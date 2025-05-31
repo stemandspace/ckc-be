@@ -24,6 +24,9 @@ module.exports = createCoreService("api::refferal.refferal", () => {
             refferal_tracks: {
               fields: ["coins", "type", "plan", "milestone"],
             },
+            referee: {
+              fields: ["firstname", "lastname", "username"],
+            },
           },
           pagination: {
             page: page,
