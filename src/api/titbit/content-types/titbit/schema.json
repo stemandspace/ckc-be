@@ -37,6 +37,9 @@
       "relation": "manyToOne",
       "target": "api::titbits-category.titbits-category",
       "inversedBy": "titbits"
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }

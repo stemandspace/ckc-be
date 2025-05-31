@@ -3579,6 +3579,7 @@ export interface ApiTitbitTitbit extends Schema.CollectionType {
       'manyToOne',
       'api::titbits-category.titbits-category'
     >;
+    description: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
