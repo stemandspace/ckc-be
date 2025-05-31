@@ -12,5 +12,10 @@ module.exports = {
       path: "/refferal/validate",
       handler: "custom-refferal.validateRefferal",
     },
+    {
+      method: "GET",
+      path: "/refferal/info",
+      handler: "custom-refferal.getRefferalInfo",
+    },
   ],
 };

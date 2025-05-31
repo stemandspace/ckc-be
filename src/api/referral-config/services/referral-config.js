@@ -18,7 +18,7 @@ module.exports = createCoreService(
               milestones: {
                 populate: {
                   rewards: {
-                    fields: ["id"],
+                    fields: ["id", "title", "type", "value"],
                   },
                 },
               },
@@ -26,6 +26,7 @@ module.exports = createCoreService(
           }
         );
       },
+
       async findMilestoneByNumber(currentMileStone = 0) {
         const config = await this.getReferralConfig();
 

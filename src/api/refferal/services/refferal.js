@@ -9,24 +9,56 @@ const plan_based_reward = require("../../../lib/refferal");
 
 module.exports = createCoreService("api::refferal.refferal", () => {
   return {
-    async rewardCoins(userId, coins) {
-      const payload = {
-        user: userId,
-        contentType: "coins",
-        transectionAmount: coins.toString(),
-        transectionType: "dr",
-        label: "refferal reward",
-        publishedAt: new Date(),
+    // fetch completed refferal data
+    async getRefferedUserList(uid, page = 1, pageSize = 10) {
+      if (!uid) {
+        throw new Error("User ID is required");
+      }
+      const refferals = await strapi.entityService.findMany(
+        "api::refferal.refferal",
+        {
+          filters: {
+            refferal: uid,
+          },
+          populate: {
+            refferal_tracks: {
+              fields: ["coins", "type", "plan", "milestone"],
+            },
+          },
+          pagination: {
+            page: page,
+            pageSize: pageSize,
+          },
+          sort: ["createdAt:desc"],
+        }
+      );
+      return refferals;
+    },
+
+    async getNextRewardInfo(uid) {
+      if (!uid) {
+        throw new Error("User ID is required");
+      }
+
+      const referral_config = await strapi
+        .service("api::referral-config.referral-config")
+        .getReferralConfig();
+
+      const refferal_tracks = await strapi
+        .service("api::refferal-track.refferal-track")
+        .filterPaidRefferalTrackForRefferal(uid);
+
+      const total_tracks = refferal_tracks.length;
+
+      const next_reward = referral_config?.milestones?.find(
+        (item) => item.milestone > total_tracks
+      );
+
+      return {
+        total_tracks,
+        referral_config,
+        next_reward,
       };
-
-      await strapi.db.query("api::achivement.achivement").create({
-        data: { ...payload },
-      });
-
-      await strapi.service("api::reward.reward").updateCoins({
-        userId: userId,
-        coins,
-      });
     },
 
     async getRefferals(refferal, referee) {
@@ -95,12 +127,6 @@ module.exports = createCoreService("api::refferal.refferal", () => {
     },
 
     async validateRefferal(referee, selected_plan) {
-      const reward_coins = {
-        free: 5,
-        basic: 10,
-        premium: 20,
-      };
-
       if (!referee) {
         throw new Error("Refferal and referee are required");
       }
@@ -117,14 +143,22 @@ module.exports = createCoreService("api::refferal.refferal", () => {
         .service("api::refferal-track.refferal-track")
         .validateAndCreateRefferalTrack(referral.id, referee, selected_plan);
 
-      console.log({
-        userId: referral?.refferal?.id,
-        coins: reward_coins[selected_plan],
+      // Create achivement
+      await strapi.entityService.create("api::achivement.achivement", {
+        data: {
+          transectionType: "dr",
+          contentType: "referral",
+          publishedAt: new Date(),
+          label: "refferal reward",
+          user: referral?.refferal?.id,
+          transectionAmount: plan_based_reward[selected_plan].toString(),
+        },
       });
 
-      this.rewardCoins({
+      // Processing Reward
+      await strapi.service("api::reward.reward").updateCoins({
         userId: referral?.refferal?.id,
-        coins: reward_coins[selected_plan],
+        coins: plan_based_reward[selected_plan],
       });
 
       const refferal_tracks = await strapi
@@ -137,9 +171,6 @@ module.exports = createCoreService("api::refferal.refferal", () => {
         .service("api::referral-config.referral-config")
         .findMilestoneByNumber(total_tracks);
 
-      console.log("refferal_tracks", refferal_tracks);
-      console.log("refferal_config", referral_config);
-
       if (
         referral_config?.rewards &&
         Array.isArray(referral_config?.rewards) &&
@@ -147,7 +178,7 @@ module.exports = createCoreService("api::refferal.refferal", () => {
       ) {
         await strapi.service("api::reward.reward").reward({
           userId: referral?.refferal?.id,
-          rewardIds: referral_config.rewards.map((reward) => reward.id),
+          rewardIds: referral_config?.rewards?.map((reward) => reward?.id),
           label: "refferal milestone reward",
         });
       }

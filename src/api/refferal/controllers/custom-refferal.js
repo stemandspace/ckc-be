@@ -1,5 +1,7 @@
 "use strict";
 
+const PER_PAGE = 10;
+
 /**
  * @typedef {import('@strapi/strapi').Strapi} Strapi
  * @typedef {import('koa').Context} Context
@@ -60,6 +62,33 @@ const controller = ({ strapi }) => ({
       console.log(error);
       ctx.status = 500;
       ctx.body = { error: error.message };
+    }
+  },
+
+  // GET /api/refferal/info
+  async getRefferalInfo(ctx) {
+    try {
+      const { uid, page = 1, pageSize = 10 } = ctx.request.query;
+      if (!uid) {
+        ctx.status = 400;
+        ctx.body = { error: "User ID is required" };
+        return;
+      }
+      const refferals = await strapi
+        .service("api::refferal.refferal")
+        .getRefferedUserList(uid, page, pageSize);
+
+      const info = await strapi
+        .service("api::refferal.refferal")
+        .getNextRewardInfo(uid);
+
+      ctx.status = 200;
+      ctx.body = {
+        info,
+        refferals,
+      };
+    } catch (error) {
+      console.log(error);
     }
   },
 });
