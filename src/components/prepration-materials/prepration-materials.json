@@ -15,21 +15,22 @@
       "type": "string",
       "required": true
     },
-    "product_link": {
+    "product_id": {
       "type": "text"
     },
     "desc": {
       "type": "richtext"
     },
     "attachment": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }

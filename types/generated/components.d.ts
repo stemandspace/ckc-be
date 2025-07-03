@@ -140,7 +140,7 @@ export interface PreprationMaterialsPreprationMaterials
   attributes: {
     title: Attribute.Text & Attribute.Required;
     qty: Attribute.String & Attribute.Required;
-    product_link: Attribute.Text;
+    product_id: Attribute.Text;
     desc: Attribute.RichText;
     attachment: Attribute.Media;
   };
