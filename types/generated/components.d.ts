@@ -22,6 +22,7 @@ export interface ActivityModuleActiviyModule extends Schema.Component {
       'api::reward.reward'
     >;
     index: Attribute.BigInteger;
+    kit: Attribute.String;
   };
 }
 

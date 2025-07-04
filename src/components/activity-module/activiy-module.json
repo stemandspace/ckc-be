@@ -35,6 +35,9 @@
     },
     "index": {
       "type": "biginteger"
+    },
+    "kit": {
+      "type": "string"
     }
   }
 }
