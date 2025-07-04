@@ -15,7 +15,9 @@
       "enum": [
         "coin",
         "credit",
-        "empty"
+        "empty",
+        "systempromocode",
+        "marketplacepromocode"
       ]
     },
     "value": {

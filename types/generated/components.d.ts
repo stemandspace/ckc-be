@@ -81,7 +81,9 @@ export interface DailySpinSlice extends Schema.Component {
   };
   attributes: {
     title: Attribute.String;
-    type: Attribute.Enumeration<['coin', 'credit', 'empty']>;
+    type: Attribute.Enumeration<
+      ['coin', 'credit', 'empty', 'systempromocode', 'marketplacepromocode']
+    >;
     value: Attribute.BigInteger;
   };
 }
