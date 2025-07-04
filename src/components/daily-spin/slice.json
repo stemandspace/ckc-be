@@ -12,13 +12,7 @@
     },
     "type": {
       "type": "enumeration",
-      "enum": [
-        "coin",
-        "credit",
-        "empty",
-        "systempromocode",
-        "marketplacepromocode"
-      ]
+      "enum": ["coin", "credit", "empty", "systemPromocode"]
     },
     "value": {
       "type": "biginteger"

@@ -59,11 +59,11 @@ export interface DailyQuizQuestions extends Schema.Component {
   };
   attributes: {
     name: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 20;
-        maxLength: 100;
-      }>;
+    Attribute.Required &
+    Attribute.SetMinMaxLength<{
+      minLength: 20;
+      maxLength: 100;
+    }>;
     option1: Attribute.String & Attribute.Required;
     option2: Attribute.String & Attribute.Required;
     option3: Attribute.String;
@@ -82,7 +82,7 @@ export interface DailySpinSlice extends Schema.Component {
   attributes: {
     title: Attribute.String;
     type: Attribute.Enumeration<
-      ['coin', 'credit', 'empty', 'systempromocode', 'marketplacepromocode']
+      ['coin', 'credit', 'empty', 'systemPromocode']
     >;
     value: Attribute.BigInteger;
   };
@@ -163,8 +163,8 @@ export interface QlideQlide extends Schema.Component {
     type: Attribute.Enumeration<
       ['select', 'boolean', 'order', 'multiselect', 'textinput']
     > &
-      Attribute.Required &
-      Attribute.DefaultTo<'select'>;
+    Attribute.Required &
+    Attribute.DefaultTo<'select'>;
     duration: Attribute.Integer;
     options: Attribute.Component<'qtions.qtions', true>;
     answer: Attribute.String & Attribute.Required;
@@ -180,10 +180,10 @@ export interface QtionsQtions extends Schema.Component {
   };
   attributes: {
     name: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
+    Attribute.Required &
+    Attribute.SetMinMaxLength<{
+      minLength: 1;
+    }>;
   };
 }
 
