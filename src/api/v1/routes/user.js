@@ -9,5 +9,14 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: "POST",
+      path: "/v1/user/addons",
+      handler: "user.addAddons",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };
