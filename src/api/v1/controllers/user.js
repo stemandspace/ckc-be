@@ -158,6 +158,65 @@ const controller = ({ strapi }) => ({
       ctx.throw(500, "Failed to process addons");
     }
   },
+
+  async forceUpdatePassword(ctx) {
+    try {
+      const { email, password, confirmPassword } = ctx.request.body.data;
+
+      // Validate required fields
+      if (!email || !password || !confirmPassword) {
+        return ctx.throw(
+          400,
+          "Email, password, and confirmPassword are required"
+        );
+      }
+
+      // Validate password confirmation
+      if (password !== confirmPassword) {
+        return ctx.throw(400, "Password and confirmPassword do not match");
+      }
+
+      // Validate password strength (minimum 6 characters)
+      if (password.length < 6) {
+        return ctx.throw(400, "Password must be at least 6 characters long");
+      }
+
+      // Find user by email
+      const user = await strapi
+        .query("plugin::users-permissions.user")
+        .findOne({
+          where: { email: email.toLowerCase() },
+        });
+
+      if (!user) {
+        return ctx.throw(404, "User not found");
+      }
+
+      // Update user password (Strapi will hash it automatically)
+      const updatedUser = await strapi.entityService.update(
+        "plugin::users-permissions.user",
+        user.id,
+        {
+          data: {
+            password: password,
+          },
+        }
+      );
+
+      ctx.status = 200;
+      ctx.body = {
+        success: true,
+        message: "Password updated successfully",
+        data: {
+          id: updatedUser.id,
+          email: updatedUser.email,
+        },
+      };
+    } catch (error) {
+      console.error("ForceUpdatePassword error:", error);
+      ctx.throw(500, "Failed to update password");
+    }
+  },
 });
 
 module.exports = controller;

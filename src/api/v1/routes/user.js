@@ -18,5 +18,14 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: "POST",
+      path: "/v1/user/force-update-password",
+      handler: "user.forceUpdatePassword",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };
