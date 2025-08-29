@@ -1,5 +1,3 @@
-const clg = require("../../../lib/clg");
-
 /**
  * @typedef {import('@strapi/strapi').Strapi} Strapi
  * @typedef {import('koa').Context} Context
@@ -14,7 +12,7 @@ const clg = require("../../../lib/clg");
 const controller = ({ strapi }) => ({
   async quizLeaderboard(ctx) {
     try {
-      const usersScores = await strapi
+      const response = await strapi
         .query("api::daily-quiz-score.daily-quiz-score")
         .findMany({
           orderBy: { score: "desc" },
@@ -25,10 +23,12 @@ const controller = ({ strapi }) => ({
           },
         });
 
-      const dataMap = usersScores.map((sc) => {
+      const response_with_user = response.filter((sc) => sc.user.id !== null);
+
+      const dataMap = response_with_user.map((sc) => {
         return {
-          points: sc.score,
           id: sc.user.id,
+          points: sc.score,
           avatar: sc?.user?.avatar,
           lastname: sc?.user?.lastname,
           username: sc?.user?.username,
@@ -39,6 +39,7 @@ const controller = ({ strapi }) => ({
       const sortedLeaderboard = Array.from(dataMap.values()).sort(
         (a, b) => b?.points - a?.points
       );
+
       const addRankInLeaderboard = sortedLeaderboard.map((_, index) => {
         return {
           ..._,
