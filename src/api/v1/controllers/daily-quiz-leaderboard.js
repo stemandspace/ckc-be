@@ -33,6 +33,7 @@ const controller = ({ strapi }) => ({
           lastname: sc?.user?.lastname,
           username: sc?.user?.username,
           firstname: sc?.user?.firstname,
+          grade: sc?.user?.grade,
         };
       });
 
