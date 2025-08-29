@@ -18,7 +18,7 @@ const controller = ({ strapi }) => ({
           orderBy: { score: "desc" },
           populate: {
             user: {
-              select: ["id", "firstname", "lastname", "avatar", "username"],
+              select: ["id", "firstname", "lastname", "avatar", "username", "grade"],
             },
           },
         });
