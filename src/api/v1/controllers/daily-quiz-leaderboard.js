@@ -18,7 +18,14 @@ const controller = ({ strapi }) => ({
           orderBy: { score: "desc" },
           populate: {
             user: {
-              select: ["id", "firstname", "lastname", "avatar", "username", "grade"],
+              select: [
+                "id",
+                "firstname",
+                "lastname",
+                "avatar",
+                "username",
+                "grade",
+              ],
             },
           },
         });
@@ -30,10 +37,10 @@ const controller = ({ strapi }) => ({
           id: sc.user.id,
           points: sc.score,
           avatar: sc?.user?.avatar,
-          lastname: sc?.user?.lastname,
+          grade: sc?.user?.grade ?? "1",
           username: sc?.user?.username,
-          firstname: sc?.user?.firstname,
-          grade: sc?.user?.grade,
+          lastname: sc?.user?.lastname ?? "User",
+          firstname: sc?.user?.firstname ?? "Spacetopia",
         };
       });
 
@@ -47,7 +54,6 @@ const controller = ({ strapi }) => ({
           rank: index + 1,
         };
       });
-
       return ctx.send({ data: addRankInLeaderboard }, 200);
     } catch (err) {
       console.log(err);
