@@ -700,7 +700,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     setup: Attribute.Boolean & Attribute.DefaultTo<false>;
     type: Attribute.Enumeration<['free', 'basic', 'premium']> &
       Attribute.DefaultTo<'free'>;
-    country: Attribute.String;
+    country: Attribute.String & Attribute.DefaultTo<'India'>;
     state: Attribute.String;
     city: Attribute.String;
     lastlogin: Attribute.DateTime;

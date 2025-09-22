@@ -151,15 +151,12 @@
     },
     "type": {
       "type": "enumeration",
-      "enum": [
-        "free",
-        "basic",
-        "premium"
-      ],
+      "enum": ["free", "basic", "premium"],
       "default": "free"
     },
     "country": {
-      "type": "string"
+      "type": "string",
+      "default": "India"
     },
     "state": {
       "type": "string"
