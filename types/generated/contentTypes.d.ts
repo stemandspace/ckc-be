@@ -2852,6 +2852,7 @@ export interface ApiRealPurchaseRealPurchase extends Schema.CollectionType {
     singularName: 'real-purchase';
     pluralName: 'real-purchases';
     displayName: 'Real Purchase';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2863,6 +2864,7 @@ export interface ApiRealPurchaseRealPurchase extends Schema.CollectionType {
     status: Attribute.Enumeration<['paid', 'pending', 'unpaid', 'failed']>;
     label: Attribute.String;
     type: Attribute.Enumeration<['credits', 'diamonds', 'premium']>;
+    metadata: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
