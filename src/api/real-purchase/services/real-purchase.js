@@ -82,17 +82,46 @@ module.exports = createCoreService(
      * Update user premium status
      * @param {string} userId - User ID
      * @param {number} durationMs - Premium duration in milliseconds
+     * @param {string} planId - Plan ID to get type from metadata
      * @returns {Promise<boolean>} Success status
      */
-    async updateUserPremium(userId, durationMs) {
+    async updateUserPremium(userId, durationMs, planId) {
       try {
-        const premiumExpirationMs = Date.now() + durationMs;
+        let userType = "premium"; // Default fallback
+
+        // Get type from plan metadata if planId is provided
+        if (planId) {
+          try {
+            const plan = await strapi.query("api::plan.plan").findOne({
+              where: { id: planId },
+              populate: ["metadata"],
+            });
+
+            if (plan && plan.metadata && plan.metadata.type) {
+              userType = plan.metadata.type;
+              console.log("Plan type from metadata:", {
+                planId,
+                type: userType,
+                metadata: plan.metadata,
+              });
+            } else {
+              console.log("Plan metadata type not found, using default:", {
+                planId,
+                metadata: plan.metadata,
+                defaultType: userType,
+              });
+            }
+          } catch (planError) {
+            console.error("Error fetching plan metadata:", planError);
+            // Continue with default type
+          }
+        }
 
         await strapi.query("plugin::users-permissions.user").update({
           where: { id: userId },
           data: {
-            premium: premiumExpirationMs.toString(),
-            type: "premium",
+            premium: durationMs.toString(),
+            type: userType,
           },
         });
 
@@ -112,7 +141,7 @@ module.exports = createCoreService(
       try {
         const plan = await strapi.query("api::plan.plan").findOne({
           where: { id: planId },
-          select: ["credits", "metadata"],
+          populate: ["metadata"],
         });
 
         if (!plan) {
@@ -120,25 +149,13 @@ module.exports = createCoreService(
           return 0;
         }
 
-        // First try to get credits from metadata
-        if (plan.metadata && plan.metadata.credits) {
-          const metadataCredits = parseInt(plan.metadata.credits);
-          console.log("Plan credits from metadata:", {
-            planId,
-            metadataCredits,
-            metadata: plan.metadata,
-          });
-          return metadataCredits;
-        }
-
-        // Fallback to direct credits field
-        const directCredits = plan.credits ? parseInt(plan.credits) : 0;
-        console.log("Plan credits from direct field:", {
+        const metadataCredits = parseInt(plan.metadata.credits);
+        console.log("Plan credits from metadata:", {
           planId,
-          directCredits,
+          metadataCredits,
           metadata: plan.metadata,
         });
-        return directCredits;
+        return metadataCredits;
       } catch (error) {
         console.error("Error getting plan credits:", error);
         return 0;

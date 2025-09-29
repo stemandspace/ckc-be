@@ -63,6 +63,29 @@ function validateRequiredFields(data, requiredFields = REQUIRED_FIELDS) {
   }
 }
 
+function validateWebhookEvent({ event, status, description }, ctx) {
+  // Validate webhook event type
+  if (event !== "payment.captured") {
+    console.log("Webhook event not payment.captured:", event);
+    return ctx.send({ ok: true }, 200);
+  }
+
+  // Validate payment status
+  if (status !== "captured") {
+    console.log("Payment not captured:", status);
+    return ctx.send({ ok: true }, 200);
+  }
+
+  // Validate description contains students.spacetopia
+  if (!description || !description.includes("students.spacetopia")) {
+    console.log(
+      "Description does not contain students.spacetopia:",
+      description
+    );
+    return ctx.send({ ok: true }, 200);
+  }
+}
+
 const controller = ({ strapi }) => ({
   /**
    * Handle Razorpay webhook for payment validation and user premium update
@@ -92,26 +115,7 @@ const controller = ({ strapi }) => ({
         },
       } = webhookData;
 
-      // Validate webhook event type
-      if (event !== "payment.captured") {
-        console.log("Webhook event not payment.captured:", event);
-        return ctx.send({ ok: true }, 200);
-      }
-
-      // Validate payment status
-      if (status !== "captured") {
-        console.log("Payment not captured:", status);
-        return ctx.send({ ok: true }, 200);
-      }
-
-      // Validate description contains students.spacetopia
-      if (!description || !description.includes("students.spacetopia")) {
-        console.log(
-          "Description does not contain students.spacetopia:",
-          description
-        );
-        return ctx.send({ ok: true }, 200);
-      }
+      validateWebhookEvent({ event, status, description }, ctx);
 
       // Extract purchase information from notes
       const {
@@ -161,8 +165,15 @@ const controller = ({ strapi }) => ({
 
       if (type === "premium") {
         // Update user premium (1 year from now)
-        const oneYearMs = 365 * 24 * 60 * 60 * 1000;
-        await realPurchaseService.updateUserPremium(user_id, oneYearMs);
+        const currentDate = Math.floor(Date.now() / 1000);
+        const oneYearInSeconds = 365 * 24 * 60 * 60;
+        const newPremiumDate = currentDate + oneYearInSeconds;
+
+        await realPurchaseService.updateUserPremium(
+          user_id,
+          newPremiumDate,
+          plan_id
+        );
 
         // Add plan credits if plan_id is provided
         if (plan_id) {
@@ -172,12 +183,7 @@ const controller = ({ strapi }) => ({
             console.log("Plan credits added:", planCredits);
           }
         }
-
-        console.log("User premium updated:", {
-          user_id,
-          premium_expiration: new Date(Date.now() + oneYearMs).toISOString(),
-          type: "premium",
-        });
+        console.log("User premium updated");
       } else if (type === "credits") {
         // Handle credits purchase from topup
         if (topup_id) {
@@ -189,7 +195,6 @@ const controller = ({ strapi }) => ({
             console.log("Topup credits added:", topupCredits);
           }
         }
-
         console.log("Credits purchase processed:", { user_id, type });
       }
 
