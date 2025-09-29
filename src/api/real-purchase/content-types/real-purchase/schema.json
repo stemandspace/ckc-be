@@ -21,25 +21,19 @@
     "amount": {
       "type": "decimal"
     },
+    "currency": {
+      "type": "string"
+    },
     "status": {
       "type": "enumeration",
-      "enum": [
-        "paid",
-        "pending",
-        "unpaid",
-        "failed"
-      ]
+      "enum": ["paid", "pending", "unpaid", "failed"]
     },
     "label": {
       "type": "string"
     },
     "type": {
       "type": "enumeration",
-      "enum": [
-        "credits",
-        "diamonds",
-        "premium"
-      ]
+      "enum": ["credits", "diamonds", "premium"]
     },
     "metadata": {
       "type": "json"
