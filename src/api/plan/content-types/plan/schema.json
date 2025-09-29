@@ -27,6 +27,10 @@
     "price": {
       "type": "decimal"
     },
+    "credits": {
+      "type": "biginteger",
+      "default": "0"
+    },
     "thumbnail": {
       "type": "media",
       "multiple": true,
@@ -34,6 +38,9 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "metadata": {
+      "type": "json"
     }
   }
 }

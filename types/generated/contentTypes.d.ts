@@ -2391,7 +2391,9 @@ export interface ApiPlanPlan extends Schema.CollectionType {
     content: Attribute.RichText;
     duration_days: Attribute.BigInteger;
     price: Attribute.Decimal;
+    credits: Attribute.BigInteger & Attribute.DefaultTo<'0'>;
     thumbnail: Attribute.Media & Attribute.Required;
+    metadata: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2861,6 +2863,7 @@ export interface ApiRealPurchaseRealPurchase extends Schema.CollectionType {
     user_id: Attribute.String;
     purchase_id: Attribute.String;
     amount: Attribute.Decimal;
+    currency: Attribute.String;
     status: Attribute.Enumeration<['paid', 'pending', 'unpaid', 'failed']>;
     label: Attribute.String;
     type: Attribute.Enumeration<['credits', 'diamonds', 'premium']>;
