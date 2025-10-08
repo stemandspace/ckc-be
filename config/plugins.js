@@ -245,6 +245,12 @@ module.exports = ({ env }) => ({
           // },
           { contentType: "api::video.video", maxAge: 60 * 60 * 1000 },
           { contentType: "api::plan.plan", maxAge: 7 * 24 * 60 * 60 * 1000 },
+          // Cache plans/active endpoint specifically to reduce DB load
+          {
+            contentType: "api::plan.plan",
+            maxAge: 10 * 60 * 1000,
+            routes: ["/api/plans/active"],
+          },
           { contentType: "api::stack.stack", maxAge: 60 * 60 * 1000 },
           { contentType: "api::daily-quiz.daily-quiz", maxAge: 60 * 60 * 1000 },
           {
