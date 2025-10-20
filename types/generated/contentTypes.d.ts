@@ -2002,6 +2002,7 @@ export interface ApiLiveLive extends Schema.CollectionType {
     timestamp_reward: Attribute.Component<'timestamp-reward.timestamp-reward'>;
     dev: Attribute.Boolean & Attribute.DefaultTo<false>;
     quiz: Attribute.Relation<'api::live.live', 'oneToOne', 'api::quiz.quiz'>;
+    chat_id: Attribute.String & Attribute.DefaultTo<'general'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

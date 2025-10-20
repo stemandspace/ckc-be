@@ -94,6 +94,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::quiz.quiz"
+    },
+    "chat_id": {
+      "type": "string",
+      "default": "general"
     }
   }
 }
