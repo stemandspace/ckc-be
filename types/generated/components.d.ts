@@ -51,6 +51,16 @@ export interface CertificationCertificationEvents extends Schema.Component {
   };
 }
 
+export interface ContentContent extends Schema.Component {
+  collectionName: 'components_content_contents';
+  info: {
+    displayName: 'content';
+  };
+  attributes: {
+    name: Attribute.String;
+  };
+}
+
 export interface DailyQuizQuestions extends Schema.Component {
   collectionName: 'components_daily_quiz_questions';
   info: {
@@ -284,6 +294,7 @@ declare module '@strapi/types' {
       'activity-module.activiy-module': ActivityModuleActiviyModule;
       'certification.certification-config': CertificationCertificationConfig;
       'certification.certification-events': CertificationCertificationEvents;
+      'content.content': ContentContent;
       'daily-quiz.questions': DailyQuizQuestions;
       'daily-spin.slice': DailySpinSlice;
       'milestone.milestones': MilestoneMilestones;

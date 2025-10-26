@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "static_contents",
+  "info": {
+    "singularName": "static-content",
+    "pluralName": "static-contents",
+    "displayName": "static content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "json"
+    }
+  }
+}

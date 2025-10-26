@@ -3410,6 +3410,36 @@ export interface ApiStackStack extends Schema.CollectionType {
   };
 }
 
+export interface ApiStaticContentStaticContent extends Schema.SingleType {
+  collectionName: 'static_contents';
+  info: {
+    singularName: 'static-content';
+    pluralName: 'static-contents';
+    displayName: 'static content';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::static-content.static-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::static-content.static-content',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSubscriptionSubscription extends Schema.CollectionType {
   collectionName: 'subscriptions';
   info: {
@@ -3914,6 +3944,7 @@ declare module '@strapi/types' {
       'api::shopify-price-rule.shopify-price-rule': ApiShopifyPriceRuleShopifyPriceRule;
       'api::spin.spin': ApiSpinSpin;
       'api::stack.stack': ApiStackStack;
+      'api::static-content.static-content': ApiStaticContentStaticContent;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::time-tracking-reward.time-tracking-reward': ApiTimeTrackingRewardTimeTrackingReward;
       'api::tip-video.tip-video': ApiTipVideoTipVideo;
