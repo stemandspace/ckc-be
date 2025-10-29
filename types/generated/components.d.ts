@@ -26,6 +26,19 @@ export interface ActivityModuleActiviyModule extends Schema.Component {
   };
 }
 
+export interface CarouselCarousel extends Schema.Component {
+  collectionName: 'components_carousel_carousels';
+  info: {
+    displayName: 'carousel';
+    icon: 'bulletList';
+  };
+  attributes: {
+    href: Attribute.String;
+    target: Attribute.String & Attribute.DefaultTo<'null'>;
+    image: Attribute.Media;
+  };
+}
+
 export interface CertificationCertificationConfig extends Schema.Component {
   collectionName: 'components_certification_certification_configs';
   info: {
@@ -292,6 +305,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'activity-module.activiy-module': ActivityModuleActiviyModule;
+      'carousel.carousel': CarouselCarousel;
       'certification.certification-config': CertificationCertificationConfig;
       'certification.certification-events': CertificationCertificationEvents;
       'content.content': ContentContent;

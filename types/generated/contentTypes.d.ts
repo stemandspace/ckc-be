@@ -1025,6 +1025,7 @@ export interface ApiCertificationCertification extends Schema.SingleType {
     singularName: 'certification';
     pluralName: 'certifications';
     displayName: 'Certification';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1033,6 +1034,7 @@ export interface ApiCertificationCertification extends Schema.SingleType {
     banner: Attribute.Media;
     title: Attribute.String;
     desc: Attribute.Text;
+    carousel: Attribute.Component<'carousel.carousel', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

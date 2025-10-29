@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_carousel_carousels",
+  "info": {
+    "displayName": "carousel",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "href": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string",
+      "default": "null"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
