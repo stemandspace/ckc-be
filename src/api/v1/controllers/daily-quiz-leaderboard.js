@@ -60,8 +60,8 @@ const controller = ({ strapi }) => ({
           avatar: finalImageUrl,
           grade: sc?.user?.grade ?? "1",
           username: sc?.user?.username,
-          lastname: sc?.user?.lastname ?? "User",
-          firstname: sc?.user?.firstname ?? "Spacetopia",
+          lastname: sc?.user?.lastname ?? "user",
+          firstname: sc?.user?.firstname ?? "spacetopia",
         };
       });
 

@@ -23,22 +23,17 @@ const controller = ({ strapi }) => ({
         return ctx.send(stack, 200);
       }
 
-      clg("calculating leaderboard...");
-
-      const [overall, weekly, monthly] = await Promise.all([
+      const [overall, monthly] = await Promise.all([
         strapi
           .service("api::achivement.achivement")
           .calculateGlobalLeaderboard("overall"),
-        strapi
-          .service("api::achivement.achivement")
-          .calculateGlobalLeaderboard("weekly"),
+
         strapi
           .service("api::achivement.achivement")
           .calculateGlobalLeaderboard("monthly"),
       ]);
 
       await strapi.service("api::stack.stack").saveGlobalLeaderboardStack({
-        weekly,
         overall,
         monthly,
       });
@@ -46,7 +41,6 @@ const controller = ({ strapi }) => ({
       return ctx.send(
         {
           overall,
-          weekly,
           monthly,
         },
         200

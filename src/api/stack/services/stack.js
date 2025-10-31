@@ -39,7 +39,7 @@ module.exports = createCoreService("api::stack.stack", () => ({
           identifier: "globalleaderboard",
         },
       });
-      clg("Leaderboard Cached Data ->", stack);
+      // clg("Leaderboard Cached Data ->", stack);
       return stack?.data ?? undefined;
     } catch (err) {
       console.log(err);
