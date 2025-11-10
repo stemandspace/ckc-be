@@ -10,5 +10,17 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      // curl --location 'http://localhost:1337/api/daily-quiz/bulk-upload' \
+      // --header 'Content-Type: application/json' \
+      // --data '{"quizzes": [...]}'
+      method: "POST",
+      path: "/daily-quiz/bulk-upload",
+      handler: "custom-daily-quiz.bulkUploadQuizzes",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };

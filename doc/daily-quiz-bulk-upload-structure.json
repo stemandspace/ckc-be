@@ -1,0 +1,212 @@
+{
+  "description": "Sample JSON structure for bulk uploading daily quizzes",
+  "endpoint": "POST /api/daily-quiz/bulk-upload",
+  "contentType": "application/json",
+  "example": {
+    "quizzes": [
+      {
+        "title": "Science Quiz - Easy Level",
+        "description": "A fun science quiz for beginners covering basic concepts",
+        "variable_score": 100,
+        "publish_date": "2024-01-15",
+        "difficulty": "easy",
+        "questions": [
+          {
+            "name": "What is the chemical symbol for water?",
+            "option1": "H2O",
+            "option2": "CO2",
+            "option3": "O2",
+            "option4": "NaCl",
+            "answer": "H2O"
+          },
+          {
+            "name": "Which planet is known as the Red Planet?",
+            "option1": "Venus",
+            "option2": "Mars",
+            "option3": "Jupiter",
+            "option4": "Saturn",
+            "answer": "Mars"
+          },
+          {
+            "name": "What is the largest organ in the human body?",
+            "option1": "Liver",
+            "option2": "Skin",
+            "option3": "Lungs",
+            "option4": "Heart",
+            "answer": "Skin"
+          }
+        ],
+        "reward": null
+      },
+      {
+        "title": "History Quiz - Medium Level",
+        "description": "Test your knowledge of world history with this medium difficulty quiz",
+        "variable_score": 200,
+        "publish_date": "2024-01-15",
+        "difficulty": "medium",
+        "questions": [
+          {
+            "name": "In which year did World War II end?",
+            "option1": "1944",
+            "option2": "1945",
+            "option3": "1946",
+            "option4": "1947",
+            "answer": "1945"
+          },
+          {
+            "name": "Who was the first person to walk on the moon?",
+            "option1": "Buzz Aldrin",
+            "option2": "Neil Armstrong",
+            "option3": "Michael Collins",
+            "option4": "John Glenn",
+            "answer": "Neil Armstrong"
+          }
+        ]
+      },
+      {
+        "title": "Mathematics Quiz - Hard Level",
+        "description": "Challenge yourself with advanced mathematics problems",
+        "variable_score": 300,
+        "publish_date": "2024-01-15",
+        "difficulty": "hard",
+        "questions": [
+          {
+            "name": "What is the derivative of x^2 with respect to x?",
+            "option1": "x",
+            "option2": "2x",
+            "option3": "x^2",
+            "option4": "2x^2",
+            "answer": "2x"
+          },
+          {
+            "name": "What is the value of pi (π) approximately?",
+            "option1": "3.14",
+            "option2": "3.14159",
+            "option3": "3.14159265359",
+            "option4": "All of the above are approximations",
+            "answer": "All of the above are approximations"
+          }
+        ]
+      }
+    ]
+  },
+  "fieldDescriptions": {
+    "quizzes": {
+      "type": "array",
+      "required": true,
+      "description": "Array of quiz objects to upload"
+    },
+    "quizObject": {
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Title of the quiz"
+      },
+      "description": {
+        "type": "string",
+        "required": true,
+        "description": "Description of the quiz"
+      },
+      "variable_score": {
+        "type": "integer",
+        "required": true,
+        "description": "Score points for completing this quiz"
+      },
+      "publish_date": {
+        "type": "string (YYYY-MM-DD) or Date",
+        "required": true,
+        "description": "Date when the quiz should be published (format: YYYY-MM-DD)"
+      },
+      "difficulty": {
+        "type": "enum",
+        "required": true,
+        "values": ["easy", "medium", "hard"],
+        "description": "Difficulty level of the quiz"
+      },
+      "questions": {
+        "type": "array",
+        "required": true,
+        "minItems": 1,
+        "description": "Array of question objects"
+      },
+      "reward": {
+        "type": "integer (ID) or null",
+        "required": false,
+        "description": "Optional reward ID to associate with this quiz"
+      }
+    },
+    "questionObject": {
+      "name": {
+        "type": "string",
+        "required": true,
+        "minLength": 20,
+        "maxLength": 100,
+        "description": "The question text (must be between 20-100 characters)"
+      },
+      "option1": {
+        "type": "string",
+        "required": true,
+        "description": "First answer option"
+      },
+      "option2": {
+        "type": "string",
+        "required": true,
+        "description": "Second answer option"
+      },
+      "option3": {
+        "type": "string",
+        "required": false,
+        "description": "Third answer option (optional)"
+      },
+      "option4": {
+        "type": "string",
+        "required": false,
+        "description": "Fourth answer option (optional)"
+      },
+      "answer": {
+        "type": "string",
+        "required": true,
+        "description": "The correct answer (must match one of the options)"
+      }
+    }
+  },
+  "responseStructure": {
+    "success": {
+      "message": "Bulk upload completed. X successful, Y failed out of Z total.",
+      "results": {
+        "success": [
+          {
+            "index": 1,
+            "id": 123,
+            "title": "Science Quiz - Easy Level",
+            "difficulty": "easy",
+            "publish_date": "2024-01-15",
+            "questions_count": 3
+          }
+        ],
+        "failed": [
+          {
+            "index": 2,
+            "error": "Quiz 2: Missing required fields",
+            "title": "Invalid Quiz"
+          }
+        ],
+        "total": 2
+      }
+    },
+    "error": {
+      "error": "quizzes must be provided as an array in the request body",
+      "example": { "...": "..." }
+    }
+  },
+  "curlExample": "curl --location 'http://localhost:1337/api/daily-quiz/bulk-upload' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"quizzes\": [\n      {\n        \"title\": \"Sample Quiz\",\n        \"description\": \"Quiz description\",\n        \"variable_score\": 100,\n        \"publish_date\": \"2024-01-15\",\n        \"difficulty\": \"easy\",\n        \"questions\": [\n          {\n            \"name\": \"What is the capital of France?\",\n            \"option1\": \"London\",\n            \"option2\": \"Paris\",\n            \"option3\": \"Berlin\",\n            \"option4\": \"Madrid\",\n            \"answer\": \"Paris\"\n          }\n        ]\n      }\n    ]\n  }'",
+  "notes": [
+    "All quizzes in the array will be created and published automatically",
+    "If one quiz fails, others will still be processed",
+    "The API returns detailed success and failure information for each quiz",
+    "publish_date should be in YYYY-MM-DD format",
+    "Question name must be between 20-100 characters",
+    "option3 and option4 are optional for questions",
+    "reward field is optional and should be a reward ID if provided"
+  ]
+}
