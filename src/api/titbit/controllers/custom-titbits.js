@@ -5,6 +5,8 @@ const DEFAULT_PAGE = 1;
 const DEFAULT_SORT = "updatedAt:desc";
 const CACHE_TTL = 3600 * 24; // 1 days
 
+const createPostsService = require("../services/posts");
+
 /**
  * @typedef {import('@strapi/strapi').Strapi} Strapi
  * @typedef {import('koa').Context} Context
@@ -147,6 +149,54 @@ const controller = ({ strapi }) => ({
     } catch (error) {
       console.error(error);
       ctx.badRequest("Error fetching titbit by id");
+    }
+  },
+
+  /**
+   * Fetch all titbits posts ordered by recently uploaded with pagination.
+   * @param {Context} ctx - Koa context object.
+   */
+  async getTitbitsPosts(ctx) {
+    try {
+      const { page = DEFAULT_PAGE, userId } = ctx.request.query;
+
+      const postsService = createPostsService({ strapi });
+      const userIdNum = userId ? parseInt(userId.toString(), 10) : null;
+      const titbits = await postsService.getTitbitsPosts(page, userIdNum);
+
+      ctx.body = titbits;
+    } catch (error) {
+      console.error(error);
+      ctx.badRequest("Error fetching titbits posts");
+    }
+  },
+
+  /**
+   * Fetch a specific titbit post by ID with like count and media.
+   * @param {Context} ctx - Koa context object.
+   */
+  async getTitbitPost(ctx) {
+    try {
+      const { id } = ctx.params;
+      const { userId } = ctx.request.query;
+
+      if (!id) {
+        return ctx.badRequest("Post ID is required");
+      }
+
+      const postsService = createPostsService({ strapi });
+      const postId = parseInt(id.toString(), 10);
+      const userIdNum = userId ? parseInt(userId.toString(), 10) : null;
+      const post = await postsService.getTitbitPost(postId, userIdNum);
+
+      if (!post) {
+        return ctx.notFound("Post not found");
+      }
+
+      ctx.body = post;
+    } catch (error) {
+      console.error(error);
+      ctx.badRequest("Error fetching titbit post");
     }
   },
 });
