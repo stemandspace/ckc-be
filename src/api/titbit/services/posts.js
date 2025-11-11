@@ -35,7 +35,14 @@ const createPostsService = ({ strapi }) => ({
         .first(),
       // Fetch titbits with raw SQL - optimized single query
       strapi.db.connection
-        .select("t.id", "t.caption", "t.tags", "t.source", "t.description")
+        .select(
+          "t.id",
+          "t.caption",
+          "t.tags",
+          "t.source",
+          "t.description",
+          "t.created_at as createdAt"
+        )
         .from("titbits as t")
         .whereNotNull("t.published_at")
         .orderBy("t.created_at", "desc")
@@ -145,12 +152,14 @@ const createPostsService = ({ strapi }) => ({
     const titbitsWithLikes = titbits.map((titbit) => {
       const titbitId = titbit.id?.toString() || titbit.id;
       return {
+        id: titbit.id,
         caption: titbit.caption,
         tags: titbit.tags,
         source: titbit.source,
         description: titbit.description,
         likeCount: likeCountsMap[titbitId] || 0,
         isLiked: userId ? userLikedPostsMap[titbitId] || false : false,
+        createdAt: titbit.createdAt,
         media: mediaMap[titbitId] || [],
       };
     });
@@ -176,7 +185,14 @@ const createPostsService = ({ strapi }) => ({
   async getTitbitPost(postId, userId = null) {
     // Fetch titbit with raw SQL
     const titbit = await strapi.db.connection
-      .select("t.id", "t.caption", "t.tags", "t.source", "t.description")
+      .select(
+        "t.id",
+        "t.caption",
+        "t.tags",
+        "t.source",
+        "t.description",
+        "t.created_at as createdAt"
+      )
       .from("titbits as t")
       .where("t.id", postId)
       .whereNotNull("t.published_at")
@@ -256,12 +272,14 @@ const createPostsService = ({ strapi }) => ({
 
     // Return in same structure as posts list
     return {
+      id: titbit.id,
       caption: titbit.caption,
       tags: titbit.tags,
       source: titbit.source,
       description: titbit.description,
       likeCount: likeCountValue,
       isLiked,
+      createdAt: titbit.createdAt,
       media,
     };
   },
