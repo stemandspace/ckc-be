@@ -158,16 +158,29 @@ const controller = ({ strapi }) => ({
    */
   async getTitbitsPosts(ctx) {
     try {
-      const { page = DEFAULT_PAGE, userId } = ctx.request.query;
+      const { page = DEFAULT_PAGE, userId, categoryId } = ctx.request.query;
 
       const postsService = createPostsService({ strapi });
       const userIdNum = userId ? parseInt(userId.toString(), 10) : null;
-      const titbits = await postsService.getTitbitsPosts(page, userIdNum);
 
-      ctx.body = titbits;
+      // If categoryId is provided, use the separate category filter method
+      if (categoryId) {
+        const categoryIdNum = parseInt(categoryId.toString(), 10);
+        const titbits = await postsService.getTitbitsPostsByCategory(
+          page,
+          categoryIdNum,
+          userIdNum
+        );
+        ctx.body = titbits;
+      } else {
+        // Use the optimized method without category filter
+        const titbits = await postsService.getTitbitsPosts(page, userIdNum);
+        ctx.body = titbits;
+      }
     } catch (error) {
-      console.error(error);
-      ctx.badRequest("Error fetching titbits posts");
+      console.error("Error in getTitbitsPosts:", error);
+      console.error("Error stack:", error.stack);
+      ctx.badRequest(`Error fetching titbits posts: ${error.message}`);
     }
   },
 

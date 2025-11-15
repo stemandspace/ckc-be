@@ -25,26 +25,30 @@ const createPostsService = ({ strapi }) => ({
     const pageNum = parseInt(page.toString(), 10);
     const offset = (pageNum - 1) * POSTS_PAGE_SIZE;
 
+    // Build base query conditions
+    const baseCountQuery = strapi.db.connection
+      .count("* as total")
+      .from("titbits")
+      .whereNotNull("published_at");
+
+    const baseTitbitsQuery = strapi.db.connection
+      .select(
+        "t.id",
+        "t.caption",
+        "t.tags",
+        "t.source",
+        "t.description",
+        "t.created_at as createdAt"
+      )
+      .from("titbits as t")
+      .whereNotNull("t.published_at");
+
     // Run count and titbits queries in parallel for better performance
     const [totalCountResult, titbits] = await Promise.all([
       // Get total count for pagination
-      strapi.db.connection
-        .count("* as total")
-        .from("titbits")
-        .whereNotNull("published_at")
-        .first(),
+      baseCountQuery.first(),
       // Fetch titbits with raw SQL - optimized single query
-      strapi.db.connection
-        .select(
-          "t.id",
-          "t.caption",
-          "t.tags",
-          "t.source",
-          "t.description",
-          "t.created_at as createdAt"
-        )
-        .from("titbits as t")
-        .whereNotNull("t.published_at")
+      baseTitbitsQuery
         .orderBy("t.created_at", "desc")
         .limit(POSTS_PAGE_SIZE)
         .offset(offset),
@@ -105,6 +109,206 @@ const createPostsService = ({ strapi }) => ({
           .where("type", "titbit")
           .where("user_id", userId)
           .whereIn("content_id", titbitIds)
+      );
+    }
+
+    // Execute all queries in parallel
+    const results = await Promise.all(queries);
+    const likeCounts = results[0];
+    const mediaFiles = results[1];
+    const userLikes = userId ? results[2] : [];
+
+    // Build like counts map
+    const likeCountsMap = {};
+    likeCounts.forEach((row) => {
+      const contentId = row.content_id?.toString() || row.content_id;
+      likeCountsMap[contentId] = parseInt(row.count, 10) || 0;
+    });
+
+    // Build user liked posts map
+    const userLikedPostsMap = {};
+    if (userId && userLikes) {
+      userLikes.forEach((like) => {
+        const contentId = like.content_id?.toString() || like.content_id;
+        userLikedPostsMap[contentId] = true;
+      });
+    }
+
+    // Group media by titbit_id
+    const mediaMap = {};
+    mediaFiles.forEach((file) => {
+      const titbitId = file.titbit_id?.toString() || file.titbit_id;
+      if (!mediaMap[titbitId]) {
+        mediaMap[titbitId] = [];
+      }
+      mediaMap[titbitId].push({
+        id: file.id,
+        url: file.url,
+        name: file.name,
+        width: file.width,
+        height: file.height,
+        caption: file.caption,
+        alternativeText: file.alternativeText,
+      });
+    });
+
+    // Combine all data - only return requested fields
+    const titbitsWithLikes = titbits.map((titbit) => {
+      const titbitId = titbit.id?.toString() || titbit.id;
+      return {
+        id: titbit.id,
+        caption: titbit.caption,
+        tags: titbit.tags,
+        source: titbit.source,
+        description: titbit.description,
+        likeCount: likeCountsMap[titbitId] || 0,
+        isLiked: userId ? userLikedPostsMap[titbitId] || false : false,
+        createdAt: titbit.createdAt,
+        media: mediaMap[titbitId] || [],
+      };
+    });
+
+    return {
+      data: titbitsWithLikes,
+      pagination: {
+        page: pageNum,
+        pageSize: POSTS_PAGE_SIZE,
+        pageCount,
+        total,
+      },
+    };
+  },
+
+  /**
+   * Fetch titbits posts filtered by category ID with pagination.
+   * Uses entityService for category filtering (can be optimized in future).
+   * @param {number} page - Page number (default: 1)
+   * @param {number} categoryId - Category ID to filter posts by
+   * @param {number|null} userId - Optional user ID to check if posts are liked by user
+   * @returns {Promise<Object>} Paginated titbits posts with like counts and isLiked status
+   */
+  async getTitbitsPostsByCategory(
+    page = DEFAULT_PAGE,
+    categoryId,
+    userId = null
+  ) {
+    const pageNum = parseInt(page.toString(), 10);
+    const categoryIdNum = parseInt(categoryId.toString(), 10);
+    const offset = (pageNum - 1) * POSTS_PAGE_SIZE;
+
+    // Use Strapi's entityService to get titbit IDs filtered by category
+    // This works because entityService handles relations automatically
+    // TODO: Optimize this query in future by finding the actual database column or using JOIN
+    const filteredTitbits = await strapi.entityService.findMany(
+      "api::titbit.titbit",
+      {
+        filters: {
+          // @ts-ignore
+          titbits_category: categoryIdNum,
+          publishedAt: { $notNull: true },
+        },
+        fields: ["id"],
+        limit: 10000, // Get all matching IDs
+      }
+    );
+
+    const titbitIds = filteredTitbits.map((t) => t.id);
+
+    if (titbitIds.length === 0) {
+      // No titbits match the category, return empty result
+      return {
+        data: [],
+        pagination: {
+          page: pageNum,
+          pageSize: POSTS_PAGE_SIZE,
+          pageCount: 0,
+          total: 0,
+        },
+      };
+    }
+
+    // Now use raw SQL for the rest of the query for better performance
+    const [totalCountResult, titbits] = await Promise.all([
+      // Get total count for pagination
+      strapi.db.connection
+        .count("* as total")
+        .from("titbits")
+        .whereNotNull("published_at")
+        .whereIn("id", titbitIds)
+        .first(),
+      // Fetch titbits with raw SQL - optimized single query
+      strapi.db.connection
+        .select(
+          "t.id",
+          "t.caption",
+          "t.tags",
+          "t.source",
+          "t.description",
+          "t.created_at as createdAt"
+        )
+        .from("titbits as t")
+        .whereNotNull("t.published_at")
+        .whereIn("t.id", titbitIds)
+        .orderBy("t.created_at", "desc")
+        .limit(POSTS_PAGE_SIZE)
+        .offset(offset),
+    ]);
+
+    const total = parseInt(totalCountResult?.total || "0", 10);
+    const pageCount = Math.ceil(total / POSTS_PAGE_SIZE);
+
+    if (titbits.length === 0) {
+      return {
+        data: [],
+        pagination: {
+          page: pageNum,
+          pageSize: POSTS_PAGE_SIZE,
+          pageCount: 0,
+          total: 0,
+        },
+      };
+    }
+
+    const titbitIdsFromQuery = titbits.map((t) => t.id);
+
+    // Run all dependent queries in parallel for maximum performance
+    const queries = [
+      // Fetch like counts in a single optimized query
+      strapi.db.connection
+        .select("content_id")
+        .count("* as count")
+        .from("likes")
+        .where("type", "titbit")
+        .whereIn("content_id", titbitIdsFromQuery)
+        .groupBy("content_id"),
+      // Fetch media files for all titbits in a single query
+      strapi.db.connection
+        .select(
+          "frm.related_id as titbit_id",
+          "f.id",
+          "f.url",
+          "f.name",
+          "f.width",
+          "f.height",
+          "f.caption",
+          "f.alternative_text as alternativeText"
+        )
+        .from("files_related_morphs as frm")
+        .innerJoin("files as f", "frm.file_id", "f.id")
+        .where("frm.related_type", "api::titbit.titbit")
+        .whereIn("frm.related_id", titbitIdsFromQuery)
+        .orderBy("frm.order", "asc"),
+    ];
+
+    // Add user likes query only if userId is provided
+    if (userId && titbitIdsFromQuery.length > 0) {
+      queries.push(
+        strapi.db.connection
+          .select("content_id")
+          .from("likes")
+          .where("type", "titbit")
+          .where("user_id", userId)
+          .whereIn("content_id", titbitIdsFromQuery)
       );
     }
 
