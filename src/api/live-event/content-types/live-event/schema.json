@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "live_events",
+  "info": {
+    "singularName": "live-event",
+    "pluralName": "live-events",
+    "displayName": "Live Event"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "winners_rewards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reward.reward"
+    },
+    "participation_rewards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reward.reward"
+    },
+    "winners": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user"
+    },
+    "participants": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user"
+    },
+    "winners_rewarded": {
+      "type": "boolean",
+      "default": false
+    },
+    "participations_rewarded": {
+      "type": "boolean"
+    }
+  }
+}

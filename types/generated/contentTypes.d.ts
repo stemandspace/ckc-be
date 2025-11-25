@@ -2015,6 +2015,58 @@ export interface ApiLiveLive extends Schema.CollectionType {
   };
 }
 
+export interface ApiLiveEventLiveEvent extends Schema.CollectionType {
+  collectionName: 'live_events';
+  info: {
+    singularName: 'live-event';
+    pluralName: 'live-events';
+    displayName: 'Live Event';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    winners_rewards: Attribute.Relation<
+      'api::live-event.live-event',
+      'oneToMany',
+      'api::reward.reward'
+    >;
+    participation_rewards: Attribute.Relation<
+      'api::live-event.live-event',
+      'oneToMany',
+      'api::reward.reward'
+    >;
+    winners: Attribute.Relation<
+      'api::live-event.live-event',
+      'oneToMany',
+      'plugin::users-permissions.user'
+    >;
+    participants: Attribute.Relation<
+      'api::live-event.live-event',
+      'oneToMany',
+      'plugin::users-permissions.user'
+    >;
+    winners_rewarded: Attribute.Boolean & Attribute.DefaultTo<false>;
+    participations_rewarded: Attribute.Boolean;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::live-event.live-event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::live-event.live-event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiLiveSpeakerLiveSpeaker extends Schema.CollectionType {
   collectionName: 'live_speakers';
   info: {
@@ -3913,6 +3965,7 @@ declare module '@strapi/types' {
       'api::just-launched-config.just-launched-config': ApiJustLaunchedConfigJustLaunchedConfig;
       'api::like.like': ApiLikeLike;
       'api::live.live': ApiLiveLive;
+      'api::live-event.live-event': ApiLiveEventLiveEvent;
       'api::live-speaker.live-speaker': ApiLiveSpeakerLiveSpeaker;
       'api::mail-template.mail-template': ApiMailTemplateMailTemplate;
       'api::membership.membership': ApiMembershipMembership;
