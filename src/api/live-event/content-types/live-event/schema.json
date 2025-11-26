@@ -18,12 +18,14 @@
     "winners_rewards": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::reward.reward"
+      "target": "api::reward.reward",
+      "mappedBy": "live_event_winner"
     },
     "participation_rewards": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::reward.reward"
+      "target": "api::reward.reward",
+      "mappedBy": "live_event_participation"
     },
     "winners": {
       "type": "relation",

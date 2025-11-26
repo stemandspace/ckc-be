@@ -3269,6 +3269,16 @@ export interface ApiRewardReward extends Schema.CollectionType {
       'oneToOne',
       'api::shopify-coupon.shopify-coupon'
     >;
+    live_event_winner: Attribute.Relation<
+      'api::reward.reward',
+      'manyToOne',
+      'api::live-event.live-event'
+    >;
+    live_event_participation: Attribute.Relation<
+      'api::reward.reward',
+      'manyToOne',
+      'api::live-event.live-event'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -104,6 +104,18 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::shopify-coupon.shopify-coupon"
+    },
+    "live_event_winner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::live-event.live-event",
+      "inversedBy": "winners_rewards"
+    },
+    "live_event_participation": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::live-event.live-event",
+      "inversedBy": "participation_rewards"
     }
   }
 }
