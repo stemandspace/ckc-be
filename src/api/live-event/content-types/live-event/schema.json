@@ -4,7 +4,8 @@
   "info": {
     "singularName": "live-event",
     "pluralName": "live-events",
-    "displayName": "Live Event"
+    "displayName": "Live Event",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -40,6 +41,12 @@
     },
     "participations_rewarded": {
       "type": "boolean"
+    },
+    "live": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::live.live",
+      "inversedBy": "live_event"
     }
   }
 }

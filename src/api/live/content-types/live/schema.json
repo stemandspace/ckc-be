@@ -98,6 +98,12 @@
     "chat_id": {
       "type": "string",
       "default": "general"
+    },
+    "live_event": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::live-event.live-event",
+      "mappedBy": "live"
     }
   }
 }

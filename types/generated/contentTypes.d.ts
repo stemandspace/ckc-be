@@ -2005,6 +2005,11 @@ export interface ApiLiveLive extends Schema.CollectionType {
     dev: Attribute.Boolean & Attribute.DefaultTo<false>;
     quiz: Attribute.Relation<'api::live.live', 'oneToOne', 'api::quiz.quiz'>;
     chat_id: Attribute.String & Attribute.DefaultTo<'general'>;
+    live_event: Attribute.Relation<
+      'api::live.live',
+      'oneToOne',
+      'api::live-event.live-event'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2021,6 +2026,7 @@ export interface ApiLiveEventLiveEvent extends Schema.CollectionType {
     singularName: 'live-event';
     pluralName: 'live-events';
     displayName: 'Live Event';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2049,6 +2055,11 @@ export interface ApiLiveEventLiveEvent extends Schema.CollectionType {
     >;
     winners_rewarded: Attribute.Boolean & Attribute.DefaultTo<false>;
     participations_rewarded: Attribute.Boolean;
+    live: Attribute.Relation<
+      'api::live-event.live-event',
+      'oneToOne',
+      'api::live.live'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
